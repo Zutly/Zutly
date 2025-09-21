@@ -8,9 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { showSuccess, showError } from "@/utils/toast";
 
-// Pas dit aan naar de volledige URL van je PHP-script op je Strato-hosting
-// Bijvoorbeeld: "https://www.jouwdomein.nl/api/send_email.php"
-const API_ENDPOINT = "/api/send_email.php"; 
+const API_ENDPOINT = "/api/send_email.php";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -69,54 +67,54 @@ const ContactForm = () => {
   };
 
   return (
-    <section id="contact" className="py-16 bg-zutly-tiffany-dark/10"> {/* Changed background here */}
+    <section id="contact" className="py-20 bg-zutly-tiffany-dark/10">
       <div className="container mx-auto px-4 max-w-2xl">
-        <Card className="shadow-lg border-zutly-medium-blue">
-          <CardHeader className="text-center">
+        <Card className="shadow-xl border-b-4 border-zutly-medium-blue p-6">
+          <CardHeader className="text-center pb-6">
             <CardTitle className="text-3xl font-bold text-zutly-dark-purple">Neem Contact Op</CardTitle>
-            <CardDescription className="text-gray-600 mt-2">
+            <CardDescription className="text-gray-600 mt-2 text-lg">
               Heeft u vragen of wilt u meer weten? Vul het onderstaande formulier in.
             </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <Label htmlFor="name" className="text-zutly-dark-purple">Naam</Label>
+                <Label htmlFor="name" className="text-zutly-dark-purple text-base font-semibold mb-1 block">Naam</Label>
                 <Input
                   id="name"
                   type="text"
                   placeholder="Uw naam"
                   value={formData.name}
                   onChange={handleChange}
-                  className="mt-1"
+                  className="mt-1 p-3 border-gray-300 focus:border-zutly-medium-blue focus:ring-zutly-medium-blue"
                   disabled={isSubmitting}
                 />
               </div>
               <div>
-                <Label htmlFor="email" className="text-zutly-dark-purple">E-mail</Label>
+                <Label htmlFor="email" className="text-zutly-dark-purple text-base font-semibold mb-1 block">E-mail</Label>
                 <Input
                   id="email"
                   type="email"
                   placeholder="uw@voorbeeld.com"
                   value={formData.email}
                   onChange={handleChange}
-                  className="mt-1"
+                  className="mt-1 p-3 border-gray-300 focus:border-zutly-medium-blue focus:ring-zutly-medium-blue"
                   disabled={isSubmitting}
                 />
               </div>
               <div>
-                <Label htmlFor="message" className="text-zutly-dark-purple">Bericht</Label>
+                <Label htmlFor="message" className="text-zutly-dark-purple text-base font-semibold mb-1 block">Bericht</Label>
                 <Textarea
                   id="message"
                   placeholder="Uw bericht..."
                   value={formData.message}
                   onChange={handleChange}
-                  rows={5}
-                  className="mt-1"
+                  rows={6}
+                  className="mt-1 p-3 border-gray-300 focus:border-zutly-medium-blue focus:ring-zutly-medium-blue"
                   disabled={isSubmitting}
                 />
               </div>
-              <Button type="submit" className="w-full bg-zutly-medium-blue hover:bg-zutly-dark-purple text-white" disabled={isSubmitting}>
+              <Button type="submit" className="w-full py-3 text-lg bg-zutly-medium-blue hover:bg-zutly-dark-purple text-white font-semibold transition-colors duration-300" disabled={isSubmitting}>
                 {isSubmitting ? "Verzenden..." : "Verzenden"}
               </Button>
             </form>

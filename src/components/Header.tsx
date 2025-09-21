@@ -13,16 +13,16 @@ const Header = () => {
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "USPs", href: "#usps" },
-    { name: "Over ons", href: "#about" }, // Added new link
+    { name: "Over ons", href: "#about" },
     { name: "Contact", href: "#contact" },
     { name: "FAQ", href: "#faq" },
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 shadow-lg backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <img src="/zutly-logo.png" alt="Zutly Logo" className="h-8 w-auto" />
+          <img src="/zutly-logo.png" alt="Zutly Logo" className="h-9 w-auto" />
           <span className="sr-only">Zutly Home</span>
         </Link>
 
@@ -40,7 +40,7 @@ const Header = () => {
                   <a
                     key={link.name}
                     href={link.href}
-                    className="text-lg font-medium hover:text-zutly-medium-blue"
+                    className="text-lg font-medium hover:text-zutly-medium-blue transition-colors duration-200"
                   >
                     {link.name}
                   </a>
@@ -49,12 +49,12 @@ const Header = () => {
             </SheetContent>
           </Sheet>
         ) : (
-          <nav className="flex items-center gap-6">
+          <nav className="flex items-center gap-8">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="text-sm font-medium text-foreground transition-colors hover:text-zutly-medium-blue"
+                className="text-base font-medium text-foreground transition-colors hover:text-zutly-medium-blue relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-zutly-medium-blue after:transition-all after:duration-300 hover:after:w-full"
               >
                 {link.name}
               </a>

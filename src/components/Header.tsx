@@ -1,23 +1,81 @@
 "use client";
 
 import React from "react";
-import { Link } from "react-router-dom"; // Voor navigatielinks
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet"; // Import SheetClose
+import { Menu } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Header = () => {
+  const isMobile = useIsMobile();
+
+  const navLinks = [
+    { name: "Home", href: "/" },
+    { name: "USPs", href: "#usps" },
+    { name: "Over ons", href: "#about" },
+    { name: "Contact", href: "#contact" },
+    { name: "FAQ", href: "#faq" },
+  ];
+
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const targetId = href.substring(1); // Remove the '#'
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else if (href === "/") {
+      // Special handling for home link if it's not an anchor on the same page
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   return (
-    <header className="bg-zutly-dark-purple text-white p-4 shadow-md">
-      <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="flex items-center space-x-2">
-          <img src="/zutly-logo.png" alt="Zutly Logo" className="h-8" />
-          <span className="text-2xl font-bold text-zutly-tiffany-light">Zutly</span>
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 shadow-lg backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container flex h-16 items-center justify-between">
+        <Link to="/" className="flex items-center gap-2" onClick={(e) => handleSmoothScroll(e, "/")}>
+          <img src="/zutly-logo.png" alt="Zutly Logo" className="h-9 w-auto" />
+          <span className="sr-only">Zutly Home</span>
         </Link>
-        <nav className="space-x-4 hidden md:flex"> {/* Verberg op kleine schermen, toon op medium en groter */}
-          <a href="#diensten" className="hover:text-zutly-tiffany-light transition-colors duration-200">Diensten</a>
-          <a href="#about" className="hover:text-zutly-tiffany-light transition-colors duration-200">Over Ons</a>
-          <a href="#contact" className="hover:text-zutly-tiffany-light transition-colors duration-200">Contact</a>
-          <a href="#faq" className="hover:text-zutly-tiffany-light transition-colors duration-200">FAQ</a>
-        </nav>
-        {/* Hier kan eventueel een mobiele menuknop worden toegevoegd */}
+
+        {isMobile ? (
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <Menu className="h-6 w-6" />
+                <span className="sr-only">Toggle navigation menu</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right">
+              <nav className="flex flex-col gap-4 pt-8">
+                {navLinks.map((link) => (
+                  <SheetClose asChild key={link.name}> {/* Wrap with SheetClose */}
+                    <a
+                      href={link.href}
+                      onClick={(e) => handleSmoothScroll(e, link.href)}
+                      className="text-lg font-medium hover:text-zutly-medium-blue transition-colors duration-200"
+                    >
+                      {link.name}
+                    </a>
+                  </SheetClose>
+                ))}
+              </nav>
+            </SheetContent>
+          </Sheet>
+        ) : (
+          <nav className="flex items-center gap-8">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={(e) => handleSmoothScroll(e, link.href)}
+                className="text-base font-medium text-foreground transition-colors hover:text-zutly-medium-blue relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-zutly-medium-blue after:transition-all after:duration-300 hover:after:w-full"
+              >
+                {link.name}
+              </a>
+            ))}
+          </nav>
+        )}
       </div>
     </header>
   );

@@ -31,7 +31,7 @@ const AboutUsSection = () => {
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
           {owners.map((owner, index) => (
-            <Card key={index} className="shadow-xl border-b-4 border-zutly-tiffany-dark flex flex-col items-center p-8 hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1">
+            <Card key={index} className="shadow-lg border-b-4 border-zutly-tiffany-dark flex flex-col items-center p-8 hover:scale-[1.02] hover:shadow-xl transition-all duration-300">
               <Avatar className="h-40 w-40 mb-6 border-4 border-zutly-medium-blue shadow-md">
                 <AvatarImage src={owner.image} alt={owner.name} />
                 <AvatarFallback className="bg-zutly-medium-blue text-white text-2xl font-bold">{owner.fallback}</AvatarFallback>

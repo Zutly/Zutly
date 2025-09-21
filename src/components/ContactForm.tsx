@@ -86,7 +86,7 @@ const ContactForm = () => {
                   placeholder="Uw naam"
                   value={formData.name}
                   onChange={handleChange}
-                  className="mt-1 p-3 border-gray-300 focus:border-zutly-medium-blue focus:ring-zutly-medium-blue"
+                  className="mt-1 p-3 border-gray-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-medium-blue focus-visible:ring-offset-2"
                   disabled={isSubmitting}
                 />
               </div>
@@ -98,7 +98,7 @@ const ContactForm = () => {
                   placeholder="uw@voorbeeld.com"
                   value={formData.email}
                   onChange={handleChange}
-                  className="mt-1 p-3 border-gray-300 focus:border-zutly-medium-blue focus:ring-zutly-medium-blue"
+                  className="mt-1 p-3 border-gray-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-medium-blue focus-visible:ring-offset-2"
                   disabled={isSubmitting}
                 />
               </div>
@@ -110,11 +110,11 @@ const ContactForm = () => {
                   value={formData.message}
                   onChange={handleChange}
                   rows={6}
-                  className="mt-1 p-3 border-gray-300 focus:border-zutly-medium-blue focus:ring-zutly-medium-blue"
+                  className="mt-1 p-3 border-gray-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-medium-blue focus-visible:ring-offset-2"
                   disabled={isSubmitting}
                 />
               </div>
-              <Button type="submit" className="w-full py-3 text-lg bg-zutly-medium-blue hover:bg-zutly-dark-purple text-white font-semibold transition-colors duration-300" disabled={isSubmitting}>
+              <Button type="submit" className="w-full py-3 text-lg bg-zutly-medium-blue hover:bg-zutly-dark-purple text-white font-bold rounded-full shadow-xl hover:scale-105 transition-all duration-300" disabled={isSubmitting}>
                 {isSubmitting ? "Verzenden..." : "Verzenden"}
               </Button>
             </form>

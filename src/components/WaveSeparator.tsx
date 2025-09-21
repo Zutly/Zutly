@@ -17,10 +17,9 @@ const WaveSeparator: React.FC<WaveSeparatorProps> = ({ topBgColorVar, bottomBgCl
         preserveAspectRatio="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* De path wordt gevuld met de kleur van de sectie erboven. */}
-        {/* Dit creëert de illusie dat de golf deel uitmaakt van de sectie eronder. */}
+        {/* Het pad is aangepast voor een soepelere golf. */}
         <path
-          d="M0,100 C240,50 480,150 720,100 C960,50 1200,150 1440,100 L1440,0 L0,0 Z"
+          d="M0,100 C300,80 600,120 720,100 C840,80 1140,120 1440,100 L1440,0 L0,0 Z"
           fill={`hsl(var(${topBgColorVar}))`}
         ></path>
       </svg>

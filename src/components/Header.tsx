@@ -13,6 +13,7 @@ const Header = () => {
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "USPs", href: "#usps" },
+    { name: "Over ons", href: "#about" }, // Added new link
     { name: "Contact", href: "#contact" },
     { name: "FAQ", href: "#faq" },
   ];

@@ -2,6 +2,7 @@
 
 import Header from "@/components/Header";
 import USPsSection from "@/components/USPsSection";
+import AboutUsSection from "@/components/AboutUsSection"; // Import the new component
 import ContactForm from "@/components/ContactForm";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
@@ -27,6 +28,7 @@ const Index = () => {
           </div>
         </section>
         <USPsSection />
+        <AboutUsSection /> {/* Add the AboutUsSection here */}
         <ContactForm />
         <FAQSection />
       </main>

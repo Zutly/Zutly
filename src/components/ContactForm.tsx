@@ -69,7 +69,7 @@ const ContactForm = () => {
   };
 
   return (
-    <section id="contact" className="py-16 bg-background">
+    <section id="contact" className="py-16 bg-zutly-tiffany-dark/10"> {/* Changed background here */}
       <div className="container mx-auto px-4 max-w-2xl">
         <Card className="shadow-lg border-zutly-medium-blue">
           <CardHeader className="text-center">

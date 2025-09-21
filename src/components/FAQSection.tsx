@@ -29,7 +29,7 @@ const FAQSection = () => {
   ];
 
   return (
-    <section id="faq" className="py-16 bg-zutly-tiffany-dark/10">
+    <section id="faq" className="py-16 bg-zutly-tiffany-light/20"> {/* Changed background here */}
       <div className="container mx-auto px-4 max-w-3xl text-center">
         <h2 className="text-4xl font-bold text-zutly-dark-purple mb-12">Veelgestelde Vragen</h2>
         <Accordion type="single" collapsible className="w-full text-left">

@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // E-mail instellingen
-    $to = "zutlyweb@gmail.com"; // VERVANG DIT MET JE EIGEN E-MAILADRES
+    $to = "jouw_email@voorbeeld.com"; // VERVANG DIT MET JE EIGEN E-MAILADRES
     $subject = "Nieuw contactformulier bericht van " . $name;
     $headers = "From: " . $name . " <" . $email . ">\r\n";
     $headers .= "Reply-To: " . $email . "\r\n";

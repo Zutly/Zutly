@@ -7,18 +7,18 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 const AboutUsSection = () => {
   const owners = [
     {
-      name: "Eigenaar Naam 1",
+      name: "Bas Jansen",
       title: "Oprichter & Lead Developer",
-      description: "Met jarenlange ervaring in webontwikkeling en een passie voor innovatie, stuurt [Naam 1] de technische visie van Zutly aan.",
-      image: "/placeholder.svg", // Vervang dit door de echte afbeelding van Eigenaar 1
-      fallback: "EN1",
+      description: "Met jarenlange ervaring in webontwikkeling en een passie voor innovatie, stuurt Bas de technische visie van Zutly aan.",
+      image: "/bas-jansen.jpg",
+      fallback: "BJ",
     },
     {
-      name: "Eigenaar Naam 2",
+      name: "Jesse Roessink",
       title: "Oprichter & Strategisch Adviseur",
-      description: "Als strategisch denker en expert in digitale transformatie, helpt [Naam 2] klanten hun doelen te bereiken met op maat gemaakte oplossingen.",
-      image: "/placeholder.svg", // Vervang dit door de echte afbeelding van Eigenaar 2
-      fallback: "EN2",
+      description: "Als strategisch denker en expert in digitale transformatie, helpt Jesse klanten hun doelen te bereiken met op maat gemaakte oplossingen.",
+      image: "/jesse-roessink.jpg",
+      fallback: "JR",
     },
   ];
 
@@ -32,7 +32,7 @@ const AboutUsSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {owners.map((owner, index) => (
             <Card key={index} className="shadow-lg border-zutly-tiffany-dark flex flex-col items-center p-6">
-              <Avatar className="h-24 w-24 mb-4 border-4 border-zutly-medium-blue">
+              <Avatar className="h-28 w-28 mb-4 border-4 border-zutly-medium-blue"> {/* Avatar size increased */}
                 <AvatarImage src={owner.image} alt={owner.name} />
                 <AvatarFallback className="bg-zutly-medium-blue text-white text-xl font-bold">{owner.fallback}</AvatarFallback>
               </Avatar>

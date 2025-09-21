@@ -17,9 +17,10 @@ const WaveSeparator: React.FC<WaveSeparatorProps> = ({ topBgColorVar, bottomBgCl
         preserveAspectRatio="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* Het pad is aangepast voor een grotere, soepelere golf. */}
+        {/* Aangepast pad voor een consistent, glad en smooth golfpatroon met gelijke afstand. */}
+        {/* Dit pad gebruikt Quadratic Bezier curves voor een vloeiende, herhalende golf. */}
         <path
-          d="M0,70 C300,40 600,100 720,70 C840,40 1140,100 1440,70 L1440,0 L0,0 Z"
+          d="M0,70 Q180,40 360,70 Q540,100 720,70 Q900,40 1080,70 Q1260,100 1440,70 L1440,0 L0,0 Z"
           fill={`hsl(var(${topBgColorVar}))`}
         ></path>
       </svg>

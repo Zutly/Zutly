@@ -25,11 +25,6 @@ const Index = () => {
             <p className="text-xl md:text-2xl max-w-2xl mx-auto mb-8 drop-shadow-sm">
               Uw partner voor innovatieve weboplossingen en digitale transformatie.
             </p>
-            <a href="#contact">
-              <button className="px-10 py-4 bg-zutly-tiffany-dark text-zutly-dark-purple font-bold rounded-full shadow-xl hover:bg-zutly-tiffany-light transition-all duration-300 transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-zutly-tiffany-dark">
-                Start Uw Project
-              </button>
-            </a>
           </div>
         </section>
         <USPsSection />

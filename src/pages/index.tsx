@@ -12,9 +12,9 @@ const Index = () => {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow">
-        {/* Hero Section - Original Design */}
-        <section className="relative min-h-[70vh] flex items-center justify-center bg-gradient-to-br from-zutly-dark-purple via-zutly-medium-blue to-zutly-tiffany-dark text-white overflow-hidden">
-          {/* Original background pattern */}
+        {/* Hero Section - Modern Design */}
+        <section className="relative min-h-[85vh] flex items-center justify-center bg-gradient-to-br from-zutly-dark-purple via-zutly-medium-blue to-zutly-tiffany-dark text-white overflow-hidden">
+          {/* Modern background pattern */}
           <div className="absolute inset-0 z-0">
             <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--zutly-medium-blue)_0%,_transparent_70%)] opacity-20"></div>
             <div className="absolute top-0 right-0 w-96 h-96 bg-[radial-gradient(ellipse_at_center,_var(--zutly-tiffany-light)_0%,_transparent_70%)] opacity-15 rounded-full blur-3xl"></div>
@@ -23,7 +23,9 @@ const Index = () => {
           
           <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">
             <div className="mb-8">
-              <img src="/zutly-logo.png" alt="Zutly Logo" className="h-16 w-auto mx-auto mb-6" />
+              <div className="w-24 h-24 mx-auto mb-6 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center border border-white/20">
+                <img src="/zutly-logo.png" alt="Zutly Logo" className="h-16 w-auto" />
+              </div>
               <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
                 Innovatieve <span className="text-zutly-tiffany-light">Digitale</span><br />Oplossingen
               </h1>

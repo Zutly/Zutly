@@ -1,84 +1,43 @@
-"use client";
-
 import React from "react";
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet"; // Import SheetClose
-import { Menu } from "lucide-react";
-import { useIsMobile } from "@/hooks/use-mobile";
+import Header from "@/components/Header";
+import USPsSection from "@/components/USPsSection";
+import AboutUsSection from "@/components/AboutUsSection";
+import WaveSeparator from "@/components/WaveSeparator";
+import ContactForm from "@/components/ContactForm";
+import FAQSection from "@/components/FAQSection";
+import Footer from "@/components/Footer";
 
-const Header = () => {
-  const isMobile = useIsMobile();
-
-  const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "USPs", href: "#usps" },
-    { name: "Over ons", href: "#about" },
-    { name: "Contact", href: "#contact" },
-    { name: "FAQ", href: "#faq" },
-  ];
-
-  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    const targetId = href.substring(1); // Remove the '#'
-    const targetElement = document.getElementById(targetId);
-    if (targetElement) {
-      targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
-    } else if (href === "/") {
-      // Special handling for home link if it's not an anchor on the same page
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  };
-
+const Index = () => {
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 shadow-lg backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between">
-        <Link to="/" className="flex items-center gap-2" onClick={(e) => handleSmoothScroll(e, "/")}>
-          <img src="/zutly-logo.png" alt="Zutly Logo" className="h-9 w-auto" />
-          <span className="sr-only">Zutly Home</span>
-        </Link>
-
-        {isMobile ? (
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <Menu className="h-6 w-6" />
-                <span className="sr-only">Toggle navigation menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right">
-              <nav className="flex flex-col gap-4 pt-8">
-                {navLinks.map((link) => (
-                  <SheetClose asChild key={link.name}> {/* Wrap with SheetClose */}
-                    <a
-                      href={link.href}
-                      onClick={(e) => handleSmoothScroll(e, link.href)}
-                      className="text-lg font-medium hover:text-zutly-medium-blue transition-colors duration-200"
-                    >
-                      {link.name}
-                    </a>
-                  </SheetClose>
-                ))}
-              </nav>
-            </SheetContent>
-          </Sheet>
-        ) : (
-          <nav className="flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={(e) => handleSmoothScroll(e, link.href)}
-                className="text-base font-medium text-foreground transition-colors hover:text-zutly-medium-blue relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-zutly-medium-blue after:transition-all after:duration-300 hover:after:w-full"
-              >
-                {link.name}
-              </a>
-            ))}
-          </nav>
-        )}
-      </div>
-    </header>
+    <div className="flex flex-col min-h-screen">
+      <Header />
+      <main className="flex-grow">
+        <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-zutly-dark-purple via-zutly-medium-blue to-zutly-tiffany-dark text-white overflow-hidden py-20">
+          {/* Subtle background pattern/overlay for modern feel */}
+          <div className="absolute inset-0 z-0 opacity-5" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.1\' fill-rule=\'evenodd\'%3E%3Cpath d=\'M29.999 4.003c-14.486 0-26.203 11.717-26.203 26.203 0 14.485 11.717 26.202 26.203 26.202 14.486 0 26.203-11.717 26.203-26.202 0-14.486-11.717-26.203-26.203-26.203zm0 1.999c13.344 0 24.204 10.86 24.204 24.204 0 13.344-10.86 24.203-24.204 24.203-13.344 0-24.204-10.859-24.204-24.203 0-13.344 10.86-24.204 24.204-24.204zM12 29.999c0 9.94 8.06 18 18 18s18-8.06 18-18-8.06-18-18-18-18 8.06-18 18zm2 0c0-8.837 7.163-16 16-16s16 7.163 16 16-7.163 16-16 16-16-7.163-16-16zM16 29.999c0 7.732 6.268 14 14 14s14-6.268 14-14-6.268-14-14-14-14 6.268-14 14zm2 0c0-6.627 5.373-12 12-12s12 5.373 12 12-5.373 12-12 12-12-5.373-12-12zM20 29.999c0 5.523 4.477 10 10 10s10-4.477 10-10-4.477-10-10-10-10 4.477-10 10zm2 0c0-4.418 3.582-8 8-8s8 3.582 8 8-3.582 8-8 8-8-3.582-8-8zM24 29.999c0 3.314 2.686 6 6 6s6-2.686 6-6-2.686-6-6-6-6 2.686-6 6zm2 0c0-2.209 1.791-4 4-4s4 1.791 4 4-1.791 4-4 4-4-1.791-4-4zM28 29.999c0 1.105.895 2 2 2s2-.895 2-2-.895-2-2-2-2 .895-2 2z\'/%3E%3C/g%3E%3C/svg%3E'}} />
+          <div className="relative z-10 text-center px-4">
+            <h1 className="text-5xl md:text-6xl font-extrabold mb-4 leading-tight drop-shadow-md">
+              Welkom bij <span className="text-zutly-tiffany-light">Zutly</span>
+            </h1>
+            <p className="text-xl md:text-2xl max-w-2xl mx-auto mb-8 drop-shadow-sm">
+              Uw partner voor innovatieve weboplossingen en digitale transformatie.
+            </p>
+            <a href="#contact">
+              <button className="px-10 py-4 bg-zutly-tiffany-dark text-zutly-dark-purple font-bold rounded-full shadow-xl hover:bg-zutly-tiffany-light transition-all duration-300 transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-zutly-tiffany-dark">
+                Start Uw Project
+              </button>
+            </a>
+          </div>
+        </section>
+        <USPsSection />
+        <AboutUsSection />
+        <WaveSeparator topBgColorVar="--background" bottomBgClass="bg-zutly-tiffany-dark/10" />
+        <ContactForm />
+        <FAQSection />
+      </main>
+      <Footer />
+    </div>
   );
 };
 
-export default Header;
+export default Index;

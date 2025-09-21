@@ -8,15 +8,15 @@ const AboutUsSection = () => {
   const owners = [
     {
       name: "Jesse Roessink",
-      title: "Oprichter & Strategisch Adviseur",
-      description: "Als strategisch denker en expert in digitale transformatie, helpt Jesse klanten hun doelen te bereiken met op maat gemaakte oplossingen.",
+      title: "Oprichter & Lead Developer", // Corrected role
+      description: "Met jarenlange ervaring in webontwikkeling en een passie voor innovatie, stuurt Jesse de technische visie van Zutly aan.", // Corrected description
       image: "/jesse-roessink.jpg",
       fallback: "JR",
     },
     {
       name: "Bas Jansen",
-      title: "Oprichter & Lead Developer",
-      description: "Met jarenlange ervaring in webontwikkeling en een passie voor innovatie, stuurt Bas de technische visie van Zutly aan.",
+      title: "Oprichter & Strategisch Adviseur", // Corrected role
+      description: "Als strategisch denker en expert in digitale transformatie, helpt Bas klanten hun doelen te bereiken met op maat gemaakte oplossingen.", // Corrected description
       image: "/bas-jansen.jpg",
       fallback: "BJ",
     },
@@ -38,10 +38,10 @@ const AboutUsSection = () => {
               </Avatar>
               <CardHeader className="p-0 mb-2 text-center">
                 <CardTitle className="text-2xl font-semibold text-zutly-dark-purple">{owner.name}</CardTitle>
-                <CardDescription className="text-gray-700">{owner.description}</CardDescription> {/* Description now here */}
+                <CardDescription className="text-zutly-medium-blue">{owner.title}</CardDescription> {/* Title is now here */}
               </CardHeader>
-              <CardContent className="p-0 text-zutly-medium-blue text-center"> {/* Title now here */}
-                {owner.title}
+              <CardContent className="p-0 text-gray-700 text-center">
+                {owner.description} {/* Description is now here */}
               </CardContent>
             </Card>
           ))}

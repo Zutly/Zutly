@@ -17,9 +17,9 @@ const WaveSeparator: React.FC<WaveSeparatorProps> = ({ topBgColorVar, bottomBgCl
         preserveAspectRatio="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* Het pad is aangepast voor een soepelere golf. */}
+        {/* Het pad is aangepast voor een grotere, soepelere golf. */}
         <path
-          d="M0,100 C300,80 600,120 720,100 C840,80 1140,120 1440,100 L1440,0 L0,0 Z"
+          d="M0,70 C300,40 600,100 720,70 C840,40 1140,100 1440,70 L1440,0 L0,0 Z"
           fill={`hsl(var(${topBgColorVar}))`}
         ></path>
       </svg>

@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react"; // Added this import
 import Header from "@/components/Header";
 import USPsSection from "@/components/USPsSection";
 import AboutUsSection from "@/components/AboutUsSection";

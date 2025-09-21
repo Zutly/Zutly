@@ -21,7 +21,7 @@ const Header = () => {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <img src="zutly-logo.jpg" alt="Zutly Logo" className="h-8 w-auto" />
+          <img src="/zutly-logo.jpg" alt="Zutly Logo" className="h-8 w-auto" />
           <span className="sr-only">Zutly Home</span>
         </Link>
 

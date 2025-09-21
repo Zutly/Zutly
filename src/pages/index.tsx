@@ -12,27 +12,64 @@ const Index = () => {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow">
-        <section className="relative min-h-[70vh] flex items-center justify-center bg-gradient-to-br from-zutly-dark-purple via-zutly-medium-blue to-zutly-tiffany-dark text-white overflow-hidden">
-          {/* Subtle background pattern/overlay for modern feel */}
-          <div className="absolute inset-0 z-0 opacity-10" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.1\' fill-rule=\'evenodd\'%3E%3Cpath d=\'M29.999 4.003c-14.486 0-26.203 11.717-26.203 26.203 0 14.485 11.717 26.202 26.203 26.202 14.486 0 26.203-11.717 26.203-26.202 0-14.486-11.717-26.203-26.203-26.203zm0 1.999c13.344 0 24.204 10.86 24.204 24.204 0 13.344-10.86 24.203-24.204 24.203-13.344 0-24.204-10.859-24.204-24.203 0-13.344 10.86-24.204 24.204-24.204zM12 29.999c0 9.94 8.06 18 18 18s18-8.06 18-18-8.06-18-18-18-18 8.06-18 18zm2 0c0-8.837 7.163-16 16-16s16 7.163 16 16-7.163 16-16 16-16-7.163-16-16zM16 29.999c0 7.732 6.268 14 14 14s14-6.268 14-14-6.268-14-14-14-14 6.268-14 14zm2 0c0-6.627 5.373-12 12-12s12 5.373 12 12-5.373 12-12 12-12-5.373-12-12zM20 29.999c0 5.523 4.477 10 10 10s10-4.477 10-10-4.477-10-10-10-10 4.477-10 10zm2 0c0-4.418 3.582-8 8-8s8 3.582 8 8-3.582 8-8 8-8-3.582-8-8zM24 29.999c0 3.314 2.686 6 6 6s6-2.686 6-6-2.686-6-6-6-6 2.686-6 6zm2 0c0-2.209 1.791-4 4-4s4 1.791 4 4-1.791 4-4 4-4-1.791-4-4zM28 29.999c0 1.105.895 2 2 2s2-.895 2-2-.895-2-2-2-2 .895-2 2z\'/%3E%3C/g%3E%3C/svg%3E')` }} />
-          <div className="relative z-10 text-center px-4">
-            <h1 className="text-5xl md:text-6xl font-extrabold mb-4 leading-tight drop-shadow-lg">
-              Welkom bij <span className="text-zutly-tiffany-light">Zutly</span>
-            </h1>
-            <p className="text-xl md:text-2xl max-w-2xl mx-auto mb-8">
-              Uw partner voor innovatieve weboplossingen en digitale transformatie.
-            </p>
-            <a href="#contact">
-              <button className="px-10 py-4 bg-zutly-tiffany-dark text-zutly-dark-purple font-bold rounded-full shadow-xl hover:bg-zutly-tiffany-light transition-all duration-300 transform hover:scale-105">
-                Start Uw Project
-              </button>
-            </a>
+        {/* Hero Section - Modern Design */}
+        <section className="relative min-h-[85vh] flex items-center justify-center bg-gradient-to-br from-zutly-dark-purple via-zutly-medium-blue to-zutly-tiffany-dark text-white overflow-hidden">
+          {/* Modern background pattern */}
+          <div className="absolute inset-0 z-0">
+            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--zutly-medium-blue)_0%,_transparent_70%)] opacity-20"></div>
+            <div className="absolute top-0 right-0 w-96 h-96 bg-[radial-gradient(ellipse_at_center,_var(--zutly-tiffany-light)_0%,_transparent_70%)] opacity-15 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 left-0 w-80 h-80 bg-[radial-gradient(ellipse_at_center,_var(--zutly-tiffany-dark)_0%,_transparent_70%)] opacity-20 rounded-full blur-3xl"></div>
+          </div>
+          
+          <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">
+            <div className="mb-8">
+              <div className="w-24 h-24 mx-auto mb-6 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center border border-white/20">
+                <img src="/zutly-logo.png" alt="Zutly Logo" className="h-16 w-auto" />
+              </div>
+              <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                Innovatieve <span className="text-zutly-tiffany-light">Digitale</span><br />Oplossingen
+              </h1>
+              <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-10 text-white/90 leading-relaxed">
+                Wij transformeren uw visie in hoogwaardige webapplicaties met focus op 
+                gebruikservaring, prestaties en schaalbaarheid.
+              </p>
+            </div>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <a href="#contact" className="group">
+                <button className="px-12 py-4 bg-white text-zutly-dark-purple font-semibold rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 group-hover:bg-zutly-tiffany-light">
+                  Start Jouw Project →
+                </button>
+              </a>
+              <a href="#usps" className="group">
+                <button className="px-12 py-4 bg-transparent text-white font-semibold rounded-full border-2 border-white/30 hover:border-white transition-all duration-300 hover:bg-white/10">
+                  Ontdek Onze Diensten
+                </button>
+              </a>
+            </div>
+          </div>
+
+          {/* Scroll indicator */}
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+            <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+              <div className="w-1 h-3 bg-white/60 rounded-full mt-2 animate-bounce"></div>
+            </div>
           </div>
         </section>
+
+        {/* USP Section */}
         <USPsSection />
+
+        {/* About Us Section */}
         <AboutUsSection />
-        <WaveSeparator topBgColorVar="--background" bottomBgClass="bg-zutly-tiffany-dark/10" />
+
+        {/* Wave Separator */}
+        <WaveSeparator topBgColorVar="--background" bottomBgClass="bg-zutly-tiffany-dark/5" />
+
+        {/* Contact Form */}
         <ContactForm />
+
+        {/* FAQ Section */}
         <FAQSection />
       </main>
       <Footer />

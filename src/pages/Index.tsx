@@ -5,7 +5,6 @@ import USPsSection from "@/components/USPsSection";
 import ContactForm from "@/components/ContactForm";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
-import { MadeWithDyad } from "@/components/made-with-dyad";
 
 const Index = () => {
   return (
@@ -32,7 +31,6 @@ const Index = () => {
         <FAQSection />
       </main>
       <Footer />
-      <MadeWithDyad />
     </div>
   );
 };

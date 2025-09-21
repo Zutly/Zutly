@@ -29,7 +29,7 @@ const USPsSection = () => {
         <h2 className="text-4xl font-bold text-zutly-dark-purple mb-16">Waarom Kiezen voor Zutly?</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {usps.map((usp, index) => (
-            <Card key={index} className="bg-white shadow-lg border-b-4  hover:scale-[1.02] hover:shadow-xl transition-all duration-300">
+            <Card key={index} className="bg-white shadow-lg border-b-4 border-zutly-medium-blue hover:scale-[1.02] hover:shadow-xl transition-all duration-300">
               <CardHeader className="flex flex-col items-center p-6">
                 <div className="mb-4">{usp.icon}</div>
                 <CardTitle className="text-2xl font-semibold text-zutly-dark-purple">

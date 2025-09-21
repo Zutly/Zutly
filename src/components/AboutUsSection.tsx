@@ -32,8 +32,8 @@ const AboutUsSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {owners.map((owner, index) => (
             <Card key={index} className="shadow-lg border-zutly-tiffany-dark flex flex-col items-center p-6">
-              <Avatar className="h-36 w-36 mb-4 border-4 border-zutly-medium-blue"> {/* Avatar size increased to h-36 w-36 */}
-                <AvatarImage src={owner.image} alt={owner.name} />
+              <Avatar className="h-36 w-36 mb-4 border-4 border-zutly-medium-blue">
+                <AvatarImage src={owner.image} alt={owner.name} className="object-center" /> {/* Added object-center */}
                 <AvatarFallback className="bg-zutly-medium-blue text-white text-xl font-bold">{owner.fallback}</AvatarFallback>
               </Avatar>
               <CardHeader className="p-0 mb-2 text-center">

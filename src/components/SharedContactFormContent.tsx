@@ -20,7 +20,7 @@ const SharedContactFormContent: React.FC<SharedContactFormContentProps> = ({ ini
     name: "",
     email: "",
     phone: "", // Nieuw veld: Telefoonnummer
-    companyName: "", // Nieuw veld: Bedrijfsnaam (optioneel)
+    companyName: "", // Nieuw veld: Bedrijfsnaam 
     message: initialMessage,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -124,11 +124,11 @@ const SharedContactFormContent: React.FC<SharedContactFormContentProps> = ({ ini
             />
           </div>
           <div>
-            <Label htmlFor="companyName" className="text-zutly-dark-purple text-base font-semibold mb-1 block">Bedrijfsnaam (optioneel)</Label>
+            <Label htmlFor="companyName" className="text-zutly-dark-purple text-base font-semibold mb-1 block">Bedrijfsnaam</Label>
             <Input
               id="companyName"
               type="text"
-              placeholder="Uw bedrijfsnaam"
+              placeholder="Uw bedrijfsnaam (optioneel)"
               value={formData.companyName}
               onChange={handleChange}
               className="mt-1 p-3 border-gray-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-medium-blue focus-visible:ring-offset-2"

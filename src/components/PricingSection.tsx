@@ -23,7 +23,7 @@ const PricingSection = () => {
       paymentInfo: "Eenmalige betaling",
       buttonText: "Vraag offerte aan",
       dialogTitlePrefix: "Offerte aanvragen",
-      highlight: false,
+      cardVariant: "default", // Aangepast: default variant
     },
     {
       name: "Website + Hosting",
@@ -40,7 +40,7 @@ const PricingSection = () => {
       paymentInfo: "Maandelijkse abonnementsvorm (lagere instapkosten)",
       buttonText: "Vraag offerte aan",
       dialogTitlePrefix: "Offerte aanvragen",
-      highlight: false,
+      cardVariant: "medium", // Nieuwe variant voor dit pakket
     },
     {
       name: "Premium Website + Branding",
@@ -56,7 +56,7 @@ const PricingSection = () => {
       paymentInfo: "Keuze: eenmalig of abonnementsvorm",
       buttonText: "Vraag advies aan",
       dialogTitlePrefix: "Advies aanvragen",
-      highlight: true,
+      cardVariant: "premium", // Aangepast: premium variant
     },
   ];
 
@@ -70,16 +70,21 @@ const PricingSection = () => {
               key={index}
               className={cn(
                 "flex flex-col p-8 shadow-lg border-b-4 transition-all duration-300",
-                pkg.highlight
-                  ? "bg-zutly-dark-purple text-white border-zutly-medium-blue hover:scale-[1.02] hover:shadow-xl"
-                  : "bg-white text-gray-800 border-zutly-tiffany-dark hover:scale-[1.01] hover:shadow-lg"
+                pkg.cardVariant === "premium" &&
+                  "bg-zutly-dark-purple text-white border-zutly-medium-blue hover:scale-[1.02] hover:shadow-xl",
+                pkg.cardVariant === "medium" &&
+                  "bg-zutly-medium-blue text-white border-zutly-dark-purple hover:scale-[1.02] hover:shadow-xl", // Nieuwe styling voor medium pakket
+                pkg.cardVariant === "default" &&
+                  "bg-white text-gray-800 border-zutly-tiffany-dark hover:scale-[1.01] hover:shadow-lg"
               )}
             >
               <CardHeader className="p-0 mb-6">
                 <CardTitle
                   className={cn(
                     "text-3xl font-bold mb-2",
-                    pkg.highlight ? "text-white" : "text-zutly-dark-purple"
+                    pkg.cardVariant === "premium" && "text-white",
+                    pkg.cardVariant === "medium" && "text-white", // Tekstkleur voor medium pakket
+                    pkg.cardVariant === "default" && "text-zutly-dark-purple"
                   )}
                 >
                   {pkg.name}
@@ -87,7 +92,9 @@ const PricingSection = () => {
                 <p
                   className={cn(
                     "text-base leading-relaxed",
-                    pkg.highlight ? "text-zutly-tiffany-light" : "text-gray-600"
+                    pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
+                    pkg.cardVariant === "medium" && "text-zutly-tiffany-light", // Tekstkleur voor medium pakket
+                    pkg.cardVariant === "default" && "text-gray-600"
                   )}
                 >
                   {pkg.description}
@@ -98,7 +105,9 @@ const PricingSection = () => {
                   <p
                     className={cn(
                       "text-lg font-semibold",
-                      pkg.highlight ? "text-zutly-tiffany-light" : "text-zutly-medium-blue"
+                      pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
+                      pkg.cardVariant === "medium" && "text-zutly-tiffany-light", // Tekstkleur voor medium pakket
+                      pkg.cardVariant === "default" && "text-zutly-medium-blue"
                     )}
                   >
                     {pkg.paymentInfo}
@@ -110,10 +119,12 @@ const PricingSection = () => {
                       <CheckCircle
                         className={cn(
                           "h-5 w-5 mr-3 flex-shrink-0",
-                          pkg.highlight ? "text-zutly-tiffany-light" : "text-zutly-medium-blue"
+                          pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
+                          pkg.cardVariant === "medium" && "text-zutly-tiffany-light", // Icoonkleur voor medium pakket
+                          pkg.cardVariant === "default" && "text-zutly-medium-blue"
                         )}
                       />
-                      <span className={pkg.highlight ? "text-white" : "text-gray-700"}>
+                      <span className={pkg.cardVariant === "premium" || pkg.cardVariant === "medium" ? "text-white" : "text-gray-700"}>
                         {feature}
                       </span>
                     </li>
@@ -126,7 +137,7 @@ const PricingSection = () => {
                     <Button
                       className={cn(
                         "w-full py-3 text-lg font-bold rounded-full shadow-md hover:scale-105 transition-all duration-300",
-                        pkg.highlight
+                        pkg.cardVariant === "premium"
                           ? "bg-zutly-tiffany-light text-zutly-dark-purple hover:bg-zutly-tiffany-dark"
                           : "bg-zutly-medium-blue text-white hover:bg-zutly-dark-purple"
                       )}

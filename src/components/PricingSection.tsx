@@ -73,7 +73,7 @@ const PricingSection = () => {
                 pkg.cardVariant === "premium" &&
                   "bg-zutly-dark-purple text-white border-zutly-medium-blue hover:scale-[1.02] hover:shadow-xl",
                 pkg.cardVariant === "medium" &&
-                  "bg-zutly-medium-blue text-white border-zutly-dark-purple hover:scale-[1.02] hover:shadow-xl", // Nieuwe styling voor medium pakket
+                  "bg-zutly-tiffany-dark text-gray-800 border-zutly-medium-blue hover:scale-[1.02] hover:shadow-xl", // Aangepaste styling voor medium pakket
                 pkg.cardVariant === "default" &&
                   "bg-white text-gray-800 border-zutly-tiffany-dark hover:scale-[1.01] hover:shadow-lg"
               )}
@@ -83,7 +83,7 @@ const PricingSection = () => {
                   className={cn(
                     "text-3xl font-bold mb-2",
                     pkg.cardVariant === "premium" && "text-white",
-                    pkg.cardVariant === "medium" && "text-white", // Tekstkleur voor medium pakket
+                    pkg.cardVariant === "medium" && "text-zutly-dark-purple", // Tekstkleur voor medium pakket
                     pkg.cardVariant === "default" && "text-zutly-dark-purple"
                   )}
                 >
@@ -93,7 +93,7 @@ const PricingSection = () => {
                   className={cn(
                     "text-base leading-relaxed",
                     pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
-                    pkg.cardVariant === "medium" && "text-zutly-tiffany-light", // Tekstkleur voor medium pakket
+                    pkg.cardVariant === "medium" && "text-gray-800", // Tekstkleur voor medium pakket
                     pkg.cardVariant === "default" && "text-gray-600"
                   )}
                 >
@@ -106,7 +106,7 @@ const PricingSection = () => {
                     className={cn(
                       "text-lg font-semibold",
                       pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
-                      pkg.cardVariant === "medium" && "text-zutly-tiffany-light", // Tekstkleur voor medium pakket
+                      pkg.cardVariant === "medium" && "text-zutly-dark-purple", // Tekstkleur voor medium pakket
                       pkg.cardVariant === "default" && "text-zutly-medium-blue"
                     )}
                   >
@@ -120,11 +120,11 @@ const PricingSection = () => {
                         className={cn(
                           "h-5 w-5 mr-3 flex-shrink-0",
                           pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
-                          pkg.cardVariant === "medium" && "text-zutly-tiffany-light", // Icoonkleur voor medium pakket
+                          pkg.cardVariant === "medium" && "text-zutly-medium-blue", // Icoonkleur voor medium pakket
                           pkg.cardVariant === "default" && "text-zutly-medium-blue"
                         )}
                       />
-                      <span className={pkg.cardVariant === "premium" || pkg.cardVariant === "medium" ? "text-white" : "text-gray-700"}>
+                      <span className={pkg.cardVariant === "premium" ? "text-white" : "text-gray-700"}>
                         {feature}
                       </span>
                     </li>

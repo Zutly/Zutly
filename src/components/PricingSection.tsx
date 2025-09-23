@@ -12,6 +12,7 @@ const PricingSection = () => {
   const packages = [
     {
       name: "Starter Website",
+      price: "€499", // Toegevoegde prijs
       description: "Perfect voor ondernemers die al hosting hebben en alleen een moderne website willen laten bouwen.",
       features: [
         "Professionele maatwerk website (incl. responsive design)",
@@ -23,10 +24,11 @@ const PricingSection = () => {
       paymentInfo: "Eenmalige betaling",
       buttonText: "Vraag offerte aan",
       dialogTitlePrefix: "Offerte aanvragen",
-      cardVariant: "default", // Aangepast: default variant
+      cardVariant: "default",
     },
     {
       name: "Website + Hosting",
+      price: "€79/maand", // Toegevoegde prijs
       description: "Ideaal voor bedrijven die volledig ontzorgd willen worden en vaste maandelijkse kosten willen.",
       features: [
         "Professionele maatwerk website",
@@ -40,10 +42,11 @@ const PricingSection = () => {
       paymentInfo: "Maandelijkse abonnementsvorm (lagere instapkosten)",
       buttonText: "Vraag offerte aan",
       dialogTitlePrefix: "Offerte aanvragen",
-      cardVariant: "medium", // Nieuwe variant voor dit pakket
+      cardVariant: "medium",
     },
     {
       name: "Premium Website + Branding",
+      price: "Op Maat", // Toegevoegde prijs
       description: "Perfect voor bedrijven die een volledige online uitstraling willen, inclusief huisstijl en professionele branding.",
       features: [
         "Alles uit Pakket 2 (website, hosting, onderhoud, SSL, support)",
@@ -56,7 +59,7 @@ const PricingSection = () => {
       paymentInfo: "Keuze: eenmalig of abonnementsvorm",
       buttonText: "Vraag advies aan",
       dialogTitlePrefix: "Advies aanvragen",
-      cardVariant: "premium", // Aangepast: premium variant
+      cardVariant: "premium",
     },
   ];
 
@@ -72,7 +75,7 @@ const PricingSection = () => {
                 pkg.cardVariant === "premium" &&
                   "bg-zutly-dark-purple text-white border-zutly-medium-blue hover:scale-[1.02] hover:shadow-xl",
                 pkg.cardVariant === "medium" &&
-                  "bg-zutly-tiffany-light/20 text-gray-800 border-zutly-medium-blue hover:scale-[1.02] hover:shadow-xl", // Aangepaste styling voor medium pakket
+                  "bg-zutly-tiffany-light/20 text-gray-800 border-zutly-medium-blue hover:scale-[1.02] hover:shadow-xl",
                 pkg.cardVariant === "default" &&
                   "bg-white text-gray-800 border-zutly-tiffany-dark hover:scale-[1.01] hover:shadow-lg"
               )}
@@ -82,17 +85,28 @@ const PricingSection = () => {
                   className={cn(
                     "text-3xl font-bold mb-2",
                     pkg.cardVariant === "premium" && "text-white",
-                    pkg.cardVariant === "medium" && "text-zutly-dark-purple", // Tekstkleur voor medium pakket
+                    pkg.cardVariant === "medium" && "text-zutly-dark-purple",
                     pkg.cardVariant === "default" && "text-zutly-dark-purple"
                   )}
                 >
                   {pkg.name}
                 </CardTitle>
+                {/* Toegevoegde prijsweergave */}
+                <p
+                  className={cn(
+                    "text-5xl font-extrabold mb-4",
+                    pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
+                    pkg.cardVariant === "medium" && "text-zutly-medium-blue",
+                    pkg.cardVariant === "default" && "text-zutly-dark-purple"
+                  )}
+                >
+                  {pkg.price}
+                </p>
                 <p
                   className={cn(
                     "text-base leading-relaxed",
                     pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
-                    pkg.cardVariant === "medium" && "text-gray-800", // Tekstkleur voor medium pakket
+                    pkg.cardVariant === "medium" && "text-gray-800",
                     pkg.cardVariant === "default" && "text-gray-600"
                   )}
                 >
@@ -105,7 +119,7 @@ const PricingSection = () => {
                     className={cn(
                       "text-lg font-semibold",
                       pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
-                      pkg.cardVariant === "medium" && "text-zutly-dark-purple", // Tekstkleur voor medium pakket
+                      pkg.cardVariant === "medium" && "text-zutly-dark-purple",
                       pkg.cardVariant === "default" && "text-zutly-medium-blue"
                     )}
                   >
@@ -119,7 +133,7 @@ const PricingSection = () => {
                         className={cn(
                           "h-5 w-5 mr-3 flex-shrink-0",
                           pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
-                          pkg.cardVariant === "medium" && "text-zutly-medium-blue", // Icoonkleur voor medium pakket
+                          pkg.cardVariant === "medium" && "text-zutly-medium-blue",
                           pkg.cardVariant === "default" && "text-zutly-medium-blue"
                         )}
                       />

@@ -7,33 +7,35 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
-  DialogTrigger, // Import DialogTrigger here
+  DialogTrigger,
 } from "@/components/ui/dialog";
 import SharedContactFormContent from "@/components/SharedContactFormContent";
 
 interface PackageInquiryDialogProps {
   packageName: string;
-  trigger: React.ReactNode; // Nieuwe prop voor het trigger-element
+  trigger: React.ReactNode;
+  dialogTitlePrefix?: string; // Nieuwe prop voor de titelprefix
 }
 
 const PackageInquiryDialog: React.FC<PackageInquiryDialogProps> = ({
   packageName,
-  trigger, // Destructure trigger
+  trigger,
+  dialogTitlePrefix = "Offerte aanvragen", // Standaardwaarde is 'Offerte aanvragen'
 }) => {
-  const [isOpen, setIsOpen] = React.useState(false); // Beheer interne staat voor de dialoog
+  const [isOpen, setIsOpen] = React.useState(false);
 
   const initialMessage = `Ik ben geïnteresseerd in het "${packageName}" pakket en zou graag meer informatie ontvangen.`;
 
   const handleSubmissionSuccess = () => {
-    setIsOpen(false); // Sluit de dialoog na succesvolle indiening
+    setIsOpen(false);
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}> {/* Gebruik interne staat */}
-      <DialogTrigger asChild>{trigger}</DialogTrigger> {/* Render de trigger hier */}
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent className="sm:max-w-[425px] p-6">
         <DialogHeader className="text-center">
-          <DialogTitle className="text-2xl font-bold text-zutly-dark-purple">Offerte aanvragen voor {packageName}</DialogTitle>
+          <DialogTitle className="text-2xl font-bold text-zutly-dark-purple">{dialogTitlePrefix} voor {packageName}</DialogTitle>
           <DialogDescription className="text-gray-600 mt-2">
             Vul het onderstaande formulier in en we nemen zo snel mogelijk contact met u op.
           </DialogDescription>

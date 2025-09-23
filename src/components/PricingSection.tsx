@@ -25,7 +25,7 @@ const PricingSection = () => {
       ],
       paymentInfo: "Eenmalige betaling",
       buttonText: "Vraag offerte aan",
-      buttonLink: "/contact", // Deze link wordt nu overschreven door de DialogTrigger
+      dialogTitlePrefix: "Offerte aanvragen", // Toegevoegd
       highlight: false,
     },
     {
@@ -42,7 +42,7 @@ const PricingSection = () => {
       ],
       paymentInfo: "Maandelijkse abonnementsvorm (lagere instapkosten)",
       buttonText: "Vraag offerte aan",
-      buttonLink: "/contact", // Deze link wordt nu overschreven door de DialogTrigger
+      dialogTitlePrefix: "Offerte aanvragen", // Toegevoegd
       highlight: false,
     },
     {
@@ -58,7 +58,7 @@ const PricingSection = () => {
       ],
       paymentInfo: "Keuze: eenmalig of abonnementsvorm",
       buttonText: "Vraag advies aan",
-      buttonLink: "/contact", // Deze link wordt nu overschreven door de DialogTrigger
+      dialogTitlePrefix: "Advies aanvragen", // Aangepast naar 'Advies aanvragen'
       highlight: true,
     },
   ];
@@ -122,9 +122,9 @@ const PricingSection = () => {
                     </li>
                   ))}
                 </ul>
-                {/* Gebruik PackageInquiryDialog direct hier, en geef de Button als trigger mee */}
                 <PackageInquiryDialog
                   packageName={pkg.name}
+                  dialogTitlePrefix={pkg.dialogTitlePrefix} {/* Geef de nieuwe prop door */}
                   trigger={
                     <Button
                       className={cn(
@@ -143,7 +143,6 @@ const PricingSection = () => {
           ))}
         </div>
       </div>
-      {/* De globale PackageInquiryDialog is niet langer nodig */}
     </section>
   );
 };

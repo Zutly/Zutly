@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { showSuccess, showError } from "@/utils/toast";
 
 const API_ENDPOINT = "/api/send_email.php";
@@ -19,8 +18,7 @@ const SharedContactFormContent: React.FC<SharedContactFormContentProps> = ({ ini
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phone: "", // Nieuw veld: Telefoonnummer
-    companyName: "", // Nieuw veld: Bedrijfsnaam 
+    phone: "", // Veld: Telefoonnummer
     message: initialMessage,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -68,7 +66,7 @@ const SharedContactFormContent: React.FC<SharedContactFormContentProps> = ({ ini
 
       if (response.ok) {
         showSuccess("Uw bericht is succesvol verzonden!");
-        setFormData({ name: "", email: "", phone: "", companyName: "", message: initialMessage }); // Clear form, but keep initial message if any
+        setFormData({ name: "", email: "", phone: "", message: initialMessage }); // Clear form, but keep initial message if any
         onSubmissionSuccess?.(); // Call callback to close dialog
       } else {
         const errorData = await response.json();
@@ -118,18 +116,6 @@ const SharedContactFormContent: React.FC<SharedContactFormContentProps> = ({ ini
               type="tel"
               placeholder="Uw telefoonnummer (optioneel)"
               value={formData.phone}
-              onChange={handleChange}
-              className="mt-1 p-3 border-gray-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-medium-blue focus-visible:ring-offset-2"
-              disabled={isSubmitting}
-            />
-          </div>
-          <div>
-            <Label htmlFor="companyName" className="text-zutly-dark-purple text-base font-semibold mb-1 block">Bedrijfsnaam</Label>
-            <Input
-              id="companyName"
-              type="text"
-              placeholder="Uw bedrijfsnaam (optioneel)"
-              value={formData.companyName}
               onChange={handleChange}
               className="mt-1 p-3 border-gray-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-medium-blue focus-visible:ring-offset-2"
               disabled={isSubmitting}

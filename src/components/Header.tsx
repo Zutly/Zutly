@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom"; // Import useLocation and useNavigate
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
@@ -9,8 +9,6 @@ import { useIsMobile } from "@/hooks/use-mobile";
 
 const Header = () => {
   const isMobile = useIsMobile();
-  const location = useLocation(); // Get current location
-  const navigate = useNavigate(); // Get navigate function
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -20,26 +18,19 @@ const Header = () => {
   ];
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    // Check if the href is an internal anchor link or a full path
     if (href.startsWith("#")) {
-      e.preventDefault(); // Prevent default Link behavior initially
+      e.preventDefault();
       const targetId = href.substring(1); // Remove the '#'
-
-      if (location.pathname !== "/") {
-        // If not on the home page, navigate to home and then scroll
-        navigate(`/${href}`); // Navigate to home with the hash
-        // The browser will handle the scroll after navigation
-      } else {
-        // If already on the home page, just smooth scroll
-        const targetElement = document.getElementById(targetId);
-        if (targetElement) {
-          targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     } else if (href === "/") {
       // Special handling for home link if it's not an anchor on the same page
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
-    // For other full paths like /diensten, let react-router-dom handle it by default
+    // For other full paths like /diensten, let react-router-dom handle it
   };
 
   return (
@@ -63,7 +54,7 @@ const Header = () => {
                 {navLinks.map((link) => (
                   <SheetClose asChild key={link.name}>
                     <Link
-                      to={link.href}
+                      to={link.href} // Use Link component for navigation
                       onClick={(e) => handleSmoothScroll(e, link.href)}
                       className="text-lg font-medium hover:text-zutly-medium-blue transition-colors duration-200"
                     >
@@ -79,7 +70,7 @@ const Header = () => {
             {navLinks.map((link) => (
               <Link
                 key={link.name}
-                to={link.href}
+                to={link.href} // Use Link component for navigation
                 onClick={(e) => handleSmoothScroll(e, link.href)}
                 className="text-base font-medium text-foreground transition-colors hover:text-zutly-medium-blue relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-zutly-medium-blue after:transition-all after:duration-300 hover:after:w-full"
               >

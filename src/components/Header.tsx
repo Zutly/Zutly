@@ -15,7 +15,8 @@ const Header = () => {
     { name: "Home", href: "/", type: "link" },
     { name: "Diensten", href: "/diensten", type: "link" },
     { name: "Over ons", href: "/over-ons", type: "link" },
-    { name: "Offerte aanvragen", href: "/contact", type: "button" },
+    { name: "Contact", href: "/contact", type: "link" }, // Toegevoegd: Contact als aparte link
+    { name: "Offerte aanvragen", href: "/diensten", type: "button" }, // Aangepast: linkt nu naar /diensten
   ];
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {

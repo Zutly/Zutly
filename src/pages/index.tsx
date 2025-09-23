@@ -59,7 +59,6 @@ const Index = () => {
           sectionTitle="Over Ons"
           sectionDescription="Bij Zutly geloven we in de kracht van innovatie en persoonlijke service. Maak kennis met de gezichten achter ons bedrijf."
           owners={homePageOwners}
-          animateOwners={true} // Activeer de animatie hier
         />
         <WaveSeparator topBgColorVar="--background" bottomBgClass="bg-zutly-tiffany-dark/10" />
         <HomePageContactForm /> {/* Using the new HomePageContactForm */}

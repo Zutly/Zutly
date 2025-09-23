@@ -3,7 +3,6 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { cn } from "@/lib/utils"; // Import cn for conditional class names
 
 interface Owner {
   name: string;
@@ -17,10 +16,9 @@ interface AboutUsSectionProps {
   sectionTitle: string;
   sectionDescription: string;
   owners: Owner[];
-  animateOwners?: boolean; // Nieuwe prop om animatie te controleren
 }
 
-const AboutUsSection: React.FC<AboutUsSectionProps> = ({ sectionTitle, sectionDescription, owners, animateOwners = false }) => {
+const AboutUsSection: React.FC<AboutUsSectionProps> = ({ sectionTitle, sectionDescription, owners }) => {
   return (
     <section id="about" className="py-20 bg-background">
       <div className="container mx-auto px-4 text-center">
@@ -30,14 +28,7 @@ const AboutUsSection: React.FC<AboutUsSectionProps> = ({ sectionTitle, sectionDe
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
           {owners.map((owner, index) => (
-            <Card
-              key={index}
-              className={cn(
-                "shadow-lg border-b-4 border-zutly-tiffany-dark flex flex-col items-center p-8 hover:scale-[1.02] hover:shadow-xl transition-all duration-300",
-                animateOwners && index === 0 && "animate-slide-in-left opacity-0", // Eerste eigenaar van links
-                animateOwners && index === 1 && "animate-slide-in-right opacity-0 animation-delay-[0.2s]" // Tweede eigenaar van rechts met vertraging
-              )}
-            >
+            <Card key={index} className="shadow-lg border-b-4 border-zutly-tiffany-dark flex flex-col items-center p-8 hover:scale-[1.02] hover:shadow-xl transition-all duration-300">
               <Avatar className="h-40 w-40 mb-6 border-4 border-zutly-medium-blue shadow-md">
                 <AvatarImage src={owner.image} alt={owner.name} />
                 <AvatarFallback className="bg-zutly-medium-blue text-white text-2xl font-bold">{owner.fallback}</AvatarFallback>

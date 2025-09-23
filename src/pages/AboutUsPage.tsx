@@ -41,7 +41,7 @@ const AboutUsPage = () => {
         <AboutUsSection
           // sectionTitle="Ons Team"
           // sectionDescription="Hier stellen we de drijvende krachten achter Zutly voor. Ontdek wie we zijn en wat ons motiveert om de beste weboplossingen te leveren."
-         // owners={aboutPageOwners}
+          owners={aboutPageOwners}
         />
       </main>
       <Footer />

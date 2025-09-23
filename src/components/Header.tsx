@@ -3,7 +3,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -50,6 +50,12 @@ const Header = () => {
               </Button>
             </SheetTrigger>
             <SheetContent side="right">
+              <SheetHeader>
+                <SheetTitle className="sr-only">Navigatiemenu</SheetTitle>
+                <SheetDescription className="sr-only">
+                  Navigeer door de verschillende secties van de website.
+                </SheetDescription>
+              </SheetHeader>
               <nav className="flex flex-col gap-4 pt-8">
                 {navLinks.map((link) => (
                   <SheetClose asChild key={link.name}>

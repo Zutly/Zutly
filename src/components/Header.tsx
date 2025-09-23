@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Link, useLocation } from "react-router-dom"; // Import useLocation
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
@@ -9,33 +9,29 @@ import { useIsMobile } from "@/hooks/use-mobile";
 
 const Header = () => {
   const isMobile = useIsMobile();
-  const location = useLocation(); // Get current location
+  const location = useLocation();
 
-  const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "Diensten", href: "/diensten" },
-    { name: "Over ons", href: "/over-ons" }, // Changed to full path
-    { name: "Contact", href: "/contact" },   // Changed to full path
+  const navItems = [
+    { name: "Home", href: "/", type: "link" },
+    { name: "Diensten", href: "/diensten", type: "link" },
+    { name: "Over ons", href: "/over-ons", type: "link" },
+    { name: "Offerte aanvragen", href: "/contact", type: "button" },
   ];
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    // Only prevent default and scroll if it's an anchor link AND we are on the home page
     if (href.startsWith("#") && location.pathname === "/") {
       e.preventDefault();
-      const targetId = href.substring(1); // Remove the '#'
+      const targetId = href.substring(1);
       const targetElement = document.getElementById(targetId);
       if (targetElement) {
         targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     } else if (href === "/" && location.pathname !== "/") {
-      // If clicking home from another page, let Link handle it
       return;
     } else if (href === "/" && location.pathname === "/") {
-      // If clicking home on home page, scroll to top
       e.preventDefault();
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
-    // For other full paths like /diensten, /over-ons, /contact, let react-router-dom's Link component handle it
   };
 
   return (
@@ -62,15 +58,25 @@ const Header = () => {
                 </SheetDescription>
               </SheetHeader>
               <nav className="flex flex-col gap-4 pt-8">
-                {navLinks.map((link) => (
-                  <SheetClose asChild key={link.name}>
-                    <Link
-                      to={link.href}
-                      onClick={(e) => handleSmoothScroll(e, link.href)}
-                      className="text-lg font-medium hover:text-zutly-medium-blue transition-colors duration-200"
-                    >
-                      {link.name}
-                    </Link>
+                {navItems.map((item) => (
+                  <SheetClose asChild key={item.name}>
+                    {item.type === "link" ? (
+                      <Link
+                        to={item.href}
+                        onClick={(e) => handleSmoothScroll(e, item.href)}
+                        className="text-lg font-medium hover:text-zutly-medium-blue transition-colors duration-200"
+                      >
+                        {item.name}
+                      </Link>
+                    ) : (
+                      <Link to={item.href}>
+                        <Button
+                          className="w-full bg-zutly-medium-blue hover:bg-zutly-dark-purple text-white font-bold py-3 text-lg rounded-full shadow-md transition-all duration-300"
+                        >
+                          {item.name}
+                        </Button>
+                      </Link>
+                    )}
                   </SheetClose>
                 ))}
               </nav>
@@ -78,15 +84,25 @@ const Header = () => {
           </Sheet>
         ) : (
           <nav className="flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.href}
-                onClick={(e) => handleSmoothScroll(e, link.href)}
-                className="text-base font-medium text-foreground transition-colors hover:text-zutly-medium-blue relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-zutly-medium-blue after:transition-all after:duration-300 hover:after:w-full"
-              >
-                {link.name}
-              </Link>
+            {navItems.map((item) => (
+              item.type === "link" ? (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  onClick={(e) => handleSmoothScroll(e, item.href)}
+                  className="text-base font-medium text-foreground transition-colors hover:text-zutly-medium-blue relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-zutly-medium-blue after:transition-all after:duration-300 hover:after:w-full"
+                >
+                  {item.name}
+                </Link>
+              ) : (
+                <Link key={item.name} to={item.href}>
+                  <Button
+                    className="bg-zutly-medium-blue hover:bg-zutly-dark-purple text-white font-bold py-2 px-6 rounded-full shadow-md transition-all duration-300"
+                  >
+                    {item.name}
+                  </Button>
+                </Link>
+              )
             ))}
           </nav>
         )}

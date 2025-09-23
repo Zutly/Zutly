@@ -4,7 +4,7 @@ import React from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { CheckCircle2 } from 'lucide-react';
-import PackageInquiryDialog from './PackageInquiryDialog'; // Aangepast: default import
+import { PackageInquiryDialog } from './PackageInquiryDialog';
 
 interface Feature {
   text: string;
@@ -122,5 +122,3 @@ export function PricingSection() {
     </section>
   );
 }
-
-export default PricingSection;

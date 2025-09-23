@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -10,13 +10,26 @@ import { showSuccess, showError } from "@/utils/toast";
 
 const API_ENDPOINT = "/api/send_email.php";
 
-const SharedContactFormContent = () => {
+interface SharedContactFormContentProps {
+  initialMessage?: string;
+  onSubmissionSuccess?: () => void;
+}
+
+const SharedContactFormContent: React.FC<SharedContactFormContentProps> = ({ initialMessage = "", onSubmissionSuccess }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    message: "",
+    message: initialMessage,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Update message when initialMessage prop changes
+  useEffect(() => {
+    setFormData((prevData) => ({
+      ...prevData,
+      message: initialMessage,
+    }));
+  }, [initialMessage]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value } = e.target;
@@ -53,7 +66,8 @@ const SharedContactFormContent = () => {
 
       if (response.ok) {
         showSuccess("Uw bericht is succesvol verzonden!");
-        setFormData({ name: "", email: "", message: "" }); // Clear form
+        setFormData({ name: "", email: "", message: initialMessage }); // Clear form, but keep initial message if any
+        onSubmissionSuccess?.(); // Call callback to close dialog
       } else {
         const errorData = await response.json();
         showError(errorData.message || "Er is een fout opgetreden bij het verzenden van uw bericht.");
@@ -67,15 +81,8 @@ const SharedContactFormContent = () => {
   };
 
   return (
-    <Card className="shadow-xl border-b-4 border-zutly-medium-blue p-6">
-      <CardHeader className="text-center pb-6">
-        <CardTitle className="text-3xl font-bold text-zutly-dark-purple">Neem Contact Op</CardTitle>
-        <CardDescription className="text-gray-600 mt-2 text-lg">
-          Heeft u vragen of wilt u meer weten? Vul het onderstaande formulier in.
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-6">
+    <div className="p-0"> {/* Removed Card styling, now just a div */}
+      <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <Label htmlFor="name" className="text-zutly-dark-purple text-base font-semibold mb-1 block">Naam</Label>
             <Input
@@ -116,8 +123,7 @@ const SharedContactFormContent = () => {
             {isSubmitting ? "Verzenden..." : "Verzenden"}
           </Button>
         </form>
-      </CardContent>
-    </Card>
+    </div>
   );
 };
 

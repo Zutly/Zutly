@@ -1,13 +1,23 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CheckCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { DialogTrigger } from "@/components/ui/dialog"; // Import DialogTrigger
+import PackageInquiryDialog from "@/components/PackageInquiryDialog"; // Import the new dialog component
 
 const PricingSection = () => {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [selectedPackageName, setSelectedPackageName] = useState("");
+
+  const handleOpenDialog = (packageName: string) => {
+    setSelectedPackageName(packageName);
+    setIsDialogOpen(true);
+  };
+
   const packages = [
     {
       name: "Starter Website",
@@ -21,7 +31,7 @@ const PricingSection = () => {
       ],
       paymentInfo: "Eenmalige betaling",
       buttonText: "Vraag offerte aan",
-      buttonLink: "/contact",
+      buttonLink: "/contact", // This link will be overridden by DialogTrigger
       highlight: false,
     },
     {
@@ -38,7 +48,7 @@ const PricingSection = () => {
       ],
       paymentInfo: "Maandelijkse abonnementsvorm (lagere instapkosten)",
       buttonText: "Vraag offerte aan",
-      buttonLink: "/contact",
+      buttonLink: "/contact", // This link will be overridden by DialogTrigger
       highlight: false,
     },
     {
@@ -54,7 +64,7 @@ const PricingSection = () => {
       ],
       paymentInfo: "Keuze: eenmalig of abonnementsvorm",
       buttonText: "Vraag advies aan",
-      buttonLink: "/contact",
+      buttonLink: "/contact", // This link will be overridden by DialogTrigger
       highlight: true,
     },
   ];
@@ -62,6 +72,7 @@ const PricingSection = () => {
   return (
     <section id="pricing" className="py-20 bg-background">
       <div className="container mx-auto px-4 text-center max-w-7xl">
+        <h2 className="text-4xl font-bold text-zutly-dark-purple mb-16">Onze Pakketten</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {packages.map((pkg, index) => (
             <Card
@@ -117,8 +128,10 @@ const PricingSection = () => {
                     </li>
                   ))}
                 </ul>
-                <Link to={pkg.buttonLink} className="block mt-auto">
+                {/* Change Link to DialogTrigger */}
+                <DialogTrigger asChild>
                   <Button
+                    onClick={() => handleOpenDialog(pkg.name)}
                     className={cn(
                       "w-full py-3 text-lg font-bold rounded-full shadow-md hover:scale-105 transition-all duration-300",
                       pkg.highlight
@@ -128,12 +141,17 @@ const PricingSection = () => {
                   >
                     {pkg.buttonText}
                   </Button>
-                </Link>
+                </DialogTrigger>
               </CardContent>
             </Card>
           ))}
         </div>
       </div>
+      <PackageInquiryDialog
+        isOpen={isDialogOpen}
+        onOpenChange={setIsDialogOpen}
+        packageName={selectedPackageName}
+      />
     </section>
   );
 };

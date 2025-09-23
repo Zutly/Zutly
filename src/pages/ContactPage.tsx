@@ -33,7 +33,7 @@ const ContactPage = () => {
             </p>
           </div>
         </section>
-        <section className="py-20 bg-zutly-tiffany-dark/10">
+        <section className="py-20">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
               <ContactForm />

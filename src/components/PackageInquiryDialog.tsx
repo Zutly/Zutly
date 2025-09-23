@@ -7,28 +7,30 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
+  DialogTrigger, // Import DialogTrigger here
 } from "@/components/ui/dialog";
 import SharedContactFormContent from "@/components/SharedContactFormContent";
 
 interface PackageInquiryDialogProps {
-  isOpen: boolean;
-  onOpenChange: (open: boolean) => void;
   packageName: string;
+  trigger: React.ReactNode; // Nieuwe prop voor het trigger-element
 }
 
 const PackageInquiryDialog: React.FC<PackageInquiryDialogProps> = ({
-  isOpen,
-  onOpenChange,
   packageName,
+  trigger, // Destructure trigger
 }) => {
+  const [isOpen, setIsOpen] = React.useState(false); // Beheer interne staat voor de dialoog
+
   const initialMessage = `Ik ben geïnteresseerd in het "${packageName}" pakket en zou graag meer informatie ontvangen.`;
 
   const handleSubmissionSuccess = () => {
-    onOpenChange(false); // Close the dialog on successful submission
+    setIsOpen(false); // Sluit de dialoog na succesvolle indiening
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={onOpenChange}>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}> {/* Gebruik interne staat */}
+      <DialogTrigger asChild>{trigger}</DialogTrigger> {/* Render de trigger hier */}
       <DialogContent className="sm:max-w-[425px] p-6">
         <DialogHeader className="text-center">
           <DialogTitle className="text-2xl font-bold text-zutly-dark-purple">Offerte aanvragen voor {packageName}</DialogTitle>

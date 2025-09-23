@@ -1,22 +1,16 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CheckCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { DialogTrigger } from "@/components/ui/dialog"; // Import DialogTrigger
 import PackageInquiryDialog from "@/components/PackageInquiryDialog"; // Import the new dialog component
 
 const PricingSection = () => {
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [selectedPackageName, setSelectedPackageName] = useState("");
-
-  const handleOpenDialog = (packageName: string) => {
-    setSelectedPackageName(packageName);
-    setIsDialogOpen(true);
-  };
+  // De state voor isDialogOpen en selectedPackageName is niet langer nodig,
+  // omdat elke PackageInquiryDialog zijn eigen staat beheert.
 
   const packages = [
     {
@@ -31,7 +25,7 @@ const PricingSection = () => {
       ],
       paymentInfo: "Eenmalige betaling",
       buttonText: "Vraag offerte aan",
-      buttonLink: "/contact", // This link will be overridden by DialogTrigger
+      buttonLink: "/contact", // Deze link wordt nu overschreven door de DialogTrigger
       highlight: false,
     },
     {
@@ -48,7 +42,7 @@ const PricingSection = () => {
       ],
       paymentInfo: "Maandelijkse abonnementsvorm (lagere instapkosten)",
       buttonText: "Vraag offerte aan",
-      buttonLink: "/contact", // This link will be overridden by DialogTrigger
+      buttonLink: "/contact", // Deze link wordt nu overschreven door de DialogTrigger
       highlight: false,
     },
     {
@@ -64,7 +58,7 @@ const PricingSection = () => {
       ],
       paymentInfo: "Keuze: eenmalig of abonnementsvorm",
       buttonText: "Vraag advies aan",
-      buttonLink: "/contact", // This link will be overridden by DialogTrigger
+      buttonLink: "/contact", // Deze link wordt nu overschreven door de DialogTrigger
       highlight: true,
     },
   ];
@@ -128,30 +122,28 @@ const PricingSection = () => {
                     </li>
                   ))}
                 </ul>
-                {/* Change Link to DialogTrigger */}
-                <DialogTrigger asChild>
-                  <Button
-                    onClick={() => handleOpenDialog(pkg.name)}
-                    className={cn(
-                      "w-full py-3 text-lg font-bold rounded-full shadow-md hover:scale-105 transition-all duration-300",
-                      pkg.highlight
-                        ? "bg-zutly-tiffany-light text-zutly-dark-purple hover:bg-zutly-tiffany-dark"
-                        : "bg-zutly-medium-blue text-white hover:bg-zutly-dark-purple"
-                    )}
-                  >
-                    {pkg.buttonText}
-                  </Button>
-                </DialogTrigger>
+                {/* Gebruik PackageInquiryDialog direct hier, en geef de Button als trigger mee */}
+                <PackageInquiryDialog
+                  packageName={pkg.name}
+                  trigger={
+                    <Button
+                      className={cn(
+                        "w-full py-3 text-lg font-bold rounded-full shadow-md hover:scale-105 transition-all duration-300",
+                        pkg.highlight
+                          ? "bg-zutly-tiffany-light text-zutly-dark-purple hover:bg-zutly-tiffany-dark"
+                          : "bg-zutly-medium-blue text-white hover:bg-zutly-dark-purple"
+                      )}
+                    >
+                      {pkg.buttonText}
+                    </Button>
+                  }
+                />
               </CardContent>
             </Card>
           ))}
         </div>
       </div>
-      <PackageInquiryDialog
-        isOpen={isDialogOpen}
-        onOpenChange={setIsDialogOpen}
-        packageName={selectedPackageName}
-      />
+      {/* De globale PackageInquiryDialog is niet langer nodig */}
     </section>
   );
 };

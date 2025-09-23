@@ -4,7 +4,7 @@ import React from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { CheckCircle2 } from 'lucide-react';
-import { PackageInquiryDialog } from './PackageInquiryDialog';
+import PackageInquiryDialog from './PackageInquiryDialog'; // Aangepast: default import
 
 interface Feature {
   text: string;

@@ -32,7 +32,7 @@ const ContactPage = () => {
             </p>
           </div>
         </section>
-        <WaveSeparator topBgColorVar="--background" bottomBgClass="bg-zutly-tiffany-dark/10" />
+        // <WaveSeparator topBgColorVar="--background" bottomBgClass="bg-zutly-tiffany-dark/10" />
         <ContactForm />
       </main>
       <Footer />

@@ -6,6 +6,23 @@ import Footer from "@/components/Footer";
 import AboutUsSection from "@/components/AboutUsSection";
 
 const AboutUsPage = () => {
+  const aboutPageOwners = [
+    {
+      name: "Jesse Roessink",
+      title: "Oprichter & Lead Developer",
+      description: "Jesse is de technische drijvende kracht achter Zutly. Met een scherp oog voor detail en een diepgaande kennis van moderne webtechnologieën, zorgt hij ervoor dat elk project technisch solide en innovatief is. Zijn passie voor coderen en het oplossen van complexe vraagstukken is de basis van onze hoogwaardige weboplossingen.",
+      image: "/jesse-roessink.jpg",
+      fallback: "JR",
+    },
+    {
+      name: "Bas Jansen",
+      title: "Oprichter & Strategisch Adviseur",
+      description: "Bas brengt een strategische visie en een klantgerichte benadering naar Zutly. Met zijn expertise in digitale strategie en bedrijfsprocessen, helpt hij klanten hun doelen te definiëren en te realiseren. Hij is de brug tussen jouw visie en onze technische uitvoering, en zorgt voor oplossingen die echt impact maken.",
+      image: "/bas-jansen.jpg",
+      fallback: "BJ",
+    },
+  ];
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -21,7 +38,11 @@ const AboutUsPage = () => {
             </p>
           </div>
         </section>
-        <AboutUsSection />
+        <AboutUsSection
+          sectionTitle="Ons Team"
+          sectionDescription="Hier stellen we de drijvende krachten achter Zutly voor. Ontdek wie we zijn en wat ons motiveert om de beste weboplossingen te leveren."
+          owners={aboutPageOwners}
+        />
       </main>
       <Footer />
     </div>

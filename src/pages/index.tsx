@@ -11,6 +11,23 @@ import FAQSection from '@/components/FAQSection';
 import Footer from '@/components/Footer';
 
 const Index = () => {
+  const homePageOwners = [
+    {
+      name: "Jesse Roessink",
+      title: "Oprichter & Lead Developer",
+      description: "Met jarenlange ervaring in webontwikkeling en een passie voor innovatie, stuurt Jesse de technische visie van Zutly aan.",
+      image: "/jesse-roessink.jpg",
+      fallback: "JR",
+    },
+    {
+      name: "Bas Jansen",
+      title: "Oprichter & Strategisch Adviseur",
+      description: "Als strategisch denker en expert in digitale transformatie, helpt Bas klanten hun doelen te bereiken met op maat gemaakte oplossingen.",
+      image: "/bas-jansen.jpg",
+      fallback: "BJ",
+    },
+  ];
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -28,7 +45,11 @@ const Index = () => {
           </div>
         </section>
         <USPsSection />
-        <AboutUsSection />
+        <AboutUsSection
+          sectionTitle="Over Ons"
+          sectionDescription="Bij Zutly geloven we in de kracht van innovatie en persoonlijke service. Maak kennis met de gezichten achter ons bedrijf."
+          owners={homePageOwners}
+        />
         <WaveSeparator topBgColorVar="--background" bottomBgClass="bg-zutly-tiffany-dark/10" />
         <ContactForm />
         <FAQSection />

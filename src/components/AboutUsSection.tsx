@@ -4,30 +4,27 @@ import React from "react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-const AboutUsSection = () => {
-  const owners = [
-    {
-      name: "Jesse Roessink",
-      title: "Oprichter & Lead Developer",
-      description: "Met jarenlange ervaring in webontwikkeling en een passie voor innovatie, stuurt Jesse de technische visie van Zutly aan.",
-      image: "/jesse-roessink.jpg",
-      fallback: "JR",
-    },
-    {
-      name: "Bas Jansen",
-      title: "Oprichter & Strategisch Adviseur",
-      description: "Als strategisch denker en expert in digitale transformatie, helpt Bas klanten hun doelen te bereiken met op maat gemaakte oplossingen.",
-      image: "/bas-jansen.jpg",
-      fallback: "BJ",
-    },
-  ];
+interface Owner {
+  name: string;
+  title: string;
+  description: string;
+  image: string;
+  fallback: string;
+}
 
+interface AboutUsSectionProps {
+  sectionTitle: string;
+  sectionDescription: string;
+  owners: Owner[];
+}
+
+const AboutUsSection: React.FC<AboutUsSectionProps> = ({ sectionTitle, sectionDescription, owners }) => {
   return (
     <section id="about" className="py-20 bg-background">
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-4xl font-bold text-zutly-dark-purple mb-16">Over Ons</h2>
+        <h2 className="text-4xl font-bold text-zutly-dark-purple mb-16">{sectionTitle}</h2>
         <p className="text-lg text-gray-700 max-w-3xl mx-auto mb-16">
-          Bij Zutly geloven we in de kracht van innovatie en persoonlijke service. Maak kennis met de gezichten achter ons bedrijf.
+          {sectionDescription}
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
           {owners.map((owner, index) => (

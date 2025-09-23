@@ -82,7 +82,7 @@ const SharedContactFormContent: React.FC<SharedContactFormContentProps> = ({ ini
 
   return (
     <div className="p-0">
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-6 max-w-sm mx-auto"> {/* Aangepast: max-w-sm en mx-auto toegevoegd */}
           <div>
             <Label htmlFor="name" className="text-zutly-dark-purple text-base font-semibold mb-1 block">Naam</Label>
             <Input

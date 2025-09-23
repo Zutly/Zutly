@@ -62,7 +62,7 @@ const Services = () => {
       <main className="flex-grow">
         {/* Hero Section */}
         <section 
-          className="relative min-h-[50vh] flex flex-col items-center justify-center bg-gradient-to-br from-zutly-dark-purple/80 via-zutly-medium-blue/80 to-zutly-tiffany-dark/80 text-white overflow-hidden py-16 px-4 text-center"
+          className="relative min-h-[50vh] flex flex-col items-center justify-center bg-gradient-to-br from-zutly-dark-purple/65 via-zutly-medium-blue/65 to-zutly-tiffany-dark/65 text-white overflow-hidden py-16 px-4 text-center"
           style={{ 
             backgroundImage: 'url("/zutphen-smoke.jpg")',
             backgroundSize: 'cover',

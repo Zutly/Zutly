@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
 import WaveSeparator from "@/components/WaveSeparator";
+import ContactInfoSection from "@/components/ContactInfoSection"; // Import the new component
 
 const ContactPage = () => {
   return (
@@ -32,7 +33,15 @@ const ContactPage = () => {
             </p>
           </div>
         </section>
-        <ContactForm />
+        <WaveSeparator topBgColorVar="--background" bottomBgClass="bg-zutly-tiffany-dark/10" />
+        <section className="py-20 bg-zutly-tiffany-dark/10">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+              <ContactInfoSection />
+              <ContactForm />
+            </div>
+          </div>
+        </section>
       </main>
       <Footer />
     </div>

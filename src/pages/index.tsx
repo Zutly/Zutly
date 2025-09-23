@@ -6,7 +6,7 @@ import Header from '@/components/Header';
 import USPsSection from '@/components/USPsSection';
 import AboutUsSection from '@/components/AboutUsSection';
 import WaveSeparator from '@/components/WaveSeparator';
-import ContactForm from '@/components/ContactForm';
+import HomePageContactForm from '@/components/HomePageContactForm'; // Updated import
 import FAQSection from '@/components/FAQSection';
 import Footer from '@/components/Footer';
 
@@ -61,7 +61,7 @@ const Index = () => {
           owners={homePageOwners}
         />
         <WaveSeparator topBgColorVar="--background" bottomBgClass="bg-zutly-tiffany-dark/10" />
-        <ContactForm />
+        <HomePageContactForm /> {/* Using the new HomePageContactForm */}
         <FAQSection />
       </main>
       <Footer />

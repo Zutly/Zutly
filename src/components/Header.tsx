@@ -12,11 +12,9 @@ const Header = () => {
 
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "USPs", href: "#usps" },
+    { name: "Diensten", href: "/diensten" },
     { name: "Over ons", href: "#about" },
-    { name: "Diensten", href: "/diensten" }, // New link for Services
     { name: "Contact", href: "#contact" },
-    { name: "FAQ", href: "#faq" },
   ];
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {

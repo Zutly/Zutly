@@ -12,7 +12,7 @@ const PricingSection = () => {
   const packages = [
     {
       name: "Starter Website",
-      price: "€499", // Toegevoegde prijs
+      price: "€499",
       description: "Perfect voor ondernemers die al hosting hebben en alleen een moderne website willen laten bouwen.",
       features: [
         "Professionele maatwerk website (incl. responsive design)",
@@ -28,7 +28,7 @@ const PricingSection = () => {
     },
     {
       name: "Website + Hosting",
-      price: "€79/maand", // Toegevoegde prijs
+      price: "€79/maand",
       description: "Ideaal voor bedrijven die volledig ontzorgd willen worden en vaste maandelijkse kosten willen.",
       features: [
         "Professionele maatwerk website",
@@ -46,7 +46,7 @@ const PricingSection = () => {
     },
     {
       name: "Premium Website + Branding",
-      price: "Op Maat", // Toegevoegde prijs
+      price: "Op Maat",
       description: "Perfect voor bedrijven die een volledige online uitstraling willen, inclusief huisstijl en professionele branding.",
       features: [
         "Alles uit Pakket 2 (website, hosting, onderhoud, SSL, support)",
@@ -91,17 +91,6 @@ const PricingSection = () => {
                 >
                   {pkg.name}
                 </CardTitle>
-                {/* Toegevoegde prijsweergave */}
-                <p
-                  className={cn(
-                    "text-5xl font-extrabold mb-4",
-                    pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
-                    pkg.cardVariant === "medium" && "text-zutly-medium-blue",
-                    pkg.cardVariant === "default" && "text-zutly-dark-purple"
-                  )}
-                >
-                  {pkg.price}
-                </p>
                 <p
                   className={cn(
                     "text-base leading-relaxed",
@@ -114,6 +103,17 @@ const PricingSection = () => {
                 </p>
               </CardHeader>
               <CardContent className="flex-grow p-0">
+                {/* Prijsweergave verplaatst naar hier */}
+                <p
+                  className={cn(
+                    "text-5xl font-extrabold mb-4",
+                    pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
+                    pkg.cardVariant === "medium" && "text-zutly-medium-blue",
+                    pkg.cardVariant === "default" && "text-zutly-dark-purple"
+                  )}
+                >
+                  {pkg.price}
+                </p>
                 <div className="mb-6">
                   <p
                     className={cn(

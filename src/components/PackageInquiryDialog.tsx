@@ -34,9 +34,11 @@ const PackageInquiryDialog: React.FC<PackageInquiryDialogProps> = ({
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent className="max-w-sm sm:max-w-[425px] p-6">
-        <DialogHeader className="text-center"> {/* Hier is de 'text-center' klasse toegevoegd */}
-          <DialogTitle className="text-2xl font-bold text-zutly-dark-purple">{dialogTitlePrefix} voor {packageName}</DialogTitle>
-          <DialogDescription className="text-gray-600 mt-2">
+        <DialogHeader className="text-center">
+          <DialogTitle className="text-2xl font-bold text-zutly-dark-purple text-center"> {/* Expliciet text-center toegevoegd */}
+            {dialogTitlePrefix} voor {packageName}
+          </DialogTitle>
+          <DialogDescription className="text-gray-600 mt-2 text-center"> {/* Expliciet text-center toegevoegd */}
             Vul het onderstaande formulier in en we nemen zo snel mogelijk contact met u op.
           </DialogDescription>
         </DialogHeader>

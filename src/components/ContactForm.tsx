@@ -67,7 +67,7 @@ const ContactForm = () => {
   };
 
   return (
-    <section id="contact" className="py-20 ">
+    <section id="contact" className="py-20 bg-zutly-tiffany-dark/10">
       <div className="container mx-auto px-4 max-w-2xl">
         <Card className="shadow-xl border-b-4 border-zutly-medium-blue p-6">
           <CardHeader className="text-center pb-6">

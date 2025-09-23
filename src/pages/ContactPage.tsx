@@ -32,7 +32,6 @@ const ContactPage = () => {
             </p>
           </div>
         </section>
-
         <ContactForm />
       </main>
       <Footer />

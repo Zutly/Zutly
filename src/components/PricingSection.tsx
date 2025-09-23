@@ -103,17 +103,6 @@ const PricingSection = () => {
                 </p>
               </CardHeader>
               <CardContent className="flex-grow p-0">
-                {/* Prijsweergave verplaatst naar hier */}
-                <p
-                  className={cn(
-                    "text-5xl font-extrabold mb-4",
-                    pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
-                    pkg.cardVariant === "medium" && "text-zutly-medium-blue",
-                    pkg.cardVariant === "default" && "text-zutly-dark-purple"
-                  )}
-                >
-                  {pkg.price}
-                </p>
                 <div className="mb-6">
                   <p
                     className={cn(
@@ -143,6 +132,17 @@ const PricingSection = () => {
                     </li>
                   ))}
                 </ul>
+                {/* Prijsweergave verplaatst naar hier, direct boven de knop */}
+                <p
+                  className={cn(
+                    "text-5xl font-extrabold mb-4", // mb-4 voor ruimte boven de knop
+                    pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
+                    pkg.cardVariant === "medium" && "text-zutly-medium-blue",
+                    pkg.cardVariant === "default" && "text-zutly-dark-purple"
+                  )}
+                >
+                  {pkg.price}
+                </p>
                 <PackageInquiryDialog
                   packageName={pkg.name}
                   dialogTitlePrefix={pkg.dialogTitlePrefix}

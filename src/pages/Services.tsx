@@ -30,7 +30,7 @@ const Services = () => {
               Onze Diensten
             </h1>
             <p className="text-xl md:text-2xl drop-shadow-sm">
-              Van bedrijfswebsites tot webshops - wij hebben de perfecte oplossing voor jouw online ambities
+              Van hobby websites tot bedrijfswebsites - wij hebben de perfecte oplossing voor jouw online ambities
             </p>
           </div>
         </section>

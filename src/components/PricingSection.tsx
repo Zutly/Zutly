@@ -73,7 +73,7 @@ const PricingSection = () => {
                 pkg.cardVariant === "premium" &&
                   "bg-zutly-dark-purple text-white border-zutly-medium-blue hover:scale-[1.02] hover:shadow-xl",
                 pkg.cardVariant === "medium" &&
-                  "bg-zutly-tiffany-dark text-gray-800 border-zutly-medium-blue hover:scale-[1.02] hover:shadow-xl", // Aangepaste styling voor medium pakket
+                  "bg-zutly-tiffany-light/20 text-gray-800 border-zutly-medium-blue hover:scale-[1.02] hover:shadow-xl", // Aangepaste styling voor medium pakket
                 pkg.cardVariant === "default" &&
                   "bg-white text-gray-800 border-zutly-tiffany-dark hover:scale-[1.01] hover:shadow-lg"
               )}

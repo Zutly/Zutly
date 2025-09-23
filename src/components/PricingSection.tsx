@@ -6,12 +6,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CheckCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
-import PackageInquiryDialog from "@/components/PackageInquiryDialog"; // Import the new dialog component
+import PackageInquiryDialog from "@/components/PackageInquiryDialog";
 
 const PricingSection = () => {
-  // De state voor isDialogOpen en selectedPackageName is niet langer nodig,
-  // omdat elke PackageInquiryDialog zijn eigen staat beheert.
-
   const packages = [
     {
       name: "Starter Website",
@@ -25,7 +22,7 @@ const PricingSection = () => {
       ],
       paymentInfo: "Eenmalige betaling",
       buttonText: "Vraag offerte aan",
-      dialogTitlePrefix: "Offerte aanvragen", // Toegevoegd
+      dialogTitlePrefix: "Offerte aanvragen",
       highlight: false,
     },
     {
@@ -42,7 +39,7 @@ const PricingSection = () => {
       ],
       paymentInfo: "Maandelijkse abonnementsvorm (lagere instapkosten)",
       buttonText: "Vraag offerte aan",
-      dialogTitlePrefix: "Offerte aanvragen", // Toegevoegd
+      dialogTitlePrefix: "Offerte aanvragen",
       highlight: false,
     },
     {
@@ -58,7 +55,7 @@ const PricingSection = () => {
       ],
       paymentInfo: "Keuze: eenmalig of abonnementsvorm",
       buttonText: "Vraag advies aan",
-      dialogTitlePrefix: "Advies aanvragen", // Aangepast naar 'Advies aanvragen'
+      dialogTitlePrefix: "Advies aanvragen",
       highlight: true,
     },
   ];
@@ -124,7 +121,7 @@ const PricingSection = () => {
                 </ul>
                 <PackageInquiryDialog
                   packageName={pkg.name}
-                  dialogTitlePrefix={pkg.dialogTitlePrefix} {/* Geef de nieuwe prop door */}
+                  dialogTitlePrefix={pkg.dialogTitlePrefix}
                   trigger={
                     <Button
                       className={cn(

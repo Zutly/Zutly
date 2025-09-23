@@ -33,7 +33,7 @@ const PackageInquiryDialog: React.FC<PackageInquiryDialogProps> = ({
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] p-6">
+      <DialogContent className="max-w-sm sm:max-w-[425px] p-6"> {/* Aangepast: max-w-sm toegevoegd voor mobiel */}
         <DialogHeader className="text-center">
           <DialogTitle className="text-2xl font-bold text-zutly-dark-purple">{dialogTitlePrefix} voor {packageName}</DialogTitle>
           <DialogDescription className="text-gray-600 mt-2">

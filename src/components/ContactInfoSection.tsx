@@ -29,7 +29,7 @@ const ContactInfoSection = () => {
           <Phone className="h-6 w-6 text-zutly-medium-blue mr-4 flex-shrink-0" />
           <div>
             <h3 className="text-lg font-semibold text-zutly-dark-purple">Telefoon</h3>
-            <p className="text-gray-700">+31 6 12345678</p>
+            <p className="text-gray-700">+31 6 31035258</p>
           </div>
         </Card>
 

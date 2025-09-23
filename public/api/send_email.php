@@ -17,12 +17,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $name = isset($data['name']) ? htmlspecialchars($data['name']) : 'Onbekend';
     $email = isset($data['email']) ? htmlspecialchars($data['email']) : 'onbekend@voorbeeld.com';
+    $phone = isset($data['phone']) ? htmlspecialchars($data['phone']) : 'Niet opgegeven'; // Nieuw veld
+    $companyName = isset($data['companyName']) ? htmlspecialchars($data['companyName']) : 'Niet opgegeven'; // Nieuw veld
     $message = isset($data['message']) ? htmlspecialchars($data['message']) : 'Geen bericht';
 
     // Validatie (eenvoudig, uitgebreidere validatie is aan te raden)
     if (empty($name) || empty($email) || empty($message) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         http_response_code(400);
-        echo json_encode(["message" => "Vul alle verplichte velden correct in."]);
+        echo json_encode(["message" => "Vul alle verplichte velden correct in (Naam, E-mail, Bericht)."]);
         exit;
     }
 
@@ -34,7 +36,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
     $email_body = "Naam: " . $name . "\n";
-    $email_body .= "E-mail: " . $email . "\n\n";
+    $email_body .= "E-mail: " . $email . "\n";
+    $email_body .= "Telefoon: " . $phone . "\n"; // Voeg telefoonnummer toe
+    $email_body .= "Bedrijfsnaam: " . $companyName . "\n\n"; // Voeg bedrijfsnaam toe
     $email_body .= "Bericht:\n" . $message;
 
     // Verstuur de e-mail

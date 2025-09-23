@@ -19,6 +19,8 @@ const SharedContactFormContent: React.FC<SharedContactFormContentProps> = ({ ini
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "", // Nieuw veld: Telefoonnummer
+    companyName: "", // Nieuw veld: Bedrijfsnaam (optioneel)
     message: initialMessage,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -45,7 +47,7 @@ const SharedContactFormContent: React.FC<SharedContactFormContentProps> = ({ ini
 
     // Basic client-side validation
     if (!formData.name || !formData.email || !formData.message) {
-      showError("Vul alstublieft alle velden in.");
+      showError("Vul alstublieft alle verplichte velden in (Naam, E-mail, Bericht).");
       setIsSubmitting(false);
       return;
     }
@@ -66,7 +68,7 @@ const SharedContactFormContent: React.FC<SharedContactFormContentProps> = ({ ini
 
       if (response.ok) {
         showSuccess("Uw bericht is succesvol verzonden!");
-        setFormData({ name: "", email: "", message: initialMessage }); // Clear form, but keep initial message if any
+        setFormData({ name: "", email: "", phone: "", companyName: "", message: initialMessage }); // Clear form, but keep initial message if any
         onSubmissionSuccess?.(); // Call callback to close dialog
       } else {
         const errorData = await response.json();
@@ -81,7 +83,7 @@ const SharedContactFormContent: React.FC<SharedContactFormContentProps> = ({ ini
   };
 
   return (
-    <div className="p-0"> {/* Removed Card styling, now just a div */}
+    <div className="p-0">
       <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <Label htmlFor="name" className="text-zutly-dark-purple text-base font-semibold mb-1 block">Naam</Label>
@@ -93,6 +95,7 @@ const SharedContactFormContent: React.FC<SharedContactFormContentProps> = ({ ini
               onChange={handleChange}
               className="mt-1 p-3 border-gray-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-medium-blue focus-visible:ring-offset-2"
               disabled={isSubmitting}
+              required
             />
           </div>
           <div>
@@ -102,6 +105,31 @@ const SharedContactFormContent: React.FC<SharedContactFormContentProps> = ({ ini
               type="email"
               placeholder="uw@voorbeeld.com"
               value={formData.email}
+              onChange={handleChange}
+              className="mt-1 p-3 border-gray-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-medium-blue focus-visible:ring-offset-2"
+              disabled={isSubmitting}
+              required
+            />
+          </div>
+          <div>
+            <Label htmlFor="phone" className="text-zutly-dark-purple text-base font-semibold mb-1 block">Telefoonnummer</Label>
+            <Input
+              id="phone"
+              type="tel"
+              placeholder="Uw telefoonnummer (optioneel)"
+              value={formData.phone}
+              onChange={handleChange}
+              className="mt-1 p-3 border-gray-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-medium-blue focus-visible:ring-offset-2"
+              disabled={isSubmitting}
+            />
+          </div>
+          <div>
+            <Label htmlFor="companyName" className="text-zutly-dark-purple text-base font-semibold mb-1 block">Bedrijfsnaam (optioneel)</Label>
+            <Input
+              id="companyName"
+              type="text"
+              placeholder="Uw bedrijfsnaam"
+              value={formData.companyName}
               onChange={handleChange}
               className="mt-1 p-3 border-gray-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-medium-blue focus-visible:ring-offset-2"
               disabled={isSubmitting}
@@ -117,6 +145,7 @@ const SharedContactFormContent: React.FC<SharedContactFormContentProps> = ({ ini
               rows={6}
               className="mt-1 p-3 border-gray-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-medium-blue focus-visible:ring-offset-2"
               disabled={isSubmitting}
+              required
             />
           </div>
           <Button type="submit" className="w-full py-3 text-lg bg-zutly-medium-blue hover:bg-zutly-dark-purple text-white font-bold rounded-full shadow-xl hover:scale-105 transition-all duration-300" disabled={isSubmitting}>

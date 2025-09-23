@@ -142,8 +142,8 @@ const SharedContactFormContent: React.FC<SharedContactFormContentProps> = ({ ini
               placeholder="Uw bericht..."
               value={formData.message}
               onChange={handleChange}
-              rows={6}
-              className="mt-1 p-3 border-gray-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-medium-blue focus-visible:ring-offset-2"
+              rows={4} // Aangepast: minder rijen voor een compactere start
+              className="mt-1 p-3 border-gray-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-medium-blue focus-visible:ring-offset-2 min-h-[100px] md:min-h-[150px]" // Responsieve min-hoogte
               disabled={isSubmitting}
               required
             />

@@ -6,12 +6,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 
 const HomePageContactForm = () => {
   return (
-    <section id="contact" className="py-20 bg-background"> {/* bg-zutly-tiffany-dark/10 naar bg-background */}
+    <section id="contact" className="py-20 bg-zutly-tiffany-dark/10">
       <div className="container mx-auto px-4 max-w-2xl">
-        <Card className="shadow-xl border-b-4 border-zutly-medium-blue p-6 bg-card"> {/* bg-card toegevoegd */}
+        <Card className="shadow-xl border-b-4 border-zutly-medium-blue p-6"> {/* Keep this Card wrapper */}
           <CardHeader className="text-center pb-6">
-            <CardTitle className="text-3xl font-bold text-foreground">Neem Contact Op</CardTitle> {/* text-zutly-dark-purple naar text-foreground */}
-            <CardDescription className="text-muted-foreground mt-2 text-lg"> {/* text-gray-600 naar text-muted-foreground */}
+            <CardTitle className="text-3xl font-bold text-zutly-dark-purple">Neem Contact Op</CardTitle>
+            <CardDescription className="text-gray-600 mt-2 text-lg">
               Heeft u vragen of wilt u meer weten? Vul het onderstaande formulier in.
             </CardDescription>
           </CardHeader>

@@ -3,55 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-  :root { /* Dit wordt nu de standaard dark mode */
-    --background: 220 10% 10%; /* Donkergrijs */
-    --foreground: 210 20% 90%; /* Lichtgrijs */
-
-    --card: 220 10% 15%; /* Iets lichter donkergrijs voor kaarten */
-    --card-foreground: 210 20% 90%;
-
-    --popover: 220 10% 15%;
-    --popover-foreground: 210 20% 90%;
-
-    --primary: 210 20% 90%; /* Lichte tekst op donkere achtergrond */
-    --primary-foreground: 220 10% 10%; /* Donkere tekst */
-
-    --secondary: 220 10% 20%; /* Gedempte donkere secundaire kleur */
-    --secondary-foreground: 210 20% 90%;
-
-    --muted: 220 10% 20%;
-    --muted-foreground: 210 10% 60%; /* Gedempte grijze tekst */
-
-    --accent: 220 10% 20%;
-    --accent-foreground: 210 20% 90%;
-
-    --destructive: 0 60% 50%; /* Rood */
-    --destructive-foreground: 210 20% 90%;
-
-    --border: 220 10% 25%; /* Donkerdere rand */
-    --input: 220 10% 20%;
-    --ring: 210 70% 60%; /* Gebruik medium blauw voor ring */
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 220 10% 10%;
-    --sidebar-foreground: 210 20% 90%;
-    --sidebar-primary: 260 60% 40%; /* Donkerpaars */
-    --sidebar-primary-foreground: 210 20% 90%;
-    --sidebar-accent: 220 10% 20%;
-    --sidebar-accent-foreground: 210 20% 90%;
-    --sidebar-border: 220 10% 25%;
-    --sidebar-ring: 210 70% 60%;
-
-    /* Zutly Custom Colors voor Dark Mode */
-    --zutly-dark-purple: 260 60% 40%; /* Voorbeeld: #5C2D91 */
-    --zutly-medium-blue: 210 70% 60%; /* Voorbeeld: #4A90E2 */
-    --zutly-tiffany-light: 180 40% 70%; /* Voorbeeld: #8CD9D9 */
-    --zutly-tiffany-dark: 180 30% 50%; /* Voorbeeld: #59A6A6 */
-    --zutly-dark-green: 140 20% 25%; /* Voorbeeld: #334D33 */
-  }
-
-  .light { /* Dit is de light mode, als de gebruiker overschakelt */
+  :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
@@ -83,12 +35,19 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
+
     --sidebar-foreground: 240 5.3% 26.1%;
+
     --sidebar-primary: 240 5.9% 10%;
+
     --sidebar-primary-foreground: 0 0% 98%;
+
     --sidebar-accent: 240 4.8% 95.9%;
+
     --sidebar-accent-foreground: 240 5.9% 10%;
+
     --sidebar-border: 220 13% 91%;
+
     --sidebar-ring: 217.2 91.2% 59.8%;
 
     /* Zutly Custom Colors */
@@ -97,6 +56,51 @@
     --zutly-tiffany-light: 176 30% 73%; /* #A1D2CE */
     --zutly-tiffany-dark: 184 46% 65%; /* #78CAD2 */
     --zutly-dark-green: 140 17% 17%; /* #223127 */
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Zutly Custom Colors for Dark Mode (adjust as needed) */
+    --zutly-dark-purple: 246 45% 37%;
+    --zutly-medium-blue: 239 79% 70%;
+    --zutly-tiffany-light: 176 30% 73%;
+    --zutly-tiffany-dark: 184 46% 65%;
+    --zutly-dark-green: 140 17% 17%;
   }
 }
 

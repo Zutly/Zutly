@@ -28,7 +28,12 @@ const PricingSection = () => {
       highlight: false,
       additionalFeaturesTitle: null,
       additionalFeatures: [],
-      headerGradient: "bg-gradient-to-br from-zutly-medium-blue to-zutly-tiffany-light",
+      cardBgClass: "bg-white", // Default white background
+      textColorClass: "text-zutly-dark-purple",
+      descriptionColorClass: "text-gray-700",
+      featureTextColorClass: "text-gray-700",
+      featureIconColorClass: "text-zutly-medium-blue",
+      buttonClass: "bg-zutly-medium-blue text-white hover:bg-zutly-dark-purple",
     },
     {
       name: "Starter Website",
@@ -48,7 +53,12 @@ const PricingSection = () => {
       highlight: false,
       additionalFeaturesTitle: null,
       additionalFeatures: [],
-      headerGradient: "bg-gradient-to-br from-zutly-dark-purple to-zutly-medium-blue",
+      cardBgClass: "bg-white",
+      textColorClass: "text-zutly-dark-purple",
+      descriptionColorClass: "text-gray-700",
+      featureTextColorClass: "text-gray-700",
+      featureIconColorClass: "text-zutly-medium-blue",
+      buttonClass: "bg-zutly-medium-blue text-white hover:bg-zutly-dark-purple",
     },
     {
       name: "Website + Hosting",
@@ -71,7 +81,12 @@ const PricingSection = () => {
         { icon: CheckCircle, text: "Onderhoud & support inbegrepen (bijv. kleine wijzigingen per maand)" },
         { icon: CheckCircle, text: "Ongelimiteerde revisierondes inbegrepen" },
       ],
-      headerGradient: "bg-gradient-to-br from-zutly-tiffany-dark to-zutly-dark-green",
+      cardBgClass: "bg-gradient-to-br from-zutly-dark-purple to-zutly-medium-blue", // Gradient for highlighted card
+      textColorClass: "text-white",
+      descriptionColorClass: "text-gray-100",
+      featureTextColorClass: "text-gray-100",
+      featureIconColorClass: "text-zutly-tiffany-light", // Lighter icon for contrast
+      buttonClass: "bg-zutly-tiffany-light text-zutly-dark-purple hover:bg-zutly-tiffany-dark", // Contrasting button
     },
     {
       name: "Premium Website + Branding",
@@ -92,12 +107,17 @@ const PricingSection = () => {
       highlight: false,
       additionalFeaturesTitle: null,
       additionalFeatures: [],
-      headerGradient: "bg-gradient-to-br from-zutly-tiffany-light to-zutly-medium-blue",
+      cardBgClass: "bg-white",
+      textColorClass: "text-zutly-dark-purple",
+      descriptionColorClass: "text-gray-700",
+      featureTextColorClass: "text-gray-700",
+      featureIconColorClass: "text-zutly-medium-blue",
+      buttonClass: "bg-zutly-medium-blue text-white hover:bg-zutly-dark-purple",
     },
   ];
 
   return (
-    <section id="pricing" className="py-20 bg-gray-100 text-gray-800"> {/* Light background for the section */}
+    <section id="pricing" className="py-20 bg-gray-100 text-gray-800">
       <div className="container mx-auto px-4 text-center max-w-7xl">
         <h2 className="text-4xl font-bold text-zutly-dark-purple mb-16">Onze Pakketten</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -105,48 +125,39 @@ const PricingSection = () => {
             <Card
               key={index}
               className={cn(
-                "relative flex flex-col rounded-xl shadow-lg transition-all duration-300 overflow-hidden",
-                "bg-white border border-gray-200", // Base light card style
-                pkg.highlight &&
-                  "border-zutly-medium-blue bg-white transform scale-[1.03] shadow-zutly-medium-blue/20", // Highlighted card style
+                "relative flex flex-col p-8 rounded-xl shadow-lg transition-all duration-300 overflow-hidden",
+                pkg.cardBgClass, // Apply card background class
+                pkg.highlight ? "border-zutly-medium-blue transform scale-[1.03] shadow-zutly-medium-blue/20" : "border border-gray-200",
               )}
             >
-              {/* Card Header Gradient */}
-              <div className={cn("h-32 w-full rounded-t-xl", pkg.headerGradient)}>
-                {pkg.highlight && (
-                  <div className="absolute top-4 right-4 bg-zutly-medium-blue text-white text-xs font-bold px-3 py-1 rounded-full rotate-6">
-                    Meest Populair
-                  </div>
-                )}
-              </div>
+              {pkg.highlight && (
+                <div className="absolute top-4 right-4 bg-zutly-tiffany-light text-zutly-dark-purple text-xs font-bold px-3 py-1 rounded-full rotate-6">
+                  Meest Populair
+                </div>
+              )}
 
-              <div className="p-8 flex flex-col flex-grow"> {/* Content wrapper for padding */}
+              <div className="flex flex-col flex-grow">
                 <CardHeader className="p-0 mb-6">
-                  <CardTitle className="text-3xl font-bold mb-2 text-zutly-dark-purple">
+                  <CardTitle className={cn("text-3xl font-bold mb-2", pkg.textColorClass)}>
                     {pkg.name}
                   </CardTitle>
-                  <p className="text-base leading-relaxed text-gray-700">
+                  <p className={cn("text-base leading-relaxed", pkg.descriptionColorClass)}>
                     {pkg.description}
                   </p>
                 </CardHeader>
                 <CardContent className="flex flex-col flex-grow p-0">
                   <div className="mb-6">
-                    <p className="text-5xl font-extrabold text-zutly-dark-purple">
-                      {pkg.initialPrice}
+                    <p className={cn("text-lg font-semibold", pkg.featureIconColorClass)}>
+                      {pkg.paymentInfo}
                     </p>
-                    {pkg.recurringPrice && (
-                      <p className="text-base mt-1 text-gray-600">
-                        {pkg.recurringPrice}
-                      </p>
-                    )}
                   </div>
                   <ul className="list-none space-y-3 mb-8 text-left">
                     {pkg.features.map((feature, fIndex) => {
                       const IconComponent = feature.icon;
                       return (
                         <li key={fIndex} className="flex items-start">
-                          <IconComponent className="h-5 w-5 text-zutly-medium-blue mr-3 flex-shrink-0" />
-                          <span className="text-gray-700">
+                          <IconComponent className={cn("h-5 w-5 mr-3 flex-shrink-0", pkg.featureIconColorClass)} />
+                          <span className={pkg.featureTextColorClass}>
                             {feature.text}
                           </span>
                         </li>
@@ -156,8 +167,8 @@ const PricingSection = () => {
 
                   {pkg.additionalFeaturesTitle && (
                     <>
-                      <div className="border-t border-gray-200 my-6"></div>
-                      <p className="text-sm font-semibold text-gray-600 mb-4 uppercase tracking-wider">
+                      <div className={cn("my-6", pkg.highlight ? "border-t border-gray-600" : "border-t border-gray-200")}></div>
+                      <p className={cn("text-sm font-semibold mb-4 uppercase tracking-wider", pkg.highlight ? "text-gray-200" : "text-gray-600")}>
                         {pkg.additionalFeaturesTitle}
                       </p>
                       <ul className="list-none space-y-3 mb-8 text-left">
@@ -165,8 +176,8 @@ const PricingSection = () => {
                           const IconComponent = feature.icon;
                           return (
                             <li key={fIndex} className="flex items-start">
-                              <IconComponent className="h-5 w-5 text-zutly-medium-blue mr-3 flex-shrink-0" />
-                              <span className="text-gray-700">
+                              <IconComponent className={cn("h-5 w-5 mr-3 flex-shrink-0", pkg.featureIconColorClass)} />
+                              <span className={pkg.featureTextColorClass}>
                                 {feature.text}
                               </span>
                             </li>
@@ -176,24 +187,30 @@ const PricingSection = () => {
                     </>
                   )}
 
-                  <div className="mt-auto"> {/* Pushes button to the bottom */}
-                    <PackageInquiryDialog
-                      packageName={pkg.name}
-                      dialogTitlePrefix={pkg.dialogTitlePrefix}
-                      trigger={
-                        <Button
-                          className={cn(
-                            "w-full py-3 text-lg font-bold rounded-full shadow-md hover:scale-105 transition-all duration-300",
-                            pkg.highlight
-                              ? "bg-zutly-medium-blue text-white hover:bg-zutly-dark-purple" // Highlighted button style
-                              : "bg-gray-200 text-zutly-dark-purple hover:bg-gray-300" // Default button style
-                          )}
-                        >
-                          {pkg.buttonText}
-                        </Button>
-                      }
-                    />
+                  <div className="mb-4 mt-auto">
+                    <p className={cn("text-5xl font-extrabold", pkg.textColorClass)}>
+                      {pkg.initialPrice}
+                    </p>
+                    {pkg.recurringPrice && (
+                      <p className={cn("text-base mt-1", pkg.descriptionColorClass)}>
+                        {pkg.recurringPrice}
+                      </p>
+                    )}
                   </div>
+                  <PackageInquiryDialog
+                    packageName={pkg.name}
+                    dialogTitlePrefix={pkg.dialogTitlePrefix}
+                    trigger={
+                      <Button
+                        className={cn(
+                          "w-full py-3 text-lg font-bold rounded-full shadow-md hover:scale-105 transition-all duration-300",
+                          pkg.buttonClass
+                        )}
+                      >
+                        {pkg.buttonText}
+                      </Button>
+                    }
+                  />
                 </CardContent>
               </div>
             </Card>

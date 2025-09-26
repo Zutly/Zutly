@@ -102,7 +102,7 @@ const PricingSection = () => {
                   {pkg.description}
                 </p>
               </CardHeader>
-              <CardContent className="flex flex-col flex-grow p-0"> {/* Toegevoegd: flex flex-col flex-grow */}
+              <CardContent className="flex flex-col flex-grow p-0">
                 <div className="mb-6">
                   <p
                     className={cn(
@@ -132,10 +132,9 @@ const PricingSection = () => {
                     </li>
                   ))}
                 </ul>
-                {/* Prijsweergave verplaatst naar hier, direct boven de knop met mt-auto */}
                 <p
                   className={cn(
-                    "text-5xl font-extrabold mb-4 mt-auto", // mt-auto duwt de prijs en knop naar beneden
+                    "text-4xl font-extrabold mb-4 mt-auto", // Aangepast van text-5xl naar text-4xl
                     pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
                     pkg.cardVariant === "medium" && "text-zutly-medium-blue",
                     pkg.cardVariant === "default" && "text-zutly-dark-purple"

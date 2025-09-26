@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Users, Cloud, Sparkles } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn } = "@/lib/utils";
 import PackageInquiryDialog from "@/components/PackageInquiryDialog";
 
 const PricingSection = () => {
@@ -126,16 +126,6 @@ const PricingSection = () => {
                   </p>
                 </CardHeader>
                 <CardContent className="flex flex-col flex-grow p-0">
-                  <div className="mb-6">
-                    <p className="text-5xl font-extrabold text-white"> {/* Text color for initial price */}
-                      {pkg.initialPrice}
-                    </p>
-                    {pkg.recurringPrice && (
-                      <p className="text-base mt-1 text-gray-100"> {/* Text color for recurring price */}
-                        {pkg.recurringPrice}
-                      </p>
-                    )}
-                  </div>
                   <ul className="list-none space-y-3 mb-8 text-left">
                     {pkg.features.map((feature, fIndex) => {
                       const IconComponent = feature.icon;
@@ -172,8 +162,16 @@ const PricingSection = () => {
                     </>
                   )}
 
-                  <div className="mt-auto mb-4"> {/* Payment info moved here */}
-                    <p className="text-base text-gray-100">
+                  <div className="mt-auto mb-4 text-center"> {/* Added text-center for price alignment */}
+                    <p className="text-5xl font-extrabold text-white"> {/* Text color for initial price */}
+                      {pkg.initialPrice}
+                    </p>
+                    {pkg.recurringPrice && (
+                      <p className="text-base mt-1 text-gray-100"> {/* Text color for recurring price */}
+                        {pkg.recurringPrice}
+                      </p>
+                    )}
+                    <p className="text-base mt-4 text-gray-100"> {/* Payment info moved here */}
                       {pkg.paymentInfo}
                     </p>
                   </div>

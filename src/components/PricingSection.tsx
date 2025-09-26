@@ -84,7 +84,7 @@ const PricingSection = () => {
 
   return (
     <section id="pricing" className="py-20 bg-background">
-      <div className="container mx-auto px-4 text-center max-w-7xl">
+      <div className="container mx-auto px-4 text-center"> {/* 'max-w-7xl' verwijderd */}
         <h2 className="text-4xl font-bold text-zutly-dark-purple mb-4">Onze Pakketten</h2>
         <p className="text-lg text-gray-600 mb-16 max-w-3xl mx-auto">
           Kies het pakket dat het beste past bij uw bedrijf en online ambities

@@ -12,7 +12,8 @@ const PricingSection = () => {
   const packages = [
     {
       name: "Starter Website",
-      price: "€400", // Aangepaste prijs
+      initialPrice: "€400", // Aangepast naar initialPrice
+      recurringPrice: null, // Geen terugkerende prijs
       description: "Perfect voor ondernemers die al hosting hebben en alleen een moderne website willen laten bouwen.",
       features: [
         "Professionele maatwerk website (incl. responsive design)",
@@ -28,7 +29,8 @@ const PricingSection = () => {
     },
     {
       name: "Website + Hosting",
-      price: "€300 (daarna €50 p/m)",
+      initialPrice: "€300", // Eenmalige betaling
+      recurringPrice: "daarna €50 p/m", // Terugkerende betaling
       description: "Ideaal voor bedrijven die volledig ontzorgd willen worden en vaste maandelijkse kosten willen.",
       features: [
         "Professionele maatwerk website",
@@ -46,7 +48,8 @@ const PricingSection = () => {
     },
     {
       name: "Premium Website + Branding",
-      price: "Op aanvraag",
+      initialPrice: "Op Maat", // Aangepast naar initialPrice
+      recurringPrice: null, // Geen terugkerende prijs
       description: "Perfect voor bedrijven die een volledige online uitstraling willen, inclusief huisstijl en professionele branding.",
       features: [
         "Alles uit Pakket 2 (website, hosting, onderhoud, SSL, support)",
@@ -132,16 +135,30 @@ const PricingSection = () => {
                     </li>
                   ))}
                 </ul>
-                <p
-                  className={cn(
-                    "text-4xl font-extrabold mb-4 mt-auto",
-                    pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
-                    pkg.cardVariant === "medium" && "text-zutly-medium-blue",
-                    pkg.cardVariant === "default" && "text-zutly-dark-purple"
+                <div className="mb-4 mt-auto"> {/* Wrapper div voor de prijzen */}
+                  <p
+                    className={cn(
+                      "text-4xl font-extrabold",
+                      pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
+                      pkg.cardVariant === "medium" && "text-zutly-medium-blue",
+                      pkg.cardVariant === "default" && "text-zutly-dark-purple"
+                    )}
+                  >
+                    {pkg.initialPrice}
+                  </p>
+                  {pkg.recurringPrice && (
+                    <p
+                      className={cn(
+                        "text-sm mt-1", // Kleinere tekst en wat marge erboven
+                        pkg.cardVariant === "premium" && "text-zutly-tiffany-light/80",
+                        pkg.cardVariant === "medium" && "text-gray-600",
+                        pkg.cardVariant === "default" && "text-gray-500"
+                      )}
+                    >
+                      {pkg.recurringPrice}
+                    </p>
                   )}
-                >
-                  {pkg.price}
-                </p>
+                </div>
                 <PackageInquiryDialog
                   packageName={pkg.name}
                   dialogTitlePrefix={pkg.dialogTitlePrefix}

@@ -95,10 +95,10 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
 
     /* Zutly Custom Colors for Dark Mode (adjust as needed) */
-    --zutly-black: 0 0% 0%;
-    --zutly-platinum: 220 14% 80%;
-    --zutly-blue-gray: 210 30% 58%;
-    --zutly-true-blue: 208 100% 39%;
+    --zutly-black: 0 0% 10%; /* Slightly lighter black for dark mode backgrounds */
+    --zutly-platinum: 220 14% 90%; /* Lighter gray for accents in dark mode */
+    --zutly-blue-gray: 210 20% 40%; /* Darker, desaturated blue-gray for dark mode */
+    --zutly-true-blue: 208 100% 50%; /* Slightly brighter blue for visibility in dark mode */
   }
 }
 

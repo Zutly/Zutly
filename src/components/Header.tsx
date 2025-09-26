@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { ThemeToggle } from "@/components/ThemeToggle"; // Import ThemeToggle
 
 const Header = () => {
   const isMobile = useIsMobile();
@@ -80,6 +81,9 @@ const Header = () => {
                     )}
                   </SheetClose>
                 ))}
+                <div className="mt-4">
+                  <ThemeToggle />
+                </div>
               </nav>
             </SheetContent>
           </Sheet>
@@ -105,6 +109,7 @@ const Header = () => {
                 </Link>
               )
             ))}
+            <ThemeToggle /> {/* Add ThemeToggle here */}
           </nav>
         )}
       </div>

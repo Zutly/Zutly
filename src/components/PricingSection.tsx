@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Users, Cloud, Sparkles } from "lucide-react";
-import { cn } = "@/lib/utils";
+import { cn } from "@/lib/utils"; // Corrected: changed '=' to 'from'
 import PackageInquiryDialog from "@/components/PackageInquiryDialog";
 
 const PricingSection = () => {

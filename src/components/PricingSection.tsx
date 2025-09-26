@@ -86,20 +86,20 @@ const PricingSection = () => {
   return (
     <section id="pricing" className="py-20 bg-background">
       <div className="container mx-auto px-4 text-center max-w-7xl">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"> {/* Aangepaste grid-layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {packages.map((pkg, index) => (
             <Card
               key={index}
               className={cn(
-                "flex flex-col p-8 shadow-lg border-b-4 transition-all duration-300",
+                "flex flex-col p-8 shadow-lg transition-all duration-300 rounded-xl backdrop-blur-md border border-white/20", // Toegevoegd: rounded-xl, backdrop-blur-md, border
                 pkg.cardVariant === "premium" &&
-                  "bg-zutly-dark-purple text-white border-zutly-medium-blue hover:scale-[1.02] hover:shadow-xl",
+                  "bg-zutly-dark-purple/70 text-white hover:scale-[1.02] hover:shadow-xl", // Achtergrond transparanter gemaakt
                 pkg.cardVariant === "medium" &&
-                  "bg-zutly-tiffany-light/20 text-gray-800 border-zutly-medium-blue hover:scale-[1.02] hover:shadow-xl",
+                  "bg-zutly-tiffany-light/30 text-gray-800 hover:scale-[1.02] hover:shadow-xl", // Achtergrond transparanter gemaakt
                 pkg.cardVariant === "default" &&
-                  "bg-white text-gray-800 border-zutly-tiffany-dark hover:scale-[1.01] hover:shadow-lg",
+                  "bg-white/20 text-gray-800 hover:scale-[1.01] hover:shadow-lg", // Achtergrond transparanter gemaakt
                 pkg.cardVariant === "free" && // Styling voor het gratis pakket
-                  "bg-zutly-tiffany-light/50 text-gray-800 border-zutly-tiffany-dark hover:scale-[1.01] hover:shadow-lg"
+                  "bg-zutly-tiffany-light/40 text-gray-800 hover:scale-[1.01] hover:shadow-lg" // Achtergrond transparanter gemaakt
               )}
             >
               <CardHeader className="p-0 mb-6">
@@ -109,7 +109,7 @@ const PricingSection = () => {
                     pkg.cardVariant === "premium" && "text-white",
                     pkg.cardVariant === "medium" && "text-zutly-dark-purple",
                     pkg.cardVariant === "default" && "text-zutly-dark-purple",
-                    pkg.cardVariant === "free" && "text-zutly-dark-green" // Kleur voor gratis pakket titel
+                    pkg.cardVariant === "free" && "text-zutly-dark-green"
                   )}
                 >
                   {pkg.name}
@@ -120,7 +120,7 @@ const PricingSection = () => {
                     pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
                     pkg.cardVariant === "medium" && "text-gray-800",
                     pkg.cardVariant === "default" && "text-gray-600",
-                    pkg.cardVariant === "free" && "text-gray-700" // Kleur voor gratis pakket beschrijving
+                    pkg.cardVariant === "free" && "text-gray-700"
                   )}
                 >
                   {pkg.description}
@@ -134,7 +134,7 @@ const PricingSection = () => {
                       pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
                       pkg.cardVariant === "medium" && "text-zutly-dark-purple",
                       pkg.cardVariant === "default" && "text-zutly-medium-blue",
-                      pkg.cardVariant === "free" && "text-zutly-dark-green" // Kleur voor gratis pakket paymentInfo
+                      pkg.cardVariant === "free" && "text-zutly-dark-green"
                     )}
                   >
                     {pkg.paymentInfo}
@@ -149,7 +149,7 @@ const PricingSection = () => {
                           pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
                           pkg.cardVariant === "medium" && "text-zutly-medium-blue",
                           pkg.cardVariant === "default" && "text-zutly-medium-blue",
-                          pkg.cardVariant === "free" && "text-zutly-dark-green" // Kleur voor gratis pakket iconen
+                          pkg.cardVariant === "free" && "text-zutly-dark-green"
                         )}
                       />
                       <span className={pkg.cardVariant === "premium" ? "text-white" : "text-gray-700"}>
@@ -158,14 +158,14 @@ const PricingSection = () => {
                     </li>
                   ))}
                 </ul>
-                <div className="mb-4 mt-auto"> {/* Wrapper div voor de prijzen */}
+                <div className="mb-4 mt-auto">
                   <p
                     className={cn(
                       "text-4xl font-extrabold",
                       pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
                       pkg.cardVariant === "medium" && "text-zutly-medium-blue",
                       pkg.cardVariant === "default" && "text-zutly-dark-purple",
-                      pkg.cardVariant === "free" && "text-zutly-dark-green" // Kleur voor gratis pakket prijs
+                      pkg.cardVariant === "free" && "text-zutly-dark-green"
                     )}
                   >
                     {pkg.initialPrice}
@@ -173,11 +173,11 @@ const PricingSection = () => {
                   {pkg.recurringPrice && (
                     <p
                       className={cn(
-                        "text-sm mt-1", // Kleinere tekst en wat marge erboven
+                        "text-sm mt-1",
                         pkg.cardVariant === "premium" && "text-zutly-tiffany-light/80",
                         pkg.cardVariant === "medium" && "text-gray-600",
                         pkg.cardVariant === "default" && "text-gray-500",
-                        pkg.cardVariant === "free" && "text-gray-600" // Kleur voor gratis pakket recurringPrice
+                        pkg.cardVariant === "free" && "text-gray-600"
                       )}
                     >
                       {pkg.recurringPrice}
@@ -193,7 +193,7 @@ const PricingSection = () => {
                         "w-full py-3 text-lg font-bold rounded-full shadow-md hover:scale-105 transition-all duration-300",
                         pkg.cardVariant === "premium"
                           ? "bg-zutly-tiffany-light text-zutly-dark-purple hover:bg-zutly-tiffany-dark"
-                          : pkg.cardVariant === "free" // Specifieke knopstijl voor gratis pakket
+                          : pkg.cardVariant === "free"
                           ? "bg-zutly-dark-green text-white hover:bg-zutly-dark-purple"
                           : "bg-zutly-medium-blue text-white hover:bg-zutly-dark-purple"
                       )}

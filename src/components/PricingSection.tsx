@@ -84,9 +84,6 @@ const PricingSection = () => {
   return (
     <section id="pricing" className="py-20 bg-background">
       <div className="container mx-auto px-4 text-center"> {/* 'max-w-7xl' verwijderd */}
-        <p className="text-lg text-gray-600 mb-16 max-w-3xl mx-auto">
-          Kies het pakket dat het beste past bij uw bedrijf en online ambities
-        </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {packages.map((pkg, index) => (
             <div key={index} className="relative">

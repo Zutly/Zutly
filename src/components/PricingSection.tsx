@@ -172,19 +172,22 @@ const PricingSection = () => {
                     </>
                   )}
 
-                  <div className="mt-auto">
-                    <PackageInquiryDialog
-                      packageName={pkg.name}
-                      dialogTitlePrefix={pkg.dialogTitlePrefix}
-                      trigger={
+                  <div className="mt-auto mb-4"> {/* Payment info moved here */}
+                    <p className="text-base text-gray-100">
+                      {pkg.paymentInfo}
+                    </p>
+                  </div>
+                  <PackageInquiryDialog
+                    packageName={pkg.name}
+                    dialogTitlePrefix={pkg.dialogTitlePrefix}
+                    trigger={
                         <Button
                           className="w-full py-3 text-lg font-bold rounded-full shadow-md hover:scale-105 transition-all duration-300 bg-zutly-tiffany-light text-zutly-dark-purple hover:bg-zutly-tiffany-dark" // Consistent button style for all cards
                         >
                           {pkg.buttonText}
                         </Button>
-                      }
-                    />
-                  </div>
+                    }
+                  />
                 </CardContent>
               </div>
             </Card>

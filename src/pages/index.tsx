@@ -6,9 +6,15 @@ import Header from '@/components/Header';
 import USPsSection from '@/components/USPsSection';
 import AboutUsSection from '@/components/AboutUsSection';
 import WaveSeparator from '@/components/WaveSeparator';
-import HomePageContactForm from '@/components/HomePageContactForm'; // Updated import
+import HomePageContactForm from '@/components/HomePageContactForm';
 import FAQSection from '@/components/FAQSection';
 import Footer from '@/components/Footer';
+import TestimonialsSection from '@/components/TestimonialsSection'; // Nieuw
+import HowWeWorkSection from '@/components/HowWeWorkSection'; // Nieuw
+import CoreValuesSection from '@/components/CoreValuesSection'; // Nieuw
+import LatestBlogPostsSection from '@/components/LatestBlogPostsSection'; // Nieuw
+import TechStackSection from '@/components/TechStackSection'; // Nieuw
+import ProminentCtaSection from '@/components/ProminentCtaSection'; // Nieuw
 
 const Index = () => {
   const homePageOwners = [
@@ -55,14 +61,20 @@ const Index = () => {
           </div>
         </section>
         <USPsSection />
+        <HowWeWorkSection /> {/* Nieuwe sectie */}
+        <TestimonialsSection /> {/* Nieuwe sectie */}
         <AboutUsSection
           sectionTitle="Over Ons"
           sectionDescription="Bij Zutly geloven we in de kracht van innovatie en persoonlijke service. Maak kennis met de gezichten achter ons bedrijf."
           owners={homePageOwners}
         />
+        <CoreValuesSection /> {/* Nieuwe sectie */}
         <WaveSeparator topBgColorVar="--background" bottomBgClass="bg-zutly-tiffany-dark/10" />
-        <HomePageContactForm /> {/* Using the new HomePageContactForm */}
+        <HomePageContactForm />
+        <LatestBlogPostsSection /> {/* Nieuwe sectie */}
+        <TechStackSection /> {/* Nieuwe sectie */}
         <FAQSection />
+        <ProminentCtaSection /> {/* Nieuwe sectie */}
       </main>
       <Footer />
     </div>

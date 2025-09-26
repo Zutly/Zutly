@@ -11,9 +11,26 @@ import PackageInquiryDialog from "@/components/PackageInquiryDialog";
 const PricingSection = () => {
   const packages = [
     {
+      name: "Gratis Opzet",
+      initialPrice: "€0",
+      recurringPrice: "Vrijblijvend",
+      description: "Ontvang een gratis en vrijblijvende eerste opzet van uw website om de mogelijkheden te ontdekken.",
+      features: [
+        "Gratis eerste concept van uw website",
+        "Vrijblijvend en zonder verplichtingen",
+        "Inclusief basis designvoorstel",
+        "Persoonlijk adviesgesprek",
+        "Optie tot upgrade naar Starter Website",
+      ],
+      paymentInfo: "Geheel gratis",
+      buttonText: "Vraag gratis opzet aan",
+      dialogTitlePrefix: "Gratis opzet aanvragen",
+      cardVariant: "free", // Nieuwe variant voor gratis pakket
+    },
+    {
       name: "Starter Website",
       initialPrice: "€400",
-      recurringPrice: "Eenmalig", // Aangepast: 'eenmalig' als terugkerende prijs
+      recurringPrice: "eenmalig",
       description: "Perfect voor ondernemers die al hosting hebben en alleen een moderne website willen laten bouwen.",
       features: [
         "Professionele maatwerk website (incl. responsive design)",
@@ -30,7 +47,7 @@ const PricingSection = () => {
     {
       name: "Website + Hosting",
       initialPrice: "€300",
-      recurringPrice: "Daarna €50 p/m",
+      recurringPrice: "daarna €50 p/m",
       description: "Ideaal voor bedrijven die volledig ontzorgd willen worden en vaste maandelijkse kosten willen.",
       features: [
         "Professionele maatwerk website",
@@ -69,7 +86,7 @@ const PricingSection = () => {
   return (
     <section id="pricing" className="py-20 bg-background">
       <div className="container mx-auto px-4 text-center max-w-7xl">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"> {/* Aangepaste grid-layout */}
           {packages.map((pkg, index) => (
             <Card
               key={index}
@@ -80,7 +97,9 @@ const PricingSection = () => {
                 pkg.cardVariant === "medium" &&
                   "bg-zutly-tiffany-light/20 text-gray-800 border-zutly-medium-blue hover:scale-[1.02] hover:shadow-xl",
                 pkg.cardVariant === "default" &&
-                  "bg-white text-gray-800 border-zutly-tiffany-dark hover:scale-[1.01] hover:shadow-lg"
+                  "bg-white text-gray-800 border-zutly-tiffany-dark hover:scale-[1.01] hover:shadow-lg",
+                pkg.cardVariant === "free" && // Styling voor het gratis pakket
+                  "bg-zutly-tiffany-light/50 text-gray-800 border-zutly-tiffany-dark hover:scale-[1.01] hover:shadow-lg"
               )}
             >
               <CardHeader className="p-0 mb-6">
@@ -89,7 +108,8 @@ const PricingSection = () => {
                     "text-3xl font-bold mb-2",
                     pkg.cardVariant === "premium" && "text-white",
                     pkg.cardVariant === "medium" && "text-zutly-dark-purple",
-                    pkg.cardVariant === "default" && "text-zutly-dark-purple"
+                    pkg.cardVariant === "default" && "text-zutly-dark-purple",
+                    pkg.cardVariant === "free" && "text-zutly-dark-green" // Kleur voor gratis pakket titel
                   )}
                 >
                   {pkg.name}
@@ -99,7 +119,8 @@ const PricingSection = () => {
                     "text-base leading-relaxed",
                     pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
                     pkg.cardVariant === "medium" && "text-gray-800",
-                    pkg.cardVariant === "default" && "text-gray-600"
+                    pkg.cardVariant === "default" && "text-gray-600",
+                    pkg.cardVariant === "free" && "text-gray-700" // Kleur voor gratis pakket beschrijving
                   )}
                 >
                   {pkg.description}
@@ -112,7 +133,8 @@ const PricingSection = () => {
                       "text-lg font-semibold",
                       pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
                       pkg.cardVariant === "medium" && "text-zutly-dark-purple",
-                      pkg.cardVariant === "default" && "text-zutly-medium-blue"
+                      pkg.cardVariant === "default" && "text-zutly-medium-blue",
+                      pkg.cardVariant === "free" && "text-zutly-dark-green" // Kleur voor gratis pakket paymentInfo
                     )}
                   >
                     {pkg.paymentInfo}
@@ -126,7 +148,8 @@ const PricingSection = () => {
                           "h-5 w-5 mr-3 flex-shrink-0",
                           pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
                           pkg.cardVariant === "medium" && "text-zutly-medium-blue",
-                          pkg.cardVariant === "default" && "text-zutly-medium-blue"
+                          pkg.cardVariant === "default" && "text-zutly-medium-blue",
+                          pkg.cardVariant === "free" && "text-zutly-dark-green" // Kleur voor gratis pakket iconen
                         )}
                       />
                       <span className={pkg.cardVariant === "premium" ? "text-white" : "text-gray-700"}>
@@ -141,7 +164,8 @@ const PricingSection = () => {
                       "text-4xl font-extrabold",
                       pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
                       pkg.cardVariant === "medium" && "text-zutly-medium-blue",
-                      pkg.cardVariant === "default" && "text-zutly-dark-purple"
+                      pkg.cardVariant === "default" && "text-zutly-dark-purple",
+                      pkg.cardVariant === "free" && "text-zutly-dark-green" // Kleur voor gratis pakket prijs
                     )}
                   >
                     {pkg.initialPrice}
@@ -152,7 +176,8 @@ const PricingSection = () => {
                         "text-sm mt-1", // Kleinere tekst en wat marge erboven
                         pkg.cardVariant === "premium" && "text-zutly-tiffany-light/80",
                         pkg.cardVariant === "medium" && "text-gray-600",
-                        pkg.cardVariant === "default" && "text-gray-500"
+                        pkg.cardVariant === "default" && "text-gray-500",
+                        pkg.cardVariant === "free" && "text-gray-600" // Kleur voor gratis pakket recurringPrice
                       )}
                     >
                       {pkg.recurringPrice}
@@ -168,6 +193,8 @@ const PricingSection = () => {
                         "w-full py-3 text-lg font-bold rounded-full shadow-md hover:scale-105 transition-all duration-300",
                         pkg.cardVariant === "premium"
                           ? "bg-zutly-tiffany-light text-zutly-dark-purple hover:bg-zutly-tiffany-dark"
+                          : pkg.cardVariant === "free" // Specifieke knopstijl voor gratis pakket
+                          ? "bg-zutly-dark-green text-white hover:bg-zutly-dark-purple"
                           : "bg-zutly-medium-blue text-white hover:bg-zutly-dark-purple"
                       )}
                     >

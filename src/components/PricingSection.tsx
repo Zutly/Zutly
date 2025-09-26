@@ -93,23 +93,23 @@ const PricingSection = () => {
               className={cn(
                 "flex flex-col p-8 shadow-lg transition-all duration-300 rounded-xl backdrop-blur-md border border-white/20",
                 pkg.cardVariant === "premium" &&
-                  "bg-zutly-dark-purple/70 text-white hover:scale-[1.02] hover:shadow-xl",
+                  "bg-zutly-dark-purple text-foreground hover:scale-[1.02] hover:shadow-xl", // Aangepast
                 pkg.cardVariant === "medium" &&
-                  "bg-zutly-tiffany-light/30 text-gray-800 hover:scale-[1.02] hover:shadow-xl",
+                  "bg-zutly-tiffany-dark/30 text-foreground hover:scale-[1.02] hover:shadow-xl", // Aangepast
                 pkg.cardVariant === "default" &&
-                  "bg-white/20 text-gray-800 hover:scale-[1.01] hover:shadow-lg",
+                  "bg-card text-foreground hover:scale-[1.01] hover:shadow-lg", // Aangepast
                 pkg.cardVariant === "free" &&
-                  "bg-zutly-tiffany-light/40 text-gray-800 hover:scale-[1.01] hover:shadow-lg"
+                  "bg-zutly-tiffany-dark/20 text-foreground hover:scale-[1.01] hover:shadow-lg" // Aangepast
               )}
             >
               <CardHeader className="p-0 mb-6">
                 <CardTitle
                   className={cn(
                     "text-3xl font-bold mb-2",
-                    pkg.cardVariant === "premium" && "text-white",
-                    pkg.cardVariant === "medium" && "text-zutly-dark-purple",
-                    pkg.cardVariant === "default" && "text-zutly-dark-purple",
-                    pkg.cardVariant === "free" && "text-zutly-dark-green"
+                    pkg.cardVariant === "premium" && "text-foreground", // Aangepast
+                    pkg.cardVariant === "medium" && "text-foreground", // Aangepast
+                    pkg.cardVariant === "default" && "text-foreground", // Aangepast
+                    pkg.cardVariant === "free" && "text-zutly-tiffany-light" // Aangepast
                   )}
                 >
                   {pkg.name}
@@ -118,9 +118,9 @@ const PricingSection = () => {
                   className={cn(
                     "text-base leading-relaxed",
                     pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
-                    pkg.cardVariant === "medium" && "text-gray-800",
-                    pkg.cardVariant === "default" && "text-gray-600",
-                    pkg.cardVariant === "free" && "text-gray-700"
+                    pkg.cardVariant === "medium" && "text-muted-foreground", // Aangepast
+                    pkg.cardVariant === "default" && "text-muted-foreground", // Aangepast
+                    pkg.cardVariant === "free" && "text-muted-foreground" // Aangepast
                   )}
                 >
                   {pkg.description}
@@ -132,9 +132,9 @@ const PricingSection = () => {
                     className={cn(
                       "text-lg font-semibold",
                       pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
-                      pkg.cardVariant === "medium" && "text-zutly-dark-purple",
+                      pkg.cardVariant === "medium" && "text-zutly-medium-blue", // Aangepast
                       pkg.cardVariant === "default" && "text-zutly-medium-blue",
-                      pkg.cardVariant === "free" && "text-zutly-dark-green"
+                      pkg.cardVariant === "free" && "text-zutly-tiffany-light" // Aangepast
                     )}
                   >
                     {pkg.paymentInfo}
@@ -149,10 +149,10 @@ const PricingSection = () => {
                           pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
                           pkg.cardVariant === "medium" && "text-zutly-medium-blue",
                           pkg.cardVariant === "default" && "text-zutly-medium-blue",
-                          pkg.cardVariant === "free" && "text-zutly-dark-green"
+                          pkg.cardVariant === "free" && "text-zutly-tiffany-light" // Aangepast
                         )}
                       />
-                      <span className={pkg.cardVariant === "premium" ? "text-white" : "text-gray-700"}>
+                      <span className={pkg.cardVariant === "premium" ? "text-foreground" : "text-muted-foreground"}> {/* Aangepast */}
                         {feature}
                       </span>
                     </li>
@@ -164,8 +164,8 @@ const PricingSection = () => {
                       "text-4xl font-extrabold",
                       pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
                       pkg.cardVariant === "medium" && "text-zutly-medium-blue",
-                      pkg.cardVariant === "default" && "text-zutly-dark-purple",
-                      pkg.cardVariant === "free" && "text-zutly-dark-green"
+                      pkg.cardVariant === "default" && "text-zutly-medium-blue", // Aangepast
+                      pkg.cardVariant === "free" && "text-zutly-tiffany-light" // Aangepast
                     )}
                   >
                     {pkg.initialPrice}
@@ -175,9 +175,9 @@ const PricingSection = () => {
                       className={cn(
                         "text-sm mt-1",
                         pkg.cardVariant === "premium" && "text-zutly-tiffany-light/80",
-                        pkg.cardVariant === "medium" && "text-gray-600",
-                        pkg.cardVariant === "default" && "text-gray-500",
-                        pkg.cardVariant === "free" && "text-gray-600"
+                        pkg.cardVariant === "medium" && "text-muted-foreground", // Aangepast
+                        pkg.cardVariant === "default" && "text-muted-foreground", // Aangepast
+                        pkg.cardVariant === "free" && "text-muted-foreground" // Aangepast
                       )}
                     >
                       {pkg.recurringPrice}
@@ -192,9 +192,9 @@ const PricingSection = () => {
                       className={cn(
                         "w-full py-3 text-lg font-bold rounded-full shadow-md hover:scale-105 transition-all duration-300",
                         pkg.cardVariant === "premium"
-                          ? "bg-zutly-tiffany-light text-zutly-dark-purple hover:bg-zutly-tiffany-dark"
+                          ? "bg-zutly-medium-blue text-foreground hover:bg-zutly-dark-purple" // Aangepast
                           : pkg.cardVariant === "free"
-                          ? "bg-zutly-dark-green text-white hover:bg-zutly-dark-purple"
+                          ? "bg-zutly-tiffany-light text-zutly-dark-purple hover:bg-zutly-tiffany-dark" // Aangepast
                           : "bg-zutly-medium-blue text-white hover:bg-zutly-dark-purple"
                       )}
                     >

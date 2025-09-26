@@ -24,20 +24,20 @@ const USPsSection = () => {
   ];
 
   return (
-    <section id="usps" className="py-20 bg-zutly-tiffany-light/20">
+    <section id="usps" className="py-20 bg-card"> {/* bg-zutly-tiffany-light/20 naar bg-card */}
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-4xl font-bold text-zutly-dark-purple mb-16">Waarom Kiezen voor Zutly?</h2>
+        <h2 className="text-4xl font-bold text-zutly-medium-blue mb-16">Waarom Kiezen voor Zutly?</h2> {/* text-zutly-dark-purple naar text-zutly-medium-blue */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {usps.map((usp, index) => (
-            <Card key={index} className="bg-white shadow-lg border-b-4 border-zutly-medium-blue hover:scale-[1.02] hover:shadow-xl transition-all duration-300">
+            <Card key={index} className="bg-card shadow-lg border-b-4 border-zutly-medium-blue hover:scale-[1.02] hover:shadow-xl transition-all duration-300"> {/* bg-white naar bg-card */}
               <CardHeader className="flex flex-col items-center p-6">
                 <div className="mb-4">{usp.icon}</div>
-                <CardTitle className="text-2xl font-semibold text-zutly-dark-purple">
+                <CardTitle className="text-2xl font-semibold text-foreground"> {/* text-zutly-dark-purple naar text-foreground */}
                   {usp.title}
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-6 pt-0">
-                <p className="text-gray-700">{usp.description}</p>
+                <p className="text-muted-foreground">{usp.description}</p> {/* text-gray-700 naar text-muted-foreground */}
               </CardContent>
             </Card>
           ))}

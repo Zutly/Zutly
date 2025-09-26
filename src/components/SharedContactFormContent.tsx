@@ -65,7 +65,7 @@ const SharedContactFormContent: React.FC<SharedContactFormContentProps> = ({ ini
       });
 
       if (response.ok) {
-        showSuccess("Uw bericht is succesvol verzonden!");
+        showSuccess("Uw bericht is succesvol verzonden!!");
         setFormData({ name: "", email: "", phone: "", message: initialMessage }); // Clear form, but keep initial message if any
         onSubmissionSuccess?.(); // Call callback to close dialog
       } else {
@@ -84,52 +84,52 @@ const SharedContactFormContent: React.FC<SharedContactFormContentProps> = ({ ini
     <div className="p-0">
       <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <Label htmlFor="name" className="text-zutly-dark-purple text-base font-semibold mb-1 block">Naam</Label>
+            <Label htmlFor="name" className="text-foreground text-base font-semibold mb-1 block">Naam</Label> {/* text-zutly-dark-purple naar text-foreground */}
             <Input
               id="name"
               type="text"
               placeholder="Uw naam"
               value={formData.name}
               onChange={handleChange}
-              className="mt-1 p-3 border-gray-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-medium-blue focus-visible:ring-offset-2"
+              className="mt-1 p-3 border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-medium-blue focus-visible:ring-offset-2 bg-input text-foreground" {/* border-gray-300 naar border-border, bg-input en text-foreground toegevoegd */}
               disabled={isSubmitting}
               required
             />
           </div>
           <div>
-            <Label htmlFor="email" className="text-zutly-dark-purple text-base font-semibold mb-1 block">E-mail</Label>
+            <Label htmlFor="email" className="text-foreground text-base font-semibold mb-1 block">E-mail</Label> {/* text-zutly-dark-purple naar text-foreground */}
             <Input
               id="email"
               type="email"
               placeholder="uw@voorbeeld.com"
               value={formData.email}
               onChange={handleChange}
-              className="mt-1 p-3 border-gray-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-medium-blue focus-visible:ring-offset-2"
+              className="mt-1 p-3 border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-medium-blue focus-visible:ring-offset-2 bg-input text-foreground" {/* border-gray-300 naar border-border, bg-input en text-foreground toegevoegd */}
               disabled={isSubmitting}
               required
             />
           </div>
           <div>
-            <Label htmlFor="phone" className="text-zutly-dark-purple text-base font-semibold mb-1 block">Telefoonnummer</Label>
+            <Label htmlFor="phone" className="text-foreground text-base font-semibold mb-1 block">Telefoonnummer</Label> {/* text-zutly-dark-purple naar text-foreground */}
             <Input
               id="phone"
               type="tel"
               placeholder="Uw telefoonnummer (optioneel)"
               value={formData.phone}
               onChange={handleChange}
-              className="mt-1 p-3 border-gray-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-medium-blue focus-visible:ring-offset-2"
+              className="mt-1 p-3 border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-medium-blue focus-visible:ring-offset-2 bg-input text-foreground" {/* border-gray-300 naar border-border, bg-input en text-foreground toegevoegd */}
               disabled={isSubmitting}
             />
           </div>
           <div>
-            <Label htmlFor="message" className="text-zutly-dark-purple text-base font-semibold mb-1 block">Bericht</Label>
+            <Label htmlFor="message" className="text-foreground text-base font-semibold mb-1 block">Bericht</Label> {/* text-zutly-dark-purple naar text-foreground */}
             <Textarea
               id="message"
               placeholder="Uw bericht..."
               value={formData.message}
               onChange={handleChange}
               rows={4} // Aangepast: minder rijen voor een compactere start
-              className="mt-1 p-3 border-gray-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-medium-blue focus-visible:ring-offset-2 min-h-[100px] md:min-h-[150px]" // Responsieve min-hoogte
+              className="mt-1 p-3 border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-medium-blue focus-visible:ring-offset-2 min-h-[100px] md:min-h-[150px] bg-input text-foreground" {/* border-gray-300 naar border-border, bg-input en text-foreground toegevoegd */}
               disabled={isSubmitting}
               required
             />

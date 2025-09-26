@@ -29,16 +29,16 @@ const FAQSection = () => {
   ];
 
   return (
-    <section id="faq" className="py-20 bg-zutly-tiffany-light/20">
+    <section id="faq" className="py-20 bg-card"> {/* bg-zutly-tiffany-light/20 naar bg-card */}
       <div className="container mx-auto px-4 max-w-3xl text-center">
-        <h2 className="text-4xl font-bold text-zutly-dark-purple mb-16">Veelgestelde Vragen</h2>
+        <h2 className="text-4xl font-bold text-zutly-medium-blue mb-16">Veelgestelde Vragen</h2> {/* text-zutly-dark-purple naar text-zutly-medium-blue */}
         <Accordion type="single" collapsible className="w-full text-left"> {/* Verwijderde border, shadow, rounded-lg */}
           {faqs.map((faq, index) => (
             <AccordionItem key={index} value={`item-${index}`} className="border-b border-zutly-tiffany-dark last:border-b-0 px-4 py-2">
-              <CustomAccordionTrigger className="text-xl font-semibold text-zutly-dark-purple hover:text-zutly-medium-blue py-4">
+              <CustomAccordionTrigger className="text-xl font-semibold text-foreground hover:text-zutly-medium-blue py-4"> {/* text-zutly-dark-purple naar text-foreground */}
                 {faq.question}
               </CustomAccordionTrigger>
-              <AccordionContent className="text-gray-700 pb-4 text-base leading-relaxed">
+              <AccordionContent className="text-muted-foreground pb-4 text-base leading-relaxed"> {/* text-gray-700 naar text-muted-foreground */}
                 {faq.answer}
               </AccordionContent>
             </AccordionItem>

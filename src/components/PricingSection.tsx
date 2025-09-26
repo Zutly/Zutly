@@ -28,7 +28,7 @@ const PricingSection = () => {
     },
     {
       name: "Website + Hosting",
-      price: "€79/maand",
+      price: "€300 + €50/maand", // Aangepaste prijs
       description: "Ideaal voor bedrijven die volledig ontzorgd willen worden en vaste maandelijkse kosten willen.",
       features: [
         "Professionele maatwerk website",
@@ -39,7 +39,7 @@ const PricingSection = () => {
         "Onderhoud & support inbegrepen (bijv. kleine wijzigingen per maand)",
         "Ongelimiteerde revisierondes inbegrepen",
       ],
-      paymentInfo: "Maandelijkse abonnementsvorm (lagere instapkosten)",
+      paymentInfo: "Eenmalig + Maandelijks abonnement", // Aangepaste betalingsinformatie
       buttonText: "Vraag offerte aan",
       dialogTitlePrefix: "Offerte aanvragen",
       cardVariant: "medium",
@@ -134,7 +134,7 @@ const PricingSection = () => {
                 </ul>
                 <p
                   className={cn(
-                    "text-4xl font-extrabold mb-4 mt-auto", // Aangepast van text-5xl naar text-4xl
+                    "text-4xl font-extrabold mb-4 mt-auto",
                     pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
                     pkg.cardVariant === "medium" && "text-zutly-medium-blue",
                     pkg.cardVariant === "default" && "text-zutly-dark-purple"

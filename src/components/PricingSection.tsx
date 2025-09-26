@@ -12,7 +12,7 @@ const PricingSection = () => {
   const packages = [
     {
       name: "Starter Website",
-      price: "€499",
+      price: "€400", // Aangepaste prijs
       description: "Perfect voor ondernemers die al hosting hebben en alleen een moderne website willen laten bouwen.",
       features: [
         "Professionele maatwerk website (incl. responsive design)",
@@ -28,7 +28,7 @@ const PricingSection = () => {
     },
     {
       name: "Website + Hosting",
-      price: "€300 + €50/maand", // Aangepaste prijs
+      price: "€300 + €50/maand",
       description: "Ideaal voor bedrijven die volledig ontzorgd willen worden en vaste maandelijkse kosten willen.",
       features: [
         "Professionele maatwerk website",
@@ -39,7 +39,7 @@ const PricingSection = () => {
         "Onderhoud & support inbegrepen (bijv. kleine wijzigingen per maand)",
         "Ongelimiteerde revisierondes inbegrepen",
       ],
-      paymentInfo: "Eenmalig + Maandelijks abonnement", // Aangepaste betalingsinformatie
+      paymentInfo: "Eenmalig + Maandelijks abonnement",
       buttonText: "Vraag offerte aan",
       dialogTitlePrefix: "Offerte aanvragen",
       cardVariant: "medium",

@@ -28,12 +28,7 @@ const PricingSection = () => {
       highlight: false,
       additionalFeaturesTitle: null,
       additionalFeatures: [],
-      cardBgClass: "bg-white", // Default white background
-      textColorClass: "text-zutly-dark-purple",
-      descriptionColorClass: "text-gray-700",
-      featureTextColorClass: "text-gray-700",
-      featureIconColorClass: "text-zutly-medium-blue",
-      buttonClass: "bg-zutly-medium-blue text-white hover:bg-zutly-dark-purple",
+      cardGradientClass: "bg-gradient-to-br from-zutly-medium-blue to-zutly-tiffany-light",
     },
     {
       name: "Starter Website",
@@ -53,12 +48,7 @@ const PricingSection = () => {
       highlight: false,
       additionalFeaturesTitle: null,
       additionalFeatures: [],
-      cardBgClass: "bg-white",
-      textColorClass: "text-zutly-dark-purple",
-      descriptionColorClass: "text-gray-700",
-      featureTextColorClass: "text-gray-700",
-      featureIconColorClass: "text-zutly-medium-blue",
-      buttonClass: "bg-zutly-medium-blue text-white hover:bg-zutly-dark-purple",
+      cardGradientClass: "bg-gradient-to-br from-zutly-dark-purple to-zutly-medium-blue",
     },
     {
       name: "Website + Hosting",
@@ -81,12 +71,7 @@ const PricingSection = () => {
         { icon: CheckCircle, text: "Onderhoud & support inbegrepen (bijv. kleine wijzigingen per maand)" },
         { icon: CheckCircle, text: "Ongelimiteerde revisierondes inbegrepen" },
       ],
-      cardBgClass: "bg-gradient-to-br from-zutly-dark-purple to-zutly-medium-blue", // Gradient for highlighted card
-      textColorClass: "text-white",
-      descriptionColorClass: "text-gray-100",
-      featureTextColorClass: "text-gray-100",
-      featureIconColorClass: "text-zutly-tiffany-light", // Lighter icon for contrast
-      buttonClass: "bg-zutly-tiffany-light text-zutly-dark-purple hover:bg-zutly-tiffany-dark", // Contrasting button
+      cardGradientClass: "bg-gradient-to-br from-zutly-tiffany-dark to-zutly-dark-green",
     },
     {
       name: "Premium Website + Branding",
@@ -107,12 +92,7 @@ const PricingSection = () => {
       highlight: false,
       additionalFeaturesTitle: null,
       additionalFeatures: [],
-      cardBgClass: "bg-white",
-      textColorClass: "text-zutly-dark-purple",
-      descriptionColorClass: "text-gray-700",
-      featureTextColorClass: "text-gray-700",
-      featureIconColorClass: "text-zutly-medium-blue",
-      buttonClass: "bg-zutly-medium-blue text-white hover:bg-zutly-dark-purple",
+      cardGradientClass: "bg-gradient-to-br from-zutly-tiffany-light to-zutly-medium-blue",
     },
   ];
 
@@ -126,8 +106,8 @@ const PricingSection = () => {
               key={index}
               className={cn(
                 "relative flex flex-col p-8 rounded-xl shadow-lg transition-all duration-300 overflow-hidden",
-                pkg.cardBgClass, // Apply card background class
-                pkg.highlight ? "border-zutly-medium-blue transform scale-[1.03] shadow-zutly-medium-blue/20" : "border border-gray-200",
+                pkg.cardGradientClass, // Apply the gradient to the entire card
+                pkg.highlight ? "transform scale-[1.03] shadow-zutly-medium-blue/20 border-2 border-zutly-tiffany-light" : "border border-gray-200",
               )}
             >
               {pkg.highlight && (
@@ -138,26 +118,31 @@ const PricingSection = () => {
 
               <div className="flex flex-col flex-grow">
                 <CardHeader className="p-0 mb-6">
-                  <CardTitle className={cn("text-3xl font-bold mb-2", pkg.textColorClass)}>
+                  <CardTitle className="text-3xl font-bold mb-2 text-white"> {/* Text color for title */}
                     {pkg.name}
                   </CardTitle>
-                  <p className={cn("text-base leading-relaxed", pkg.descriptionColorClass)}>
+                  <p className="text-base leading-relaxed text-gray-100"> {/* Text color for description */}
                     {pkg.description}
                   </p>
                 </CardHeader>
                 <CardContent className="flex flex-col flex-grow p-0">
                   <div className="mb-6">
-                    <p className={cn("text-lg font-semibold", pkg.featureIconColorClass)}>
-                      {pkg.paymentInfo}
+                    <p className="text-5xl font-extrabold text-white"> {/* Text color for initial price */}
+                      {pkg.initialPrice}
                     </p>
+                    {pkg.recurringPrice && (
+                      <p className="text-base mt-1 text-gray-100"> {/* Text color for recurring price */}
+                        {pkg.recurringPrice}
+                      </p>
+                    )}
                   </div>
                   <ul className="list-none space-y-3 mb-8 text-left">
                     {pkg.features.map((feature, fIndex) => {
                       const IconComponent = feature.icon;
                       return (
                         <li key={fIndex} className="flex items-start">
-                          <IconComponent className={cn("h-5 w-5 mr-3 flex-shrink-0", pkg.featureIconColorClass)} />
-                          <span className={pkg.featureTextColorClass}>
+                          <IconComponent className="h-5 w-5 text-zutly-tiffany-light mr-3 flex-shrink-0" /> {/* Icon color */}
+                          <span className="text-gray-100"> {/* Text color for features */}
                             {feature.text}
                           </span>
                         </li>
@@ -167,8 +152,8 @@ const PricingSection = () => {
 
                   {pkg.additionalFeaturesTitle && (
                     <>
-                      <div className={cn("my-6", pkg.highlight ? "border-t border-gray-600" : "border-t border-gray-200")}></div>
-                      <p className={cn("text-sm font-semibold mb-4 uppercase tracking-wider", pkg.highlight ? "text-gray-200" : "text-gray-600")}>
+                      <div className="border-t border-gray-600 my-6"></div> {/* Border color for separator */}
+                      <p className="text-sm font-semibold text-gray-200 mb-4 uppercase tracking-wider"> {/* Text color for additional features title */}
                         {pkg.additionalFeaturesTitle}
                       </p>
                       <ul className="list-none space-y-3 mb-8 text-left">
@@ -176,8 +161,8 @@ const PricingSection = () => {
                           const IconComponent = feature.icon;
                           return (
                             <li key={fIndex} className="flex items-start">
-                              <IconComponent className={cn("h-5 w-5 mr-3 flex-shrink-0", pkg.featureIconColorClass)} />
-                              <span className={pkg.featureTextColorClass}>
+                              <IconComponent className="h-5 w-5 text-zutly-tiffany-light mr-3 flex-shrink-0" /> {/* Icon color */}
+                              <span className="text-gray-100"> {/* Text color for additional features */}
                                 {feature.text}
                               </span>
                             </li>
@@ -187,30 +172,19 @@ const PricingSection = () => {
                     </>
                   )}
 
-                  <div className="mb-4 mt-auto">
-                    <p className={cn("text-5xl font-extrabold", pkg.textColorClass)}>
-                      {pkg.initialPrice}
-                    </p>
-                    {pkg.recurringPrice && (
-                      <p className={cn("text-base mt-1", pkg.descriptionColorClass)}>
-                        {pkg.recurringPrice}
-                      </p>
-                    )}
+                  <div className="mt-auto">
+                    <PackageInquiryDialog
+                      packageName={pkg.name}
+                      dialogTitlePrefix={pkg.dialogTitlePrefix}
+                      trigger={
+                        <Button
+                          className="w-full py-3 text-lg font-bold rounded-full shadow-md hover:scale-105 transition-all duration-300 bg-zutly-tiffany-light text-zutly-dark-purple hover:bg-zutly-tiffany-dark" // Consistent button style for all cards
+                        >
+                          {pkg.buttonText}
+                        </Button>
+                      }
+                    />
                   </div>
-                  <PackageInquiryDialog
-                    packageName={pkg.name}
-                    dialogTitlePrefix={pkg.dialogTitlePrefix}
-                    trigger={
-                      <Button
-                        className={cn(
-                          "w-full py-3 text-lg font-bold rounded-full shadow-md hover:scale-105 transition-all duration-300",
-                          pkg.buttonClass
-                        )}
-                      >
-                        {pkg.buttonText}
-                      </Button>
-                    }
-                  />
                 </CardContent>
               </div>
             </Card>

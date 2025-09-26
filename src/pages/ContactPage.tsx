@@ -1,10 +1,8 @@
 "use client";
 
-import React from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SharedContactFormContent from "@/components/SharedContactFormContent";
-import WaveSeparator from "@/components/WaveSeparator";
 import ContactInfoSection from "@/components/ContactInfoSection";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"; // Import Card components
 

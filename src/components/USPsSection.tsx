@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { Lightbulb, Rocket, ShieldCheck } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 

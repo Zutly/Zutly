@@ -1,7 +1,5 @@
 "use client";
 
-import React from 'react';
-import { Button } from '@/components/ui/button';
 import Header from '@/components/Header';
 import USPsSection from '@/components/USPsSection';
 import AboutUsSection from '@/components/AboutUsSection';

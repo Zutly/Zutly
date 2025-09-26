@@ -59,7 +59,7 @@ const PricingSection = () => {
       buttonText: "Vraag offerte aan",
       dialogTitlePrefix: "Offerte aanvragen",
       cardVariant: "medium",
-      popular: true,
+      popular: false, // Aangepast naar false
     },
     {
       name: "Premium Website + Branding",

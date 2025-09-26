@@ -137,7 +137,31 @@ const PricingSection = () => {
                   </p>
                 </CardHeader>
                 <CardContent className="flex flex-col flex-grow p-0">
-                  <div className="mb-6">
+                  <ul className="list-none space-y-3 mb-8 text-left">
+                    {pkg.features.map((feature, fIndex) => (
+                      <li key={fIndex} className="flex items-start">
+                        <CheckCircle
+                          className={cn(
+                            "h-5 w-5 mr-3 flex-shrink-0 mt-0.5",
+                            pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
+                            pkg.cardVariant === "medium" && "text-zutly-medium-blue",
+                            pkg.cardVariant === "default" && "text-zutly-medium-blue",
+                            pkg.cardVariant === "free" && "text-zutly-dark-green"
+                          )}
+                        />
+                        <span 
+                          className={cn(
+                            "text-sm",
+                            pkg.cardVariant === "premium" ? "text-white" : "text-gray-700"
+                          )}
+                        >
+                          {feature}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                  {/* Verplaatste prijsinformatie */}
+                  <div className="mb-6 mt-auto"> {/* mt-auto zorgt ervoor dat het naar de onderkant duwt */}
                     <div className="flex items-baseline justify-center">
                       <p
                         className={cn(
@@ -165,36 +189,13 @@ const PricingSection = () => {
                       </p>
                     )}
                   </div>
-                  <ul className="list-none space-y-3 mb-8 text-left">
-                    {pkg.features.map((feature, fIndex) => (
-                      <li key={fIndex} className="flex items-start">
-                        <CheckCircle
-                          className={cn(
-                            "h-5 w-5 mr-3 flex-shrink-0 mt-0.5",
-                            pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
-                            pkg.cardVariant === "medium" && "text-zutly-medium-blue",
-                            pkg.cardVariant === "default" && "text-zutly-medium-blue",
-                            pkg.cardVariant === "free" && "text-zutly-dark-green"
-                          )}
-                        />
-                        <span 
-                          className={cn(
-                            "text-sm",
-                            pkg.cardVariant === "premium" ? "text-white" : "text-gray-700"
-                          )}
-                        >
-                          {feature}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
                   <PackageInquiryDialog
                     packageName={pkg.name}
                     dialogTitlePrefix={pkg.dialogTitlePrefix}
                     trigger={
                       <Button
                         className={cn(
-                          "w-full py-3 text-base font-bold rounded-full shadow-md hover:scale-105 transition-all duration-300 mt-auto",
+                          "w-full py-3 text-base font-bold rounded-full shadow-md hover:scale-105 transition-all duration-300", // mt-auto verwijderd, nu in de parent div
                           pkg.cardVariant === "premium"
                             ? "bg-zutly-tiffany-light text-zutly-dark-purple hover:bg-zutly-tiffany-dark hover:text-white"
                             : pkg.cardVariant === "free"

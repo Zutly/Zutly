@@ -10,8 +10,8 @@ const HomePageContactForm = () => {
       <div className="container mx-auto px-4 max-w-2xl">
         <Card className="shadow-xl border-b-4 border-zutly-true-blue p-6"> {/* Keep this Card wrapper */}
           <CardHeader className="text-center pb-6">
-            <CardTitle className="text-3xl font-bold text-zutly-black">Neem Contact Op</CardTitle>
-            <CardDescription className="text-gray-600 mt-2 text-lg">
+            <CardTitle className="text-3xl font-bold text-zutly-platinum">Neem Contact Op</CardTitle>
+            <CardDescription className="text-gray-300 mt-2 text-lg">
               Heeft u vragen of wilt u meer weten? Vul het onderstaande formulier in.
             </CardDescription>
           </CardHeader>

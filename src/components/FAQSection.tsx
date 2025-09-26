@@ -31,14 +31,14 @@ const FAQSection = () => {
   return (
     <section id="faq" className="py-20 bg-zutly-platinum/20">
       <div className="container mx-auto px-4 max-w-3xl text-center">
-        <h2 className="text-4xl font-bold text-zutly-black mb-16">Veelgestelde Vragen</h2>
+        <h2 className="text-4xl font-bold text-zutly-platinum mb-16">Veelgestelde Vragen</h2>
         <Accordion type="single" collapsible className="w-full text-left"> {/* Verwijderde border, shadow, rounded-lg */}
           {faqs.map((faq, index) => (
             <AccordionItem key={index} value={`item-${index}`} className="border-b border-zutly-blue-gray last:border-b-0 px-4 py-2">
-              <CustomAccordionTrigger className="text-xl font-semibold text-zutly-black hover:text-zutly-true-blue py-4">
+              <CustomAccordionTrigger className="text-xl font-semibold text-zutly-platinum hover:text-zutly-true-blue py-4">
                 {faq.question}
               </CustomAccordionTrigger>
-              <AccordionContent className="text-gray-700 pb-4 text-base leading-relaxed">
+              <AccordionContent className="text-gray-300 pb-4 text-base leading-relaxed">
                 {faq.answer}
               </AccordionContent>
             </AccordionItem>

@@ -22,22 +22,22 @@ const AboutUsSection: React.FC<AboutUsSectionProps> = ({ sectionTitle, sectionDe
   return (
     <section id="about" className="py-20 bg-background">
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-4xl font-bold text-zutly-black mb-16">{sectionTitle}</h2>
-        <p className="text-lg text-gray-700 max-w-3xl mx-auto mb-16">
+        <h2 className="text-4xl font-bold text-zutly-platinum mb-16">{sectionTitle}</h2>
+        <p className="text-lg text-gray-300 max-w-3xl mx-auto mb-16">
           {sectionDescription}
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
           {owners.map((owner, index) => (
-            <Card key={index} className="shadow-lg border-b-4 border-zutly-blue-gray flex flex-col items-center p-8 hover:scale-[1.02] hover:shadow-xl transition-all duration-300">
+            <Card key={index} className="shadow-lg border-b-4 border-zutly-blue-gray flex flex-col items-center p-8 hover:scale-[1.02] hover:shadow-xl transition-all duration-300 bg-card">
               <Avatar className="h-40 w-40 mb-6 border-4 border-zutly-true-blue shadow-md">
                 <AvatarImage src={owner.image} alt={owner.name} />
                 <AvatarFallback className="bg-zutly-true-blue text-white text-2xl font-bold">{owner.fallback}</AvatarFallback>
               </Avatar>
               <CardHeader className="p-0 mb-3 text-center">
-                <CardTitle className="text-2xl font-bold text-zutly-black">{owner.name}</CardTitle>
+                <CardTitle className="text-2xl font-bold text-zutly-platinum">{owner.name}</CardTitle>
                 <CardDescription className="text-zutly-true-blue text-lg">{owner.title}</CardDescription>
               </CardHeader>
-              <CardContent className="p-0 text-gray-700 text-center text-base">
+              <CardContent className="p-0 text-gray-300 text-center text-base">
                 {owner.description}
               </CardContent>
             </Card>

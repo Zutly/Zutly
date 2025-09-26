@@ -41,10 +41,10 @@ const Services = () => {
         {/* Call to Action Section */}
         <section className="py-20 bg-zutly-platinum/20 text-center">
           <div className="container mx-auto px-4 max-w-3xl">
-            <h2 className="text-4xl font-bold text-zutly-black mb-6">
+            <h2 className="text-4xl font-bold text-zutly-platinum mb-6">
               Welke dienst past bij jouw bedrijf?
             </h2>
-            <p className="text-lg text-gray-700 mb-8">
+            <p className="text-lg text-gray-300 mb-8">
               Niet zeker welke oplossing het beste bij je past? We helpen je graag met het kiezen van de juiste aanpak.
             </p>
             <Link to="/contact">

@@ -97,7 +97,7 @@ const PricingSection = () => {
   ];
 
   return (
-    <section id="pricing" className="py-20 bg-gray-100 text-gray-800">
+    <section id="pricing" className="py-20 bg-zutly-platinum text-gray-800">
       <div className="container mx-auto px-4 text-center max-w-7xl">
         <h2 className="text-4xl font-bold text-zutly-black mb-16">Onze Pakketten</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -126,7 +126,7 @@ const PricingSection = () => {
                       const IconComponent = feature.icon;
                       return (
                         <li key={fIndex} className="flex items-start">
-                          <IconComponent className="h-5 w-5 text-zutly-platinum mr-3 flex-shrink-0" /> {/* Icon color */}
+                          <IconComponent className="h-5 w-5 text-zutly-true-blue mr-3 flex-shrink-0" /> {/* Icon color */}
                           <span className="text-gray-100"> {/* Text color for features */}
                             {feature.text}
                           </span>
@@ -146,7 +146,7 @@ const PricingSection = () => {
                           const IconComponent = feature.icon;
                           return (
                             <li key={fIndex} className="flex items-start">
-                              <IconComponent className="h-5 w-5 text-zutly-platinum mr-3 flex-shrink-0" /> {/* Icon color */}
+                              <IconComponent className="h-5 w-5 text-zutly-true-blue mr-3 flex-shrink-0" /> {/* Icon color */}
                               <span className="text-gray-100"> {/* Text color for additional features */}
                                 {feature.text}
                               </span>
@@ -175,7 +175,7 @@ const PricingSection = () => {
                     dialogTitlePrefix={pkg.dialogTitlePrefix}
                     trigger={
                         <Button
-                          className="w-full py-3 text-lg font-bold rounded-full shadow-md hover:scale-105 transition-all duration-300 bg-zutly-platinum text-zutly-black hover:bg-zutly-blue-gray" // Consistent button style for all cards
+                          className="w-full py-3 text-lg font-bold rounded-full shadow-md hover:scale-105 transition-all duration-300 bg-zutly-platinum text-white hover:bg-zutly-blue-gray" // Consistent button style for all cards
                         >
                           {pkg.buttonText}
                         </Button>

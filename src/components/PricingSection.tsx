@@ -13,7 +13,7 @@ const PricingSection = () => {
     {
       name: "Starter Website",
       initialPrice: "€400",
-      recurringPrice: "eenmalig", // Aangepast: 'eenmalig' als terugkerende prijs
+      recurringPrice: "Eenmalig", // Aangepast: 'eenmalig' als terugkerende prijs
       description: "Perfect voor ondernemers die al hosting hebben en alleen een moderne website willen laten bouwen.",
       features: [
         "Professionele maatwerk website (incl. responsive design)",
@@ -30,7 +30,7 @@ const PricingSection = () => {
     {
       name: "Website + Hosting",
       initialPrice: "€300",
-      recurringPrice: "daarna €50 p/m",
+      recurringPrice: "Daarna €50 p/m",
       description: "Ideaal voor bedrijven die volledig ontzorgd willen worden en vaste maandelijkse kosten willen.",
       features: [
         "Professionele maatwerk website",

@@ -93,18 +93,18 @@ const PricingSection = () => {
   ];
 
   return (
-    <section id="pricing" className="py-20 bg-gray-950 text-white"> {/* Dark background for the section */}
+    <section id="pricing" className="py-20 bg-gray-50 text-gray-800"> {/* Light background for the section */}
       <div className="container mx-auto px-4 text-center max-w-7xl">
-        <h2 className="text-4xl font-bold text-white mb-16">Onze Pakketten</h2> {/* Added back the title */}
+        <h2 className="text-4xl font-bold text-zutly-dark-purple mb-16">Onze Pakketten</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {packages.map((pkg, index) => (
             <Card
               key={index}
               className={cn(
-                "relative flex flex-col p-8 rounded-xl shadow-2xl transition-all duration-300",
-                "bg-gray-900 border border-gray-800", // Base dark card style
+                "relative flex flex-col p-8 rounded-xl shadow-lg transition-all duration-300",
+                "bg-white border border-gray-200", // Base light card style
                 pkg.highlight &&
-                  "border-zutly-medium-blue bg-gradient-to-br from-zutly-dark-purple to-zutly-medium-blue/70 transform scale-[1.03] shadow-zutly-medium-blue/30", // Highlighted card style
+                  "border-zutly-medium-blue bg-zutly-tiffany-light/30 transform scale-[1.03] shadow-zutly-medium-blue/20", // Highlighted card style
               )}
             >
               {pkg.highlight && (
@@ -113,16 +113,16 @@ const PricingSection = () => {
                 </div>
               )}
               <CardHeader className="p-0 mb-6">
-                <CardTitle className="text-3xl font-bold mb-2 text-white">
+                <CardTitle className="text-3xl font-bold mb-2 text-zutly-dark-purple">
                   {pkg.name}
                 </CardTitle>
-                <p className="text-base leading-relaxed text-gray-400">
+                <p className="text-base leading-relaxed text-gray-700">
                   {pkg.description}
                 </p>
               </CardHeader>
               <CardContent className="flex flex-col flex-grow p-0">
                 <div className="mb-6">
-                  <p className="text-lg font-semibold text-zutly-tiffany-light">
+                  <p className="text-lg font-semibold text-zutly-medium-blue">
                     {pkg.paymentInfo}
                   </p>
                 </div>
@@ -132,7 +132,7 @@ const PricingSection = () => {
                     return (
                       <li key={fIndex} className="flex items-start">
                         <IconComponent className="h-5 w-5 text-zutly-medium-blue mr-3 flex-shrink-0" />
-                        <span className="text-gray-300">
+                        <span className="text-gray-700">
                           {feature.text}
                         </span>
                       </li>
@@ -142,8 +142,8 @@ const PricingSection = () => {
 
                 {pkg.additionalFeaturesTitle && (
                   <>
-                    <div className="border-t border-gray-700 my-6"></div>
-                    <p className="text-sm font-semibold text-gray-500 mb-4 uppercase tracking-wider">
+                    <div className="border-t border-gray-200 my-6"></div>
+                    <p className="text-sm font-semibold text-gray-600 mb-4 uppercase tracking-wider">
                       {pkg.additionalFeaturesTitle}
                     </p>
                     <ul className="list-none space-y-3 mb-8 text-left">
@@ -152,7 +152,7 @@ const PricingSection = () => {
                         return (
                           <li key={fIndex} className="flex items-start">
                             <IconComponent className="h-5 w-5 text-zutly-medium-blue mr-3 flex-shrink-0" />
-                            <span className="text-gray-300">
+                            <span className="text-gray-700">
                               {feature.text}
                             </span>
                           </li>
@@ -163,11 +163,11 @@ const PricingSection = () => {
                 )}
 
                 <div className="mb-4 mt-auto">
-                  <p className="text-5xl font-extrabold text-white">
+                  <p className="text-5xl font-extrabold text-zutly-dark-purple">
                     {pkg.initialPrice}
                   </p>
                   {pkg.recurringPrice && (
-                    <p className="text-base mt-1 text-gray-400">
+                    <p className="text-base mt-1 text-gray-600">
                       {pkg.recurringPrice}
                     </p>
                   )}
@@ -181,7 +181,7 @@ const PricingSection = () => {
                         "w-full py-3 text-lg font-bold rounded-full shadow-md hover:scale-105 transition-all duration-300",
                         pkg.highlight
                           ? "bg-zutly-tiffany-light text-zutly-dark-purple hover:bg-zutly-tiffany-dark"
-                          : "bg-gray-700 text-white hover:bg-gray-600"
+                          : "bg-zutly-medium-blue text-white hover:bg-zutly-dark-purple"
                       )}
                     >
                       {pkg.buttonText}

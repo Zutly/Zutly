@@ -85,8 +85,8 @@ const PricingSection = () => {
 
   return (
     <section id="pricing" className="py-20 bg-background">
-      <div className="container mx-auto px-4 text-center max-w-7xl">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"> {/* Aangepaste grid-layout naar 4 kolommen */}
+      <div className="container mx-auto px-4 text-center"> {/* max-w-7xl verwijderd */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {packages.map((pkg, index) => (
             <Card
               key={index}

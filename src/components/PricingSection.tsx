@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Users, Cloud, Sparkles } from "lucide-react";
-import { cn } from "@/lib/utils"; // Corrected: changed '=' to 'from'
+import { cn } from "@/lib/utils";
 import PackageInquiryDialog from "@/components/PackageInquiryDialog";
 
 const PricingSection = () => {
@@ -13,7 +13,7 @@ const PricingSection = () => {
     {
       name: "Gratis Opzet",
       initialPrice: "€0",
-      recurringPrice: "Geheel gratis",
+      recurringPrice: "Vrijblijvend",
       description: "Ontvang een gratis en vrijblijvende eerste opzet van uw website om de mogelijkheden te ontdekken.",
       features: [
         { icon: Users, text: "Gratis eerste concept van uw website" },
@@ -22,6 +22,7 @@ const PricingSection = () => {
         { icon: Users, text: "Persoonlijk adviesgesprek" },
         { icon: CheckCircle, text: "Optie tot upgrade naar Starter Website" },
       ],
+      paymentInfo: "Geheel gratis",
       buttonText: "Vraag gratis opzet aan",
       dialogTitlePrefix: "Gratis opzet aanvragen",
       highlight: false,
@@ -32,7 +33,7 @@ const PricingSection = () => {
     {
       name: "Starter Website",
       initialPrice: "€400",
-      recurringPrice: "Eenmalige betaling",
+      recurringPrice: "eenmalig",
       description: "Perfect voor ondernemers die al hosting hebben en alleen een moderne website willen laten bouwen.",
       features: [
         { icon: CheckCircle, text: "Professionele maatwerk website (incl. responsive design)" },
@@ -41,6 +42,7 @@ const PricingSection = () => {
         { icon: Users, text: "Contactformulier + basisbeveiliging" },
         { icon: CheckCircle, text: "Ongelimiteerde revisieronde inbegrepen" },
       ],
+      paymentInfo: "Eenmalige betaling",
       buttonText: "Vraag offerte aan",
       dialogTitlePrefix: "Offerte aanvragen",
       highlight: false,
@@ -59,9 +61,10 @@ const PricingSection = () => {
         { icon: Sparkles, text: "Gratis SSL-certificaat (voor https en veiligheid)" },
         { icon: Users, text: "Domeinnaamregistratie inbegrepen" },
       ],
+      paymentInfo: "Eenmalig + Maandelijks abonnement",
       buttonText: "Vraag offerte aan",
       dialogTitlePrefix: "Offerte aanvragen",
-      highlight: true, // This is the "Most popular" one
+      highlight: false, // Changed to false
       additionalFeaturesTitle: "Inclusief:",
       additionalFeatures: [
         { icon: CheckCircle, text: "Automatische beveiligingsupdates en back-ups" },
@@ -73,7 +76,7 @@ const PricingSection = () => {
     {
       name: "Premium Website + Branding",
       initialPrice: "Op Maat",
-      recurringPrice: "Keuze: eenmalig of abonnementsvorm",
+      recurringPrice: null,
       description: "Perfect voor bedrijven die een volledige online uitstraling willen, inclusief huisstijl en professionele branding.",
       features: [
         { icon: CheckCircle, text: "Alles uit Pakket 2 (website, hosting, onderhoud, SSL, support)" },
@@ -83,6 +86,7 @@ const PricingSection = () => {
         { icon: CheckCircle, text: "Uitgebreide SEO-optimalisatie (technisch + contentadvies)" },
         { icon: CheckCircle, text: "Ongelimiteerde revisierondes inbegrepen" },
       ],
+      paymentInfo: "Keuze: eenmalig of abonnementsvorm",
       buttonText: "Vraag advies aan",
       dialogTitlePrefix: "Advies aanvragen",
       highlight: false,
@@ -101,16 +105,11 @@ const PricingSection = () => {
             <Card
               key={index}
               className={cn(
-                "relative flex flex-col p-8 rounded-xl shadow-lg transition-all duration-300 overflow-hidden",
+                "relative flex flex-col p-8 rounded-xl shadow-lg transition-all duration-300 overflow-hidden border border-gray-200", // Removed conditional highlight styling
                 pkg.cardGradientClass, // Apply the gradient to the entire card
-                pkg.highlight ? "transform scale-[1.03] shadow-zutly-medium-blue/20 border-2 border-zutly-tiffany-light" : "border border-gray-200",
               )}
             >
-              {pkg.highlight && (
-                <div className="absolute top-4 right-4 bg-zutly-tiffany-light text-zutly-dark-purple text-xs font-bold px-3 py-1 rounded-full rotate-6">
-                  Meest Populair
-                </div>
-              )}
+              {/* Removed the 'Meest Populair' badge conditional rendering */}
 
               <div className="flex flex-col flex-grow">
                 <CardHeader className="p-0 mb-6">

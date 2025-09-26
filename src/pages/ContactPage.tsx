@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import SharedContactFormContent from "@/components/SharedContactFormContent";
 import WaveSeparator from "@/components/WaveSeparator";
 import ContactInfoSection from "@/components/ContactInfoSection";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"; // Import Card components
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 const ContactPage = () => {
   return (
@@ -14,7 +14,7 @@ const ContactPage = () => {
       <Header />
       <main className="flex-grow">
         <section
-          className="relative min-h-[30vh] flex flex-col items-center justify-center text-foreground overflow-hidden py-16 px-4 text-center" {/* text-white naar text-foreground */}
+          className="relative min-h-[30vh] flex flex-col items-center justify-center text-foreground overflow-hidden py-16 px-4 text-center"
           style={{
             backgroundImage: 'url("/zutphen-smoke.jpg")',
             backgroundSize: 'cover',
@@ -34,13 +34,13 @@ const ContactPage = () => {
             </p>
           </div>
         </section>
-        <section className="py-20 bg-background"> {/* bg-zutly-tiffany-dark/10 naar bg-background */}
+        <section className="py-20 bg-background">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-              <Card className="shadow-xl border-b-4 border-zutly-medium-blue p-6 bg-card"> {/* bg-card toegevoegd */}
+              <Card className="shadow-xl border-b-4 border-zutly-medium-blue p-6 bg-card">
                 <CardHeader className="text-center pb-6">
-                  <CardTitle className="text-3xl font-bold text-foreground">Neem Contact Op</CardTitle> {/* text-zutly-dark-purple naar text-foreground */}
-                  <CardDescription className="text-muted-foreground mt-2 text-lg"> {/* text-gray-600 naar text-muted-foreground */}
+                  <CardTitle className="text-3xl font-bold text-foreground">Neem Contact Op</CardTitle>
+                  <CardDescription className="text-muted-foreground mt-2 text-lg">
                     Heeft u vragen of wilt u meer weten? Vul het onderstaande formulier in.
                   </CardDescription>
                 </CardHeader>

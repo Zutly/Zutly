@@ -86,20 +86,20 @@ const PricingSection = () => {
   return (
     <section id="pricing" className="py-20 bg-background">
       <div className="container mx-auto px-4 text-center max-w-7xl">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"> {/* Aangepaste grid-layout voor bredere kaarten */}
           {packages.map((pkg, index) => (
             <Card
               key={index}
               className={cn(
-                "flex flex-col p-8 shadow-lg transition-all duration-300 rounded-xl backdrop-blur-md border border-white/20", // Toegevoegd: rounded-xl, backdrop-blur-md, border
+                "flex flex-col p-8 shadow-lg transition-all duration-300 rounded-xl backdrop-blur-md border border-white/20",
                 pkg.cardVariant === "premium" &&
-                  "bg-zutly-dark-purple/70 text-white hover:scale-[1.02] hover:shadow-xl", // Achtergrond transparanter gemaakt
+                  "bg-zutly-dark-purple/70 text-white hover:scale-[1.02] hover:shadow-xl",
                 pkg.cardVariant === "medium" &&
-                  "bg-zutly-tiffany-light/30 text-gray-800 hover:scale-[1.02] hover:shadow-xl", // Achtergrond transparanter gemaakt
+                  "bg-zutly-tiffany-light/30 text-gray-800 hover:scale-[1.02] hover:shadow-xl",
                 pkg.cardVariant === "default" &&
-                  "bg-white/20 text-gray-800 hover:scale-[1.01] hover:shadow-lg", // Achtergrond transparanter gemaakt
-                pkg.cardVariant === "free" && // Styling voor het gratis pakket
-                  "bg-zutly-tiffany-light/40 text-gray-800 hover:scale-[1.01] hover:shadow-lg" // Achtergrond transparanter gemaakt
+                  "bg-white/20 text-gray-800 hover:scale-[1.01] hover:shadow-lg",
+                pkg.cardVariant === "free" &&
+                  "bg-zutly-tiffany-light/40 text-gray-800 hover:scale-[1.01] hover:shadow-lg"
               )}
             >
               <CardHeader className="p-0 mb-6">

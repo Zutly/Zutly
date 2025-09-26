@@ -62,7 +62,7 @@ const PricingSection = () => {
     },
     {
       name: "Premium Website + Branding",
-      initialPrice: "Op Maat",
+      initialPrice: "In overleg",
       recurringPrice: "Eenmalig of abonnementsvorm",
       description: "Perfect voor bedrijven die een volledige online uitstraling willen, inclusief huisstijl en professionele branding.",
       features: [

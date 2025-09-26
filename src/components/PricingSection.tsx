@@ -13,7 +13,7 @@ const PricingSection = () => {
     {
       name: "Gratis Opzet",
       initialPrice: "€0",
-      recurringPrice: "VrijbliGeheel gratisjvend",
+      recurringPrice: "Geheel gratis",
       description: "Ontvang een gratis en vrijblijvende eerste opzet van uw website om de mogelijkheden te ontdekken.",
       features: [
         { icon: Users, text: "Gratis eerste concept van uw website" },

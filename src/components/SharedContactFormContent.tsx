@@ -84,57 +84,57 @@ const SharedContactFormContent: React.FC<SharedContactFormContentProps> = ({ ini
     <div className="p-0">
       <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <Label htmlFor="name" className="text-zutly-platinum text-base font-semibold mb-1 block">Naam</Label>
+            <Label htmlFor="name" className="text-zutly-dark-purple text-base font-semibold mb-1 block">Naam</Label>
             <Input
               id="name"
               type="text"
               placeholder="Uw naam"
               value={formData.name}
               onChange={handleChange}
-              className="mt-1 p-3 border-input focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-true-blue focus-visible:ring-offset-2 placeholder-muted-foreground"
+              className="mt-1 p-3 border-gray-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-medium-blue focus-visible:ring-offset-2"
               disabled={isSubmitting}
               required
             />
           </div>
           <div>
-            <Label htmlFor="email" className="text-zutly-platinum text-base font-semibold mb-1 block">E-mail</Label>
+            <Label htmlFor="email" className="text-zutly-dark-purple text-base font-semibold mb-1 block">E-mail</Label>
             <Input
               id="email"
               type="email"
               placeholder="uw@voorbeeld.com"
               value={formData.email}
               onChange={handleChange}
-              className="mt-1 p-3 border-input focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-true-blue focus-visible:ring-offset-2 placeholder-muted-foreground"
+              className="mt-1 p-3 border-gray-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-medium-blue focus-visible:ring-offset-2"
               disabled={isSubmitting}
               required
             />
           </div>
           <div>
-            <Label htmlFor="phone" className="text-zutly-platinum text-base font-semibold mb-1 block">Telefoonnummer</Label>
+            <Label htmlFor="phone" className="text-zutly-dark-purple text-base font-semibold mb-1 block">Telefoonnummer</Label>
             <Input
               id="phone"
               type="tel"
               placeholder="Uw telefoonnummer (optioneel)"
               value={formData.phone}
               onChange={handleChange}
-              className="mt-1 p-3 border-input focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-true-blue focus-visible:ring-offset-2 placeholder-muted-foreground"
+              className="mt-1 p-3 border-gray-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-medium-blue focus-visible:ring-offset-2"
               disabled={isSubmitting}
             />
           </div>
           <div>
-            <Label htmlFor="message" className="text-zutly-platinum text-base font-semibold mb-1 block">Bericht</Label>
+            <Label htmlFor="message" className="text-zutly-dark-purple text-base font-semibold mb-1 block">Bericht</Label>
             <Textarea
               id="message"
               placeholder="Uw bericht..."
               value={formData.message}
               onChange={handleChange}
               rows={4} // Aangepast: minder rijen voor een compactere start
-              className="mt-1 p-3 border-input focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-true-blue focus-visible:ring-offset-2 min-h-[100px] md:min-h-[150px] placeholder-muted-foreground" // Responsieve min-hoogte
+              className="mt-1 p-3 border-gray-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-medium-blue focus-visible:ring-offset-2 min-h-[100px] md:min-h-[150px]" // Responsieve min-hoogte
               disabled={isSubmitting}
               required
             />
           </div>
-          <Button type="submit" className="w-full py-3 text-lg bg-zutly-true-blue hover:bg-zutly-black text-white font-bold rounded-full shadow-xl hover:scale-105 transition-all duration-300" disabled={isSubmitting}>
+          <Button type="submit" className="w-full py-3 text-lg bg-zutly-medium-blue hover:bg-zutly-dark-purple text-white font-bold rounded-full shadow-xl hover:scale-105 transition-all duration-300" disabled={isSubmitting}>
             {isSubmitting ? "Verzenden..." : "Verzenden"}
           </Button>
         </form>

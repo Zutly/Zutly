@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CheckCircle } from "lucide-react";
@@ -24,7 +23,8 @@ const PricingSection = () => {
       ],
       buttonText: "Vraag gratis opzet aan",
       dialogTitlePrefix: "Gratis opzet aanvragen",
-      cardVariant: "free", // Nieuwe variant voor gratis pakket
+      cardVariant: "free",
+      popular: false,
     },
     {
       name: "Starter Website",
@@ -41,6 +41,7 @@ const PricingSection = () => {
       buttonText: "Vraag offerte aan",
       dialogTitlePrefix: "Offerte aanvragen",
       cardVariant: "default",
+      popular: false,
     },
     {
       name: "Website + Hosting",
@@ -59,6 +60,7 @@ const PricingSection = () => {
       buttonText: "Vraag offerte aan",
       dialogTitlePrefix: "Offerte aanvragen",
       cardVariant: "medium",
+      popular: true,
     },
     {
       name: "Premium Website + Branding",
@@ -76,130 +78,138 @@ const PricingSection = () => {
       buttonText: "Vraag advies aan",
       dialogTitlePrefix: "Advies aanvragen",
       cardVariant: "premium",
+      popular: false,
     },
   ];
 
   return (
     <section id="pricing" className="py-20 bg-background">
       <div className="container mx-auto px-4 text-center max-w-7xl">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"> {/* Aangepaste grid-layout */}
+        <h2 className="text-4xl font-bold text-zutly-dark-purple mb-4">Onze Pakketten</h2>
+        <p className="text-lg text-gray-600 mb-16 max-w-3xl mx-auto">
+          Kies het pakket dat het beste past bij uw bedrijf en online ambities
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {packages.map((pkg, index) => (
-            <Card
-              key={index}
-              className={cn(
-                "flex flex-col p-8 shadow-lg border-b-4 transition-all duration-300",
-                pkg.cardVariant === "premium" &&
-                  "bg-zutly-dark-purple text-white border-zutly-medium-blue hover:scale-[1.02] hover:shadow-xl",
-                pkg.cardVariant === "medium" &&
-                  "bg-zutly-tiffany-light/20 text-gray-800 border-zutly-medium-blue hover:scale-[1.02] hover:shadow-xl",
-                pkg.cardVariant === "default" &&
-                  "bg-white text-gray-800 border-zutly-tiffany-dark hover:scale-[1.01] hover:shadow-lg",
-                pkg.cardVariant === "free" && // Styling voor het gratis pakket
-                  "bg-zutly-tiffany-light/50 text-gray-800 border-zutly-tiffany-dark hover:scale-[1.01] hover:shadow-lg"
+            <div key={index} className="relative">
+              {pkg.popular && (
+                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
+                  <span className="bg-zutly-medium-blue text-white text-xs font-bold px-4 py-1 rounded-full whitespace-nowrap">
+                    POPULAIRST
+                  </span>
+                </div>
               )}
-            >
-              <CardHeader className="p-0 mb-6">
-                <CardTitle
-                  className={cn(
-                    "text-3xl font-bold mb-2",
-                    pkg.cardVariant === "premium" && "text-white",
-                    pkg.cardVariant === "medium" && "text-zutly-dark-purple",
-                    pkg.cardVariant === "default" && "text-zutly-dark-purple",
-                    pkg.cardVariant === "free" && "text-zutly-dark-green" // Kleur voor gratis pakket titel
-                  )}
-                >
-                  {pkg.name}
-                </CardTitle>
-                <p
-                  className={cn(
-                    "text-base leading-relaxed",
-                    pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
-                    pkg.cardVariant === "medium" && "text-gray-800",
-                    pkg.cardVariant === "default" && "text-gray-600",
-                    pkg.cardVariant === "free" && "text-gray-700" // Kleur voor gratis pakket beschrijving
-                  )}
-                >
-                  {pkg.description}
-                </p>
-              </CardHeader>
-              <CardContent className="flex flex-col flex-grow p-0">
-                <div className="mb-6">
-                  <p
+              <Card
+                className={cn(
+                  "flex flex-col p-6 shadow-lg border-b-4 transition-all duration-300 h-full",
+                  pkg.cardVariant === "premium" &&
+                    "bg-gradient-to-b from-zutly-dark-purple to-zutly-dark-purple/90 text-white border-zutly-medium-blue hover:scale-[1.02] hover:shadow-xl",
+                  pkg.cardVariant === "medium" &&
+                    "bg-gradient-to-b from-white to-zutly-tiffany-light/20 text-gray-800 border-zutly-medium-blue hover:scale-[1.02] hover:shadow-xl",
+                  pkg.cardVariant === "default" &&
+                    "bg-white text-gray-800 border-zutly-tiffany-dark hover:scale-[1.01] hover:shadow-lg",
+                  pkg.cardVariant === "free" &&
+                    "bg-gradient-to-b from-white to-zutly-tiffany-light/30 text-gray-800 border-zutly-tiffany-dark hover:scale-[1.01] hover:shadow-lg",
+                  pkg.popular && "ring-2 ring-zutly-medium-blue ring-opacity-50"
+                )}
+              >
+                <CardHeader className="p-0 mb-6">
+                  <CardTitle
                     className={cn(
-                      "text-lg font-semibold",
-                      pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
+                      "text-2xl font-bold mb-3",
+                      pkg.cardVariant === "premium" && "text-white",
                       pkg.cardVariant === "medium" && "text-zutly-dark-purple",
-                      pkg.cardVariant === "default" && "text-zutly-medium-blue",
-                      pkg.cardVariant === "free" && "text-zutly-dark-green" // Kleur voor gratis pakket paymentInfo
+                      pkg.cardVariant === "default" && "text-zutly-dark-purple",
+                      pkg.cardVariant === "free" && "text-zutly-dark-green"
                     )}
                   >
-                    {pkg.paymentInfo}
+                    {pkg.name}
+                  </CardTitle>
+                  <p
+                    className={cn(
+                      "text-sm leading-relaxed min-h-[60px]",
+                      pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
+                      pkg.cardVariant === "medium" && "text-gray-700",
+                      pkg.cardVariant === "default" && "text-gray-600",
+                      pkg.cardVariant === "free" && "text-gray-700"
+                    )}
+                  >
+                    {pkg.description}
                   </p>
-                </div>
-                <ul className="list-none space-y-3 mb-8 text-left">
-                  {pkg.features.map((feature, fIndex) => (
-                    <li key={fIndex} className="flex items-start">
-                      <CheckCircle
+                </CardHeader>
+                <CardContent className="flex flex-col flex-grow p-0">
+                  <div className="mb-6">
+                    <div className="flex items-baseline justify-center">
+                      <p
                         className={cn(
-                          "h-5 w-5 mr-3 flex-shrink-0",
+                          "text-3xl font-extrabold",
                           pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
                           pkg.cardVariant === "medium" && "text-zutly-medium-blue",
-                          pkg.cardVariant === "default" && "text-zutly-medium-blue",
-                          pkg.cardVariant === "free" && "text-zutly-dark-green" // Kleur voor gratis pakket iconen
+                          pkg.cardVariant === "default" && "text-zutly-dark-purple",
+                          pkg.cardVariant === "free" && "text-zutly-dark-green"
                         )}
-                      />
-                      <span className={pkg.cardVariant === "premium" ? "text-white" : "text-gray-700"}>
-                        {feature}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="mb-4 mt-auto"> {/* Wrapper div voor de prijzen */}
-                  <p
-                    className={cn(
-                      "text-4xl font-extrabold",
-                      pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
-                      pkg.cardVariant === "medium" && "text-zutly-medium-blue",
-                      pkg.cardVariant === "default" && "text-zutly-dark-purple",
-                      pkg.cardVariant === "free" && "text-zutly-dark-green" // Kleur voor gratis pakket prijs
+                      >
+                        {pkg.initialPrice}
+                      </p>
+                    </div>
+                    {pkg.recurringPrice && (
+                      <p
+                        className={cn(
+                          "text-xs mt-1 text-center",
+                          pkg.cardVariant === "premium" && "text-zutly-tiffany-light/80",
+                          pkg.cardVariant === "medium" && "text-gray-600",
+                          pkg.cardVariant === "default" && "text-gray-500",
+                          pkg.cardVariant === "free" && "text-gray-600"
+                        )}
+                      >
+                        {pkg.recurringPrice}
+                      </p>
                     )}
-                  >
-                    {pkg.initialPrice}
-                  </p>
-                  {pkg.recurringPrice && (
-                    <p
-                      className={cn(
-                        "text-sm mt-1", // Kleinere tekst en wat marge erboven
-                        pkg.cardVariant === "premium" && "text-zutly-tiffany-light/80",
-                        pkg.cardVariant === "medium" && "text-gray-600",
-                        pkg.cardVariant === "default" && "text-gray-500",
-                        pkg.cardVariant === "free" && "text-gray-600" // Kleur voor gratis pakket recurringPrice
-                      )}
-                    >
-                      {pkg.recurringPrice}
-                    </p>
-                  )}
-                </div>
-                <PackageInquiryDialog
-                  packageName={pkg.name}
-                  dialogTitlePrefix={pkg.dialogTitlePrefix}
-                  trigger={
-                    <Button
-                      className={cn(
-                        "w-full py-3 text-lg font-bold rounded-full shadow-md hover:scale-105 transition-all duration-300",
-                        pkg.cardVariant === "premium"
-                          ? "bg-zutly-tiffany-light text-zutly-dark-purple hover:bg-zutly-tiffany-dark"
-                          : pkg.cardVariant === "free" // Specifieke knopstijl voor gratis pakket
-                          ? "bg-zutly-dark-green text-white hover:bg-zutly-dark-purple"
-                          : "bg-zutly-medium-blue text-white hover:bg-zutly-dark-purple"
-                      )}
-                    >
-                      {pkg.buttonText}
-                    </Button>
-                  }
-                />
-              </CardContent>
-            </Card>
+                  </div>
+                  <ul className="list-none space-y-3 mb-8 text-left">
+                    {pkg.features.map((feature, fIndex) => (
+                      <li key={fIndex} className="flex items-start">
+                        <CheckCircle
+                          className={cn(
+                            "h-5 w-5 mr-3 flex-shrink-0 mt-0.5",
+                            pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
+                            pkg.cardVariant === "medium" && "text-zutly-medium-blue",
+                            pkg.cardVariant === "default" && "text-zutly-medium-blue",
+                            pkg.cardVariant === "free" && "text-zutly-dark-green"
+                          )}
+                        />
+                        <span 
+                          className={cn(
+                            "text-sm",
+                            pkg.cardVariant === "premium" ? "text-white" : "text-gray-700"
+                          )}
+                        >
+                          {feature}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                  <PackageInquiryDialog
+                    packageName={pkg.name}
+                    dialogTitlePrefix={pkg.dialogTitlePrefix}
+                    trigger={
+                      <Button
+                        className={cn(
+                          "w-full py-3 text-base font-bold rounded-full shadow-md hover:scale-105 transition-all duration-300 mt-auto",
+                          pkg.cardVariant === "premium"
+                            ? "bg-zutly-tiffany-light text-zutly-dark-purple hover:bg-zutly-tiffany-dark hover:text-white"
+                            : pkg.cardVariant === "free"
+                            ? "bg-zutly-dark-green text-white hover:bg-zutly-dark-purple"
+                            : "bg-zutly-medium-blue text-white hover:bg-zutly-dark-purple"
+                        )}
+                      >
+                        {pkg.buttonText}
+                      </Button>
+                    }
+                  />
+                </CardContent>
+              </Card>
+            </div>
           ))}
         </div>
       </div>

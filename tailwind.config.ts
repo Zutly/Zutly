@@ -63,10 +63,11 @@ export default {
           ring: "hsl(var(--sidebar-ring))",
         },
         // Custom Zutly colors
-        "zutly-black": "hsl(var(--zutly-black))",
-        "zutly-platinum": "hsl(var(--zutly-platinum))",
-        "zutly-blue-gray": "hsl(var(--zutly-blue-gray))",
-        "zutly-true-blue": "hsl(var(--zutly-true-blue))",
+        "zutly-dark-purple": "hsl(var(--zutly-dark-purple))",
+        "zutly-medium-blue": "hsl(var(--zutly-medium-blue))",
+        "zutly-tiffany-light": "hsl(var(--zutly-tiffany-light))",
+        "zutly-tiffany-dark": "hsl(var(--zutly-tiffany-dark))",
+        "zutly-dark-green": "hsl(var(--zutly-dark-green))",
       },
       borderRadius: {
         lg: "var(--radius)",

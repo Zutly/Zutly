@@ -28,7 +28,7 @@ const PricingSection = () => {
     },
     {
       name: "Website + Hosting",
-      price: "€300 + €50/maand",
+      price: "€300 (daarna €50 p/m)",
       description: "Ideaal voor bedrijven die volledig ontzorgd willen worden en vaste maandelijkse kosten willen.",
       features: [
         "Professionele maatwerk website",

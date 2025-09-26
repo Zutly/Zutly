@@ -13,7 +13,7 @@ const PricingSection = () => {
     {
       name: "Gratis Opzet",
       initialPrice: "€0",
-      recurringPrice: "Vrijblijvend",
+      recurringPrice: "VrijbliGeheel gratisjvend",
       description: "Ontvang een gratis en vrijblijvende eerste opzet van uw website om de mogelijkheden te ontdekken.",
       features: [
         { icon: Users, text: "Gratis eerste concept van uw website" },
@@ -22,7 +22,6 @@ const PricingSection = () => {
         { icon: Users, text: "Persoonlijk adviesgesprek" },
         { icon: CheckCircle, text: "Optie tot upgrade naar Starter Website" },
       ],
-      paymentInfo: "Geheel gratis",
       buttonText: "Vraag gratis opzet aan",
       dialogTitlePrefix: "Gratis opzet aanvragen",
       highlight: false,
@@ -33,7 +32,7 @@ const PricingSection = () => {
     {
       name: "Starter Website",
       initialPrice: "€400",
-      recurringPrice: "eenmalig",
+      recurringPrice: "Eenmalige betaling",
       description: "Perfect voor ondernemers die al hosting hebben en alleen een moderne website willen laten bouwen.",
       features: [
         { icon: CheckCircle, text: "Professionele maatwerk website (incl. responsive design)" },
@@ -42,7 +41,6 @@ const PricingSection = () => {
         { icon: Users, text: "Contactformulier + basisbeveiliging" },
         { icon: CheckCircle, text: "Ongelimiteerde revisieronde inbegrepen" },
       ],
-      paymentInfo: "Eenmalige betaling",
       buttonText: "Vraag offerte aan",
       dialogTitlePrefix: "Offerte aanvragen",
       highlight: false,
@@ -61,7 +59,6 @@ const PricingSection = () => {
         { icon: Sparkles, text: "Gratis SSL-certificaat (voor https en veiligheid)" },
         { icon: Users, text: "Domeinnaamregistratie inbegrepen" },
       ],
-      paymentInfo: "Eenmalig + Maandelijks abonnement",
       buttonText: "Vraag offerte aan",
       dialogTitlePrefix: "Offerte aanvragen",
       highlight: true, // This is the "Most popular" one
@@ -76,7 +73,7 @@ const PricingSection = () => {
     {
       name: "Premium Website + Branding",
       initialPrice: "Op Maat",
-      recurringPrice: null,
+      recurringPrice: Keuze: eenmalig of abonnementsvorm,
       description: "Perfect voor bedrijven die een volledige online uitstraling willen, inclusief huisstijl en professionele branding.",
       features: [
         { icon: CheckCircle, text: "Alles uit Pakket 2 (website, hosting, onderhoud, SSL, support)" },
@@ -86,7 +83,6 @@ const PricingSection = () => {
         { icon: CheckCircle, text: "Uitgebreide SEO-optimalisatie (technisch + contentadvies)" },
         { icon: CheckCircle, text: "Ongelimiteerde revisierondes inbegrepen" },
       ],
-      paymentInfo: "Keuze: eenmalig of abonnementsvorm",
       buttonText: "Vraag advies aan",
       dialogTitlePrefix: "Advies aanvragen",
       highlight: false,

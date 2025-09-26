@@ -28,7 +28,7 @@ const PricingSection = () => {
       highlight: false,
       additionalFeaturesTitle: null,
       additionalFeatures: [],
-      cardGradientClass: "bg-gradient-to-br from-zutly-medium-blue to-zutly-tiffany-light",
+      cardGradientClass: "bg-gradient-to-br from-zutly-true-blue to-zutly-platinum",
     },
     {
       name: "Starter Website",
@@ -48,7 +48,7 @@ const PricingSection = () => {
       highlight: false,
       additionalFeaturesTitle: null,
       additionalFeatures: [],
-      cardGradientClass: "bg-gradient-to-br from-zutly-dark-purple to-zutly-medium-blue",
+      cardGradientClass: "bg-gradient-to-br from-zutly-black to-zutly-true-blue",
     },
     {
       name: "Website + Hosting",
@@ -64,14 +64,14 @@ const PricingSection = () => {
       paymentInfo: "Eenmalig + Maandelijks abonnement",
       buttonText: "Vraag offerte aan",
       dialogTitlePrefix: "Offerte aanvragen",
-      highlight: false, // Changed to false
+      highlight: false, 
       additionalFeaturesTitle: "Inclusief:",
       additionalFeatures: [
         { icon: CheckCircle, text: "Automatische beveiligingsupdates en back-ups" },
         { icon: CheckCircle, text: "Onderhoud & support inbegrepen (bijv. kleine wijzigingen per maand)" },
         { icon: CheckCircle, text: "Ongelimiteerde revisierondes inbegrepen" },
       ],
-      cardGradientClass: "bg-gradient-to-br from-zutly-tiffany-dark to-zutly-dark-green",
+      cardGradientClass: "bg-gradient-to-br from-zutly-blue-gray to-zutly-black",
     },
     {
       name: "Premium Website + Branding",
@@ -92,14 +92,14 @@ const PricingSection = () => {
       highlight: false,
       additionalFeaturesTitle: null,
       additionalFeatures: [],
-      cardGradientClass: "bg-gradient-to-br from-zutly-tiffany-light to-zutly-medium-blue",
+      cardGradientClass: "bg-gradient-to-br from-zutly-platinum to-zutly-true-blue",
     },
   ];
 
   return (
     <section id="pricing" className="py-20 bg-gray-100 text-gray-800">
       <div className="container mx-auto px-4 text-center max-w-7xl">
-        <h2 className="text-4xl font-bold text-zutly-dark-purple mb-16">Onze Pakketten</h2>
+        <h2 className="text-4xl font-bold text-zutly-black mb-16">Onze Pakketten</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {packages.map((pkg, index) => (
             <Card
@@ -126,7 +126,7 @@ const PricingSection = () => {
                       const IconComponent = feature.icon;
                       return (
                         <li key={fIndex} className="flex items-start">
-                          <IconComponent className="h-5 w-5 text-zutly-tiffany-light mr-3 flex-shrink-0" /> {/* Icon color */}
+                          <IconComponent className="h-5 w-5 text-zutly-platinum mr-3 flex-shrink-0" /> {/* Icon color */}
                           <span className="text-gray-100"> {/* Text color for features */}
                             {feature.text}
                           </span>
@@ -146,7 +146,7 @@ const PricingSection = () => {
                           const IconComponent = feature.icon;
                           return (
                             <li key={fIndex} className="flex items-start">
-                              <IconComponent className="h-5 w-5 text-zutly-tiffany-light mr-3 flex-shrink-0" /> {/* Icon color */}
+                              <IconComponent className="h-5 w-5 text-zutly-platinum mr-3 flex-shrink-0" /> {/* Icon color */}
                               <span className="text-gray-100"> {/* Text color for additional features */}
                                 {feature.text}
                               </span>
@@ -175,7 +175,7 @@ const PricingSection = () => {
                     dialogTitlePrefix={pkg.dialogTitlePrefix}
                     trigger={
                         <Button
-                          className="w-full py-3 text-lg font-bold rounded-full shadow-md hover:scale-105 transition-all duration-300 bg-zutly-tiffany-light text-zutly-dark-purple hover:bg-zutly-tiffany-dark" // Consistent button style for all cards
+                          className="w-full py-3 text-lg font-bold rounded-full shadow-md hover:scale-105 transition-all duration-300 bg-zutly-platinum text-zutly-black hover:bg-zutly-blue-gray" // Consistent button style for all cards
                         >
                           {pkg.buttonText}
                         </Button>

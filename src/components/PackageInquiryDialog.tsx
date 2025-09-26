@@ -35,7 +35,7 @@ const PackageInquiryDialog: React.FC<PackageInquiryDialogProps> = ({
       <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent className="max-w-sm sm:max-w-[425px] p-6">
         <DialogHeader className="text-center">
-          <DialogTitle className="text-2xl font-bold text-zutly-dark-purple text-center"> {/* Expliciet text-center toegevoegd */}
+          <DialogTitle className="text-2xl font-bold text-zutly-black text-center"> {/* Expliciet text-center toegevoegd */}
             {dialogTitlePrefix} voor {packageName}
           </DialogTitle>
           <DialogDescription className="text-gray-600 mt-2 text-center"> {/* Expliciet text-center toegevoegd */}

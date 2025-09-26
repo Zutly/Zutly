@@ -6,11 +6,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 
 const HomePageContactForm = () => {
   return (
-    <section id="contact" className="py-20 bg-zutly-tiffany-dark/10">
+    <section id="contact" className="py-20 bg-zutly-blue-gray/10">
       <div className="container mx-auto px-4 max-w-2xl">
-        <Card className="shadow-xl border-b-4 border-zutly-medium-blue p-6"> {/* Keep this Card wrapper */}
+        <Card className="shadow-xl border-b-4 border-zutly-true-blue p-6"> {/* Keep this Card wrapper */}
           <CardHeader className="text-center pb-6">
-            <CardTitle className="text-3xl font-bold text-zutly-dark-purple">Neem Contact Op</CardTitle>
+            <CardTitle className="text-3xl font-bold text-zutly-black">Neem Contact Op</CardTitle>
             <CardDescription className="text-gray-600 mt-2 text-lg">
               Heeft u vragen of wilt u meer weten? Vul het onderstaande formulier in.
             </CardDescription>

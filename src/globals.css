@@ -51,11 +51,10 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
 
     /* Zutly Custom Colors */
-    --zutly-dark-purple: 246 45% 37%; /* #3D348B */
-    --zutly-medium-blue: 239 79% 70%; /* #7678ED */
-    --zutly-tiffany-light: 176 30% 73%; /* #A1D2CE */
-    --zutly-tiffany-dark: 184 46% 65%; /* #78CAD2 */
-    --zutly-dark-green: 140 17% 17%; /* #223127 */
+    --zutly-black: 0 0% 0%; /* #000000 */
+    --zutly-platinum: 220 14% 80%; /* #D8DBE2 */
+    --zutly-blue-gray: 210 30% 58%; /* #6C95BD */
+    --zutly-true-blue: 208 100% 39%; /* #0067C7 */
   }
 
   .dark {
@@ -96,11 +95,10 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
 
     /* Zutly Custom Colors for Dark Mode (adjust as needed) */
-    --zutly-dark-purple: 246 45% 37%;
-    --zutly-medium-blue: 239 79% 70%;
-    --zutly-tiffany-light: 176 30% 73%;
-    --zutly-tiffany-dark: 184 46% 65%;
-    --zutly-dark-green: 140 17% 17%;
+    --zutly-black: 0 0% 0%;
+    --zutly-platinum: 220 14% 80%;
+    --zutly-blue-gray: 210 30% 58%;
+    --zutly-true-blue: 208 100% 39%;
   }
 }
 

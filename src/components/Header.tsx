@@ -65,14 +65,14 @@ const Header = () => {
                       <Link
                         to={item.href}
                         onClick={(e) => handleSmoothScroll(e, item.href)}
-                        className="text-lg font-medium hover:text-zutly-medium-blue transition-colors duration-200"
+                        className="text-lg font-medium hover:text-zutly-true-blue transition-colors duration-200"
                       >
                         {item.name}
                       </Link>
                     ) : (
                       <Link to={item.href}>
                         <Button
-                          className="w-full bg-zutly-medium-blue hover:bg-zutly-dark-purple text-white font-bold py-3 text-lg rounded-full shadow-md transition-all duration-300"
+                          className="w-full bg-zutly-true-blue hover:bg-zutly-black text-white font-bold py-3 text-lg rounded-full shadow-md transition-all duration-300"
                         >
                           {item.name}
                         </Button>
@@ -91,14 +91,14 @@ const Header = () => {
                   key={item.name}
                   to={item.href}
                   onClick={(e) => handleSmoothScroll(e, item.href)}
-                  className="text-base font-medium text-foreground transition-colors hover:text-zutly-medium-blue relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-zutly-medium-blue after:transition-all after:duration-300 hover:after:w-full"
+                  className="text-base font-medium text-foreground transition-colors hover:text-zutly-true-blue relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-zutly-true-blue after:transition-all after:duration-300 hover:after:w-full"
                 >
                   {item.name}
                 </Link>
               ) : (
                 <Link key={item.name} to={item.href}>
                   <Button
-                    className="bg-zutly-medium-blue hover:bg-zutly-dark-purple text-white font-bold py-2 px-6 rounded-full shadow-md transition-all duration-300"
+                    className="bg-zutly-true-blue hover:bg-zutly-black text-white font-bold py-2 px-6 rounded-full shadow-md transition-all duration-300"
                   >
                     {item.name}
                   </Button>

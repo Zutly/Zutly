@@ -18,12 +18,11 @@ const SharedContactFormContent: React.FC<SharedContactFormContentProps> = ({ ini
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phone: "", // Veld: Telefoonnummer
+    phone: "",
     message: initialMessage,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Update message when initialMessage prop changes
   useEffect(() => {
     setFormData((prevData) => ({
       ...prevData,
@@ -43,7 +42,6 @@ const SharedContactFormContent: React.FC<SharedContactFormContentProps> = ({ ini
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Basic client-side validation
     if (!formData.name || !formData.email || !formData.message) {
       showError("Vul alstublieft alle verplichte velden in (Naam, E-mail, Bericht).");
       setIsSubmitting(false);
@@ -66,8 +64,8 @@ const SharedContactFormContent: React.FC<SharedContactFormContentProps> = ({ ini
 
       if (response.ok) {
         showSuccess("Uw bericht is succesvol verzonden!!");
-        setFormData({ name: "", email: "", phone: "", message: initialMessage }); // Clear form, but keep initial message if any
-        onSubmissionSuccess?.(); // Call callback to close dialog
+        setFormData({ name: "", email: "", phone: "", message: initialMessage });
+        onSubmissionSuccess?.();
       } else {
         const errorData = await response.json();
         showError(errorData.message || "Er is een fout opgetreden bij het verzenden van uw bericht.");
@@ -83,61 +81,73 @@ const SharedContactFormContent: React.FC<SharedContactFormContentProps> = ({ ini
   return (
     <div className="p-0">
       <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <Label htmlFor="name" className="text-foreground text-base font-semibold mb-1 block">Naam</Label> {/* text-zutly-dark-purple naar text-foreground */}
-            <Input
-              id="name"
-              type="text"
-              placeholder="Uw naam"
-              value={formData.name}
-              onChange={handleChange}
-              className="mt-1 p-3 border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-medium-blue focus-visible:ring-offset-2 bg-input text-foreground" {/* border-gray-300 naar border-border, bg-input en text-foreground toegevoegd */}
-              disabled={isSubmitting}
-              required
-            />
-          </div>
-          <div>
-            <Label htmlFor="email" className="text-foreground text-base font-semibold mb-1 block">E-mail</Label> {/* text-zutly-dark-purple naar text-foreground */}
-            <Input
-              id="email"
-              type="email"
-              placeholder="uw@voorbeeld.com"
-              value={formData.email}
-              onChange={handleChange}
-              className="mt-1 p-3 border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-medium-blue focus-visible:ring-offset-2 bg-input text-foreground" {/* border-gray-300 naar border-border, bg-input en text-foreground toegevoegd */}
-              disabled={isSubmitting}
-              required
-            />
-          </div>
-          <div>
-            <Label htmlFor="phone" className="text-foreground text-base font-semibold mb-1 block">Telefoonnummer</Label> {/* text-zutly-dark-purple naar text-foreground */}
-            <Input
-              id="phone"
-              type="tel"
-              placeholder="Uw telefoonnummer (optioneel)"
-              value={formData.phone}
-              onChange={handleChange}
-              className="mt-1 p-3 border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-medium-blue focus-visible:ring-offset-2 bg-input text-foreground" {/* border-gray-300 naar border-border, bg-input en text-foreground toegevoegd */}
-              disabled={isSubmitting}
-            />
-          </div>
-          <div>
-            <Label htmlFor="message" className="text-foreground text-base font-semibold mb-1 block">Bericht</Label> {/* text-zutly-dark-purple naar text-foreground */}
-            <Textarea
-              id="message"
-              placeholder="Uw bericht..."
-              value={formData.message}
-              onChange={handleChange}
-              rows={4} // Aangepast: minder rijen voor een compactere start
-              className="mt-1 p-3 border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-medium-blue focus-visible:ring-offset-2 min-h-[100px] md:min-h-[150px] bg-input text-foreground" {/* border-gray-300 naar border-border, bg-input en text-foreground toegevoegd */}
-              disabled={isSubmitting}
-              required
-            />
-          </div>
-          <Button type="submit" className="w-full py-3 text-lg bg-zutly-medium-blue hover:bg-zutly-dark-purple text-white font-bold rounded-full shadow-xl hover:scale-105 transition-all duration-300" disabled={isSubmitting}>
-            {isSubmitting ? "Verzenden..." : "Verzenden"}
-          </Button>
-        </form>
+        <div>
+          <Label htmlFor="name" className="text-foreground text-base font-semibold mb-1 block">
+            Naam
+          </Label>
+          <Input
+            id="name"
+            type="text"
+            placeholder="Uw naam"
+            value={formData.name}
+            onChange={handleChange}
+            className="mt-1 p-3 border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-medium-blue focus-visible:ring-offset-2 bg-input text-foreground"
+            disabled={isSubmitting}
+            required
+          />
+        </div>
+        <div>
+          <Label htmlFor="email" className="text-foreground text-base font-semibold mb-1 block">
+            E-mail
+          </Label>
+          <Input
+            id="email"
+            type="email"
+            placeholder="uw@voorbeeld.com"
+            value={formData.email}
+            onChange={handleChange}
+            className="mt-1 p-3 border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-medium-blue focus-visible:ring-offset-2 bg-input text-foreground"
+            disabled={isSubmitting}
+            required
+          />
+        </div>
+        <div>
+          <Label htmlFor="phone" className="text-foreground text-base font-semibold mb-1 block">
+            Telefoonnummer
+          </Label>
+          <Input
+            id="phone"
+            type="tel"
+            placeholder="Uw telefoonnummer (optioneel)"
+            value={formData.phone}
+            onChange={handleChange}
+            className="mt-1 p-3 border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-medium-blue focus-visible:ring-offset-2 bg-input text-foreground"
+            disabled={isSubmitting}
+          />
+        </div>
+        <div>
+          <Label htmlFor="message" className="text-foreground text-base font-semibold mb-1 block">
+            Bericht
+          </Label>
+          <Textarea
+            id="message"
+            placeholder="Uw bericht..."
+            value={formData.message}
+            onChange={handleChange}
+            rows={4}
+            className="mt-1 p-3 border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zutly-medium-blue focus-visible:ring-offset-2 min-h-[100px] md:min-h-[150px] bg-input text-foreground"
+            disabled={isSubmitting}
+            required
+          />
+        </div>
+        <Button
+          type="submit"
+          className="w-full py-3 text-lg bg-zutly-medium-blue hover:bg-zutly-dark-purple text-white font-bold rounded-full shadow-xl hover:scale-105 transition-all duration-300"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? "Verzenden..." : "Verzenden"}
+        </Button>
+      </form>
     </div>
   );
 };

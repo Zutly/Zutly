@@ -8,32 +8,27 @@ import Services from "./pages/Services";
 import AboutUsPage from "./pages/AboutUsPage";
 import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
-import ScrollToTop from "@/components/ScrollToTop";
-import { ThemeProvider } from "next-themes"; // Import ThemeProvider
-import DemoOne from "./pages/DemoOne"; // Import DemoOne
+import ScrollToTop from "@/components/ScrollToTop"; // Import the new ScrollToTop component
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem> {/* ThemeProvider toegevoegd */}
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <ScrollToTop />
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/diensten" element={<Services />} />
-            <Route path="/over-ons" element={<AboutUsPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/demo" element={<DemoOne />} /> {/* Nieuwe route voor DemoOne */}
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </ThemeProvider>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <ScrollToTop /> {/* Add ScrollToTop here */}
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/diensten" element={<Services />} />
+          <Route path="/over-ons" element={<AboutUsPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </TooltipProvider>
   </QueryClientProvider>
 );
 

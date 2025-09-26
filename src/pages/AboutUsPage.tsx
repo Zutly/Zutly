@@ -28,7 +28,7 @@ const AboutUsPage = () => {
       <Header />
       <main className="flex-grow">
         <section 
-          className="relative min-h-[30vh] flex flex-col items-center justify-center text-foreground overflow-hidden py-16 px-4 text-center" {/* text-white naar text-foreground */}
+          className="relative min-h-[30vh] flex flex-col items-center justify-center text-foreground overflow-hidden py-16 px-4 text-center"
           style={{ 
             backgroundImage: 'url("/zutphen-smoke.jpg")',
             backgroundSize: 'cover',

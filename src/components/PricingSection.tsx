@@ -73,7 +73,7 @@ const PricingSection = () => {
     {
       name: "Premium Website + Branding",
       initialPrice: "Op Maat",
-      recurringPrice: Keuze: eenmalig of abonnementsvorm,
+      recurringPrice: "Keuze: eenmalig of abonnementsvorm",
       description: "Perfect voor bedrijven die een volledige online uitstraling willen, inclusief huisstijl en professionele branding.",
       features: [
         { icon: CheckCircle, text: "Alles uit Pakket 2 (website, hosting, onderhoud, SSL, support)" },

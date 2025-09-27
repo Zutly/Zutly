@@ -34,7 +34,7 @@ const AboutUsSection: React.FC<AboutUsSectionProps> = ({ sectionTitle, sectionDe
               initial={{ opacity: 0, y: 50 }} // Start 50px naar beneden en onzichtbaar
               whileInView={{ opacity: 1, y: 0 }} // Beweeg naar boven en wordt zichtbaar in de viewport
               viewport={{ once: true, amount: 0.5 }} // Animeer één keer wanneer 50% van het element zichtbaar is
-              transition={{ duration: 0.8, delay: index * 0.2 }} // Aangepaste duur en staggered delay
+              transition={{ duration: 0.8 }} // Aangepaste duur, delay verwijderd
             >
               <Card className="shadow-lg border-b-4 border-zutly-tiffany-dark flex flex-col items-center p-8 hover:scale-[1.02] hover:shadow-xl transition-all duration-300">
                 <Avatar className="h-40 w-40 mb-6 border-4 border-zutly-medium-blue shadow-md">

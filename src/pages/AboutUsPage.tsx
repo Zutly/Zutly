@@ -59,9 +59,10 @@ const AboutUsPage = () => {
           </div>
           <AboutUsSection
             sectionTitle="Ons Team"
-            sectionDescription="Maak kennis met de gezichten achter ons bedrijf."
+            // sectionDescription is niet langer nodig als prop
             owners={aboutPageOwners}
-            className="pt-0" {/* Apply pt-0 here */}
+            // Apply pt-0 here
+            className="pt-0"
           />
         </section>
       </main>

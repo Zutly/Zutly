@@ -4,7 +4,7 @@ import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { motion } from "framer-motion";
-import { cn } from "@/lib/utils"; // Import cn utility
+import { cn } from "@/lib/utils";
 
 interface Owner {
   name: string;
@@ -16,19 +16,19 @@ interface Owner {
 
 interface AboutUsSectionProps {
   sectionTitle: string;
-  sectionDescription: string;
+  // sectionDescription is niet langer nodig omdat het niet direct in deze component wordt gerenderd
   owners: Owner[];
-  className?: string; // Add className prop
+  className?: string;
 }
 
 const AboutUsSection: React.FC<AboutUsSectionProps> = ({
   sectionTitle,
-  sectionDescription,
+  // sectionDescription is verwijderd uit de destructuring
   owners,
-  className, // Destructure className
+  className,
 }) => {
   return (
-    <section id="team" className={cn("py-20 bg-background", className)}> {/* Use cn to merge classes */}
+    <section id="team" className={cn("py-20 bg-background", className)}>
       <div className="container mx-auto px-4 text-center">
         <h2 className="text-4xl font-bold text-zutly-dark-purple mb-16">{sectionTitle}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">

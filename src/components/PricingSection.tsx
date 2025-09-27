@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { CheckCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import PackageInquiryDialog from "@/components/PackageInquiryDialog";
+import { motion } from "framer-motion"; // Importeer motion
 
 const PricingSection = () => {
   const packages = [
@@ -59,7 +60,7 @@ const PricingSection = () => {
       buttonText: "Vraag offerte aan",
       dialogTitlePrefix: "Offerte aanvragen",
       cardVariant: "medium",
-      popular: false, // Aangepast naar false
+      popular: false,
     },
     {
       name: "Premium Website + Branding",
@@ -86,8 +87,13 @@ const PricingSection = () => {
       <div className="container mx-auto px-4 text-center">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {packages.map((pkg, index) => (
-            <div key={index} className="relative">
-              {/* De 'POPULAIRST' badge is verwijderd */}
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 50 }} // Start 50px naar beneden en onzichtbaar
+              whileInView={{ opacity: 1, y: 0 }} // Beweeg naar boven en wordt zichtbaar in de viewport
+              viewport={{ once: true, amount: 0.5 }} // Animeer één keer wanneer 50% van het element zichtbaar is
+              transition={{ duration: 0.8, delay: index * 0.2 }} // Aangepaste duur en staggered delay
+            >
               <Card
                 className={cn(
                   "flex flex-col p-6 shadow-lg transition-all duration-300 h-full rounded-2xl",
@@ -99,7 +105,6 @@ const PricingSection = () => {
                     "bg-gradient-to-b from-zutly-medium-blue/20 to-zutly-medium-blue/40 text-gray-800 hover:scale-[1.01] hover:shadow-lg",
                   pkg.cardVariant === "free" &&
                     "bg-gradient-to-b from-zutly-tiffany-light/20 to-zutly-tiffany-light/40 text-gray-800 hover:scale-[1.01] hover:shadow-lg",
-                  // De ring-styling voor 'popular' is ook verwijderd
                 )}
               >
                 <CardHeader className="p-0 mb-6">
@@ -192,7 +197,7 @@ const PricingSection = () => {
                   />
                 </CardContent>
               </Card>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

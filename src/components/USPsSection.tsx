@@ -1,6 +1,6 @@
 "use client";
 
-import { Lightbulb, Rocket, ShieldCheck, MessageSquare } from "lucide-react"; // Importeer MessageSquare
+import { Rocket, ShieldCheck, MessageSquare } from "lucide-react"; // Importeer MessageSquare
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion"; // Importeer motion
 

@@ -5,9 +5,12 @@ import { Button } from "@/components/ui/button";
 import { CheckCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import PackageInquiryDialog from "@/components/PackageInquiryDialog";
-import { motion } from "framer-motion"; // Importeer motion
+import { motion } from "framer-motion";
+import { useIsMobile } from "@/hooks/use-mobile"; // Importeer useIsMobile
 
 const PricingSection = () => {
+  const isMobile = useIsMobile(); // Gebruik de hook om te detecteren of het mobiel is
+
   const packages = [
     {
       name: "Gratis Opzet",
@@ -89,10 +92,13 @@ const PricingSection = () => {
           {packages.map((pkg, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 50 }} // Start 50px naar beneden en onzichtbaar
-              whileInView={{ opacity: 1, y: 0 }} // Beweeg naar boven en wordt zichtbaar in de viewport
-              viewport={{ once: true, amount: 0.5 }} // Animeer één keer wanneer 50% van het element zichtbaar is
-              transition={{ duration: 0.8, delay: index * 0.2 }} // Aangepaste duur en staggered delay
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ 
+                duration: isMobile ? 0.4 : 0.8, // Snellere duur op mobiel
+                delay: isMobile ? index * 0.1 : index * 0.2 // Snellere staggered delay op mobiel
+              }}
             >
               <Card
                 className={cn(

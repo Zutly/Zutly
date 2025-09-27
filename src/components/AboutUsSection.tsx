@@ -26,7 +26,7 @@ const AboutUsSection: React.FC<AboutUsSectionProps> = ({
   className,
 }) => {
   return (
-    <section id="team" className={cn("pb-20 bg-background", className)}> {/* py-20 veranderd naar pb-20 */}
+    <section id="team" className={cn("bg-background", className)}> {/* pb-20 verwijderd */}
       <div className="container mx-auto px-4 text-center">
         {sectionTitle && (
           <h2 className="text-4xl font-bold text-zutly-dark-purple mb-16">{sectionTitle}</h2>

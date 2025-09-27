@@ -29,8 +29,9 @@ const Index = () => {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow">
+        {/* min-h-[70vh] veranderd naar min-h-[85vh] */}
         <section 
-          className="relative min-h-[85vh] flex items-center justify-center text-white overflow-hidden py-16" {/* min-h-[70vh] veranderd naar min-h-[85vh] */}
+          className="relative min-h-[85vh] flex items-center justify-center text-white overflow-hidden py-16"
           style={{ 
             backgroundImage: 'url("/zutphen-smoke.jpg")',
             backgroundSize: 'cover',

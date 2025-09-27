@@ -37,7 +37,7 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 shadow-lg backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-20 items-center justify-between"> {/* h-16 veranderd naar h-20 */}
+      <div className="container flex h-30 items-center justify-between"> {/* h-16 veranderd naar h-20 */}
         <Link to="/" className="flex items-center gap-2" onClick={(e) => handleSmoothScroll(e, "/")}>
           <img src="/zutly-logo.png" alt="Zutly Logo" className="h-9 w-auto" />
           <span className="sr-only">Zutly Home</span>

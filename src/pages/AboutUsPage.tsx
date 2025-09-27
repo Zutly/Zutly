@@ -47,22 +47,22 @@ const AboutUsPage = () => {
             </p>
           </div>
         </section>
-        // <section id="about" className="py-20 bg-background"> {/* Added a section wrapper for the text and AboutUsSection */}
-        //   <div className="container mx-auto px-4 text-center max-w-3xl">
-        //     <p className="text-lg text-gray-700 leading-relaxed mb-16">
-        //       Bij Zutly geloven we in de kracht van persoonlijke service en transparantie.
-        //       Vanuit onze kennis en ervaring helpen we lokale ondernemers om hun digitale visitekaartje tot leven te brengen.
-        //       Voor ons draait het niet alleen om een mooie website, maar vooral om een authentieke uitstraling die écht bij jou en je bedrijf past.
-        //       <br /><br />
-        //       Met een frisse blik, creatieve ideeën en een persoonlijke aanpak zorgen we ervoor dat jouw online presentatie niet alleen professioneel oogt, maar ook jouw verhaal vertelt. Want wij geloven dat ieder bedrijf het verdient om gezien te worden.
-        //     </p>
-        //   </div>
-        //   <AboutUsSection
-        //     sectionTitle="Ons Team"
-        //     sectionDescription="Maak kennis met de gezichten achter ons bedrijf." {/* Simplified description for the component itself */}
-        //     owners={aboutPageOwners}
-        //   />
-        // </section>
+        <section id="about" className="py-20 bg-background"> {/* Added a section wrapper for the text and AboutUsSection */}
+          <div className="container mx-auto px-4 text-center max-w-3xl">
+            <p className="text-lg text-gray-700 leading-relaxed mb-16">
+              Bij Zutly geloven we in de kracht van persoonlijke service en transparantie.
+              Vanuit onze kennis en ervaring helpen we lokale ondernemers om hun digitale visitekaartje tot leven te brengen.
+              Voor ons draait het niet alleen om een mooie website, maar vooral om een authentieke uitstraling die écht bij jou en je bedrijf past.
+              <br /><br />
+              Met een frisse blik, creatieve ideeën en een persoonlijke aanpak zorgen we ervoor dat jouw online presentatie niet alleen professioneel oogt, maar ook jouw verhaal vertelt. Want wij geloven dat ieder bedrijf het verdient om gezien te worden.
+            </p>
+          </div>
+          <AboutUsSection
+            sectionTitle="Ons Team"
+            sectionDescription="Maak kennis met de gezichten achter ons bedrijf." {/* Simplified description for the component itself */}
+            owners={aboutPageOwners}
+          />
+        </section>
       </main>
       <Footer />
     </div>

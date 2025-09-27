@@ -25,7 +25,7 @@ const AboutUsSection: React.FC<AboutUsSectionProps> = ({
   owners,
 }) => {
   return (
-    <section id="team" className="py-20 bg-background">
+    <section id="team" className="pb-20 bg-background"> {/* Changed py-20 to pb-20 */}
       <div className="container mx-auto px-4 text-center">
         <h2 className="text-4xl font-bold text-zutly-dark-purple mb-16">{sectionTitle}</h2>
         {/* The sectionDescription paragraph has been removed from here */}

@@ -8,7 +8,7 @@ const USPsSection = () => {
   const usps = [
     {
       icon: <MessageSquare className="h-10 w-10 text-zutly-medium-blue" />, // Nieuw icoon
-      title: "Gratis advies", // Nieuwe titel
+      title: "Gratis Advies", // Aangepast: "Gratis advies" naar "Gratis Advies"
       description: "Wij kijken graag mee naar een passende oplossing, volledig vrijblijvend.", // Nieuwe beschrijving
     },
     {
@@ -26,7 +26,7 @@ const USPsSection = () => {
   return (
     <section id="usps" className="py-20 bg-zutly-tiffany-light/20">
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-4xl font-bold text-zutly-dark-purple mb-16">Waarom Kiezen voor Zutly?</h2>
+        <h2 className="text-4xl font-bold text-zutly-dark-purple mb-16">Waarom kiezen voor Zutly?</h2> {/* Aangepast: "Waarom Kiezen voor Zutly?" naar "Waarom kiezen voor Zutly?" */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {usps.map((usp, index) => (
             <motion.div

@@ -3,7 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CheckCircle } from "lucide-react";
-import { cn } => "@/lib/utils";
+import { cn } from "@/lib/utils";
 import PackageInquiryDialog from "@/components/PackageInquiryDialog";
 import { motion } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile"; // Importeer useIsMobile

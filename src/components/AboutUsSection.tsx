@@ -15,22 +15,22 @@ interface Owner {
 }
 
 interface AboutUsSectionProps {
-  sectionTitle: string;
-  // sectionDescription is niet langer nodig omdat het niet direct in deze component wordt gerenderd
+  sectionTitle?: string; // Maak de prop optioneel
   owners: Owner[];
   className?: string;
 }
 
 const AboutUsSection: React.FC<AboutUsSectionProps> = ({
   sectionTitle,
-  // sectionDescription is verwijderd uit de destructuring
   owners,
   className,
 }) => {
   return (
     <section id="team" className={cn("py-20 bg-background", className)}>
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-4xl font-bold text-zutly-dark-purple mb-16">{sectionTitle}</h2>
+        {sectionTitle && ( // Render de titel alleen als deze is meegegeven
+          <h2 className="text-4xl font-bold text-zutly-dark-purple mb-16">{sectionTitle}</h2>
+        )}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
           {owners.map((owner, index) => (
             <motion.div

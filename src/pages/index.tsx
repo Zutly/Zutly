@@ -53,15 +53,15 @@ const Index = () => {
           </div>
         </section>
         <USPsSection />
-        <section id="about" className="py-20 bg-background"> {/* Added a wrapper section for the description and AboutUsSection */}
+        <section id="about" className="py-20 bg-background">
           <div className="container mx-auto px-4 text-center max-w-3xl">
-            <h2 className="text-4xl font-bold text-zutly-dark-purple mb-6">Over Ons</h2> {/* Title for the section */}
-            <p className="text-lg text-gray-700 leading-relaxed mb-16"> {/* Added the description here */}
+            <h2 className="text-4xl font-bold text-zutly-dark-purple mb-6">Over Ons</h2>
+            <p className="text-lg text-gray-700 leading-relaxed mb-16">
               Bij Zutly geloven we in de kracht van innovatie en persoonlijke service. Maak kennis met de gezichten achter ons bedrijf.
             </p>
           </div>
           <AboutUsSection
-            sectionTitle="Ons Team"
+            // sectionTitle="Ons Team" // Deze prop is nu verwijderd
             owners={homePageOwners}
           />
         </section>

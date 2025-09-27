@@ -59,7 +59,7 @@ const PricingSection = () => {
       buttonText: "Vraag offerte aan",
       dialogTitlePrefix: "Offerte aanvragen",
       cardVariant: "medium",
-      popular: false, // Aangepast naar false
+      popular: true, // Aangepast naar true
     },
     {
       name: "Premium Website + Branding",
@@ -83,7 +83,7 @@ const PricingSection = () => {
 
   return (
     <section id="pricing" className="py-20 bg-background">
-      <div className="container mx-auto px-4 text-center"> {/* 'max-w-7xl' verwijderd */}
+      <div className="container mx-auto px-4 text-center">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {packages.map((pkg, index) => (
             <div key={index} className="relative">
@@ -96,15 +96,15 @@ const PricingSection = () => {
               )}
               <Card
                 className={cn(
-                  "flex flex-col p-6 shadow-lg border-b-4 transition-all duration-300 h-full",
+                  "flex flex-col p-6 shadow-lg transition-all duration-300 h-full rounded-2xl", // Removed border-b-4, added rounded-2xl
                   pkg.cardVariant === "premium" &&
-                    "bg-gradient-to-b from-zutly-dark-purple to-zutly-dark-purple/90 text-white border-zutly-medium-blue hover:scale-[1.02] hover:shadow-xl",
+                    "bg-gradient-to-b from-zutly-dark-purple/70 to-zutly-dark-purple/90 text-white hover:scale-[1.02] hover:shadow-xl", // Adjusted opacity
                   pkg.cardVariant === "medium" &&
-                    "bg-gradient-to-b from-white to-zutly-tiffany-light/20 text-gray-800 border-zutly-medium-blue hover:scale-[1.02] hover:shadow-xl",
+                    "bg-gradient-to-b from-zutly-dark-purple/20 to-zutly-dark-purple/40 text-gray-800 hover:scale-[1.02] hover:shadow-xl", // Adjusted gradient and opacity
                   pkg.cardVariant === "default" &&
-                    "bg-white text-gray-800 border-zutly-tiffany-dark hover:scale-[1.01] hover:shadow-lg",
+                    "bg-gradient-to-b from-zutly-medium-blue/20 to-zutly-medium-blue/40 text-gray-800 hover:scale-[1.01] hover:shadow-lg", // Adjusted gradient and opacity
                   pkg.cardVariant === "free" &&
-                    "bg-gradient-to-b from-white to-zutly-tiffany-light/30 text-gray-800 border-zutly-tiffany-dark hover:scale-[1.01] hover:shadow-lg",
+                    "bg-gradient-to-b from-zutly-tiffany-light/20 to-zutly-tiffany-light/40 text-gray-800 hover:scale-[1.01] hover:shadow-lg", // Adjusted gradient and opacity
                   pkg.popular && "ring-2 ring-zutly-medium-blue ring-opacity-50"
                 )}
               >
@@ -123,10 +123,7 @@ const PricingSection = () => {
                   <p
                     className={cn(
                       "text-sm leading-relaxed min-h-[60px]",
-                      pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
-                      pkg.cardVariant === "medium" && "text-gray-700",
-                      pkg.cardVariant === "default" && "text-gray-600",
-                      pkg.cardVariant === "free" && "text-gray-700"
+                      pkg.cardVariant === "premium" ? "text-zutly-tiffany-light" : "text-gray-700"
                     )}
                   >
                     {pkg.description}
@@ -156,15 +153,14 @@ const PricingSection = () => {
                       </li>
                     ))}
                   </ul>
-                  {/* Verplaatste prijsinformatie */}
-                  <div className="mb-6 mt-auto"> {/* mt-auto zorgt ervoor dat het naar de onderkant duwt */}
+                  <div className="mb-6 mt-auto">
                     <div className="flex items-baseline justify-center">
                       <p
                         className={cn(
                           "text-3xl font-extrabold",
                           pkg.cardVariant === "premium" && "text-zutly-tiffany-light",
                           pkg.cardVariant === "medium" && "text-zutly-medium-blue",
-                          pkg.cardVariant === "default" && "text-zutly-dark-purple",
+                          pkg.cardVariant === "default" && "text-zutly-medium-blue",
                           pkg.cardVariant === "free" && "text-zutly-dark-green"
                         )}
                       >
@@ -175,10 +171,7 @@ const PricingSection = () => {
                       <p
                         className={cn(
                           "text-xs mt-1 text-center",
-                          pkg.cardVariant === "premium" && "text-zutly-tiffany-light/80",
-                          pkg.cardVariant === "medium" && "text-gray-600",
-                          pkg.cardVariant === "default" && "text-gray-500",
-                          pkg.cardVariant === "free" && "text-gray-600"
+                          pkg.cardVariant === "premium" ? "text-zutly-tiffany-light/80" : "text-gray-600"
                         )}
                       >
                         {pkg.recurringPrice}
@@ -191,7 +184,7 @@ const PricingSection = () => {
                     trigger={
                       <Button
                         className={cn(
-                          "w-full py-3 text-base font-bold rounded-full shadow-md hover:scale-105 transition-all duration-300", // mt-auto verwijderd, nu in de parent div
+                          "w-full py-3 text-base font-bold rounded-full shadow-md hover:scale-105 transition-all duration-300",
                           pkg.cardVariant === "premium"
                             ? "bg-zutly-tiffany-light text-zutly-dark-purple hover:bg-zutly-tiffany-dark hover:text-white"
                             : pkg.cardVariant === "free"

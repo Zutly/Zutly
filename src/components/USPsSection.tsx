@@ -1,15 +1,15 @@
 "use client";
 
-import { Lightbulb, Rocket, ShieldCheck } from "lucide-react";
+import { Lightbulb, Rocket, ShieldCheck, MessageSquare } from "lucide-react"; // Importeer MessageSquare
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion"; // Importeer motion
 
 const USPsSection = () => {
   const usps = [
     {
-      icon: <Lightbulb className="h-10 w-10 text-zutly-medium-blue" />,
-      title: "Innovatieve Oplossingen",
-      description: "Wij bieden cutting-edge oplossingen die uw bedrijf vooruit helpen.",
+      icon: <MessageSquare className="h-10 w-10 text-zutly-medium-blue" />, // Nieuw icoon
+      title: "Gratis advies", // Nieuwe titel
+      description: "Wij kijken graag mee naar een passende oplossing, volledig vrijblijvend.", // Nieuwe beschrijving
     },
     {
       icon: <Rocket className="h-10 w-10 text-zutly-medium-blue" />,

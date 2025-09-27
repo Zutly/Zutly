@@ -34,7 +34,7 @@ const USPsSection = () => {
               initial={{ opacity: 0, y: 50 }} // Start 50px naar beneden en onzichtbaar
               whileInView={{ opacity: 1, y: 0 }} // Beweeg naar boven en wordt zichtbaar in de viewport
               viewport={{ once: true, amount: 0.5 }} // Animeer één keer wanneer 50% van het element zichtbaar is
-              transition={{ duration: 0.5, delay: index * 0.1 }} // Staggered delay
+              transition={{ duration: 0.8, delay: index * 0.2 }} // Aangepaste duur en staggered delay
             >
               <Card className="bg-white shadow-lg border-b-4 border-zutly-medium-blue hover:scale-[1.02] hover:shadow-xl transition-all duration-300 h-full flex flex-col">
                 <CardHeader className="flex flex-col items-center p-6">

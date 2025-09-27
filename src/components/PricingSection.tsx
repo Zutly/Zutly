@@ -91,7 +91,7 @@ const PricingSection = () => {
               key={index}
               initial={{ opacity: 0, y: 50 }} // Start 50px naar beneden en onzichtbaar
               whileInView={{ opacity: 1, y: 0 }} // Beweeg naar boven en wordt zichtbaar in de viewport
-              viewport={{ once: true, amount: 0.8 }} // Animeer één keer wanneer 80% van het element zichtbaar is (aangepast)
+              viewport={{ once: true, amount: 0.5 }} // Animeer één keer wanneer 50% van het element zichtbaar is
               transition={{ duration: 0.8, delay: index * 0.2 }} // Aangepaste duur en staggered delay
             >
               <Card

@@ -55,9 +55,7 @@ const Index = () => {
         <USPsSection />
         <AboutUsSection
           sectionTitle="Over Ons"
-          sectionDescription="Bij Zutly geloven we in de kracht van persoonlijke service en transparantie.Vanuit onze kennis en ervaring helpen we lokale ondernemers om hun digitale visitekaartje tot leven te brengen. Voor ons draait het niet alleen om een mooie website, maar vooral om een authentieke uitstraling die écht bij jou en je bedrijf past.
-
-Met een frisse blik, creatieve ideeën en een persoonlijke aanpak zorgen we ervoor dat jouw online presentatie niet alleen professioneel oogt, maar ook jouw verhaal vertelt. Want wij geloven dat ieder bedrijf het verdient om gezien te worden. Maak kennis met de gezichten achter ons bedrijf."
+          sectionDescription="Bij Zutly geloven we in de kracht van innovatie en persoonlijke service. Maak kennis met de gezichten achter ons bedrijf."
           owners={homePageOwners}
         />
         <WaveSeparator topBgColorVar="--background" bottomBgClass="bg-zutly-tiffany-dark/10" />

@@ -49,7 +49,9 @@ const AboutUsPage = () => {
         </section>
         <AboutUsSection
           sectionTitle="Ons Team"
-          sectionDescription="Hier stellen we de drijvende krachten achter Zutly voor. Ontdek wie we zijn en wat ons motiveert om de beste weboplossingen te leveren."
+          sectionDescription="Bij Zutly geloven we in de kracht van persoonlijke service en transparantie.Vanuit onze kennis en ervaring helpen we lokale ondernemers om hun digitale visitekaartje tot leven te brengen. Voor ons draait het niet alleen om een mooie website, maar vooral om een authentieke uitstraling die écht bij jou en je bedrijf past.
+
+Met een frisse blik, creatieve ideeën en een persoonlijke aanpak zorgen we ervoor dat jouw online presentatie niet alleen professioneel oogt, maar ook jouw verhaal vertelt. Want wij geloven dat ieder bedrijf het verdient om gezien te worden. Maak kennis met de gezichten achter ons bedrijf."
           owners={aboutPageOwners}
         />
       </main>

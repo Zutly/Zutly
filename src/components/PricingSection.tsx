@@ -59,7 +59,7 @@ const PricingSection = () => {
       buttonText: "Vraag offerte aan",
       dialogTitlePrefix: "Offerte aanvragen",
       cardVariant: "medium",
-      popular: true, // Aangepast naar true
+      popular: false, // Aangepast naar false
     },
     {
       name: "Premium Website + Branding",
@@ -87,25 +87,19 @@ const PricingSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {packages.map((pkg, index) => (
             <div key={index} className="relative">
-              {pkg.popular && (
-                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
-                  <span className="bg-zutly-medium-blue text-white text-xs font-bold px-4 py-1 rounded-full whitespace-nowrap">
-                    POPULAIRST
-                  </span>
-                </div>
-              )}
+              {/* De 'POPULAIRST' badge is verwijderd */}
               <Card
                 className={cn(
-                  "flex flex-col p-6 shadow-lg transition-all duration-300 h-full rounded-2xl", // Removed border-b-4, added rounded-2xl
+                  "flex flex-col p-6 shadow-lg transition-all duration-300 h-full rounded-2xl",
                   pkg.cardVariant === "premium" &&
-                    "bg-gradient-to-b from-zutly-dark-purple/70 to-zutly-dark-purple/90 text-white hover:scale-[1.02] hover:shadow-xl", // Adjusted opacity
+                    "bg-gradient-to-b from-zutly-dark-purple/70 to-zutly-dark-purple/90 text-white hover:scale-[1.02] hover:shadow-xl",
                   pkg.cardVariant === "medium" &&
-                    "bg-gradient-to-b from-zutly-dark-purple/20 to-zutly-dark-purple/40 text-gray-800 hover:scale-[1.02] hover:shadow-xl", // Adjusted gradient and opacity
+                    "bg-gradient-to-b from-zutly-dark-purple/20 to-zutly-dark-purple/40 text-gray-800 hover:scale-[1.02] hover:shadow-xl",
                   pkg.cardVariant === "default" &&
-                    "bg-gradient-to-b from-zutly-medium-blue/20 to-zutly-medium-blue/40 text-gray-800 hover:scale-[1.01] hover:shadow-lg", // Adjusted gradient and opacity
+                    "bg-gradient-to-b from-zutly-medium-blue/20 to-zutly-medium-blue/40 text-gray-800 hover:scale-[1.01] hover:shadow-lg",
                   pkg.cardVariant === "free" &&
-                    "bg-gradient-to-b from-zutly-tiffany-light/20 to-zutly-tiffany-light/40 text-gray-800 hover:scale-[1.01] hover:shadow-lg", // Adjusted gradient and opacity
-                  pkg.popular && "ring-2 ring-zutly-medium-blue ring-opacity-50"
+                    "bg-gradient-to-b from-zutly-tiffany-light/20 to-zutly-tiffany-light/40 text-gray-800 hover:scale-[1.01] hover:shadow-lg",
+                  // De ring-styling voor 'popular' is ook verwijderd
                 )}
               >
                 <CardHeader className="p-0 mb-6">

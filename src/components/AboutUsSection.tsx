@@ -15,7 +15,7 @@ interface Owner {
 }
 
 interface AboutUsSectionProps {
-  sectionTitle?: string; // Maak de prop optioneel
+  sectionTitle?: string;
   owners: Owner[];
   className?: string;
 }
@@ -26,9 +26,9 @@ const AboutUsSection: React.FC<AboutUsSectionProps> = ({
   className,
 }) => {
   return (
-    <section id="team" className={cn("py-20 bg-background", className)}>
+    <section id="team" className={cn("pb-20 bg-background", className)}> {/* py-20 veranderd naar pb-20 */}
       <div className="container mx-auto px-4 text-center">
-        {sectionTitle && ( // Render de titel alleen als deze is meegegeven
+        {sectionTitle && (
           <h2 className="text-4xl font-bold text-zutly-dark-purple mb-16">{sectionTitle}</h2>
         )}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">

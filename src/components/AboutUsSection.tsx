@@ -4,6 +4,7 @@ import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils"; // Import cn utility
 
 interface Owner {
   name: string;
@@ -15,20 +16,21 @@ interface Owner {
 
 interface AboutUsSectionProps {
   sectionTitle: string;
-  sectionDescription: string; // This prop will no longer be rendered directly in this component
+  sectionDescription: string;
   owners: Owner[];
+  className?: string; // Add className prop
 }
 
 const AboutUsSection: React.FC<AboutUsSectionProps> = ({
   sectionTitle,
-  sectionDescription, // Still passed, but not used for rendering in this component
+  sectionDescription,
   owners,
+  className, // Destructure className
 }) => {
   return (
-    <section id="team" className="pb-20 bg-background"> {/* Changed py-20 to pb-20 */}
+    <section id="team" className={cn("py-20 bg-background", className)}> {/* Use cn to merge classes */}
       <div className="container mx-auto px-4 text-center">
         <h2 className="text-4xl font-bold text-zutly-dark-purple mb-16">{sectionTitle}</h2>
-        {/* The sectionDescription paragraph has been removed from here */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
           {owners.map((owner, index) => (
             <motion.div

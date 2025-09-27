@@ -61,6 +61,7 @@ const AboutUsPage = () => {
             sectionTitle="Ons Team"
             sectionDescription="Maak kennis met de gezichten achter ons bedrijf."
             owners={aboutPageOwners}
+            className="pt-0" {/* Apply pt-0 here */}
           />
         </section>
       </main>

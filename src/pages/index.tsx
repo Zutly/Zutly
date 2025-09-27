@@ -5,7 +5,6 @@ import USPsSection from '@/components/USPsSection';
 import AboutUsSection from '@/components/AboutUsSection';
 import WaveSeparator from '@/components/WaveSeparator';
 import HomePageContactForm from '@/components/HomePageContactForm';
-import FAQSection from '@/components/FAQSection';
 import Footer from '@/components/Footer';
 
 const Index = () => {
@@ -60,7 +59,6 @@ const Index = () => {
         />
         <WaveSeparator topBgColorVar="--background" bottomBgClass="bg-zutly-tiffany-dark/10" />
         <HomePageContactForm />
-        <FAQSection />
       </main>
       <Footer />
     </div>

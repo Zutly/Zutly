@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone } from "lucide-react"; // MapPin is niet meer nodig
 import { Label } from "@/components/ui/label";
 import FadeIn from "@/components/FadeIn"; // Import the new FadeIn component
 
@@ -89,7 +89,7 @@ const HomePageContactForm = () => {
                   <h3 className="text-lg font-semibold text-zutly-dark-purple">
                     Telefoon
                   </h3>
-                  <p className="text-gray-700">+31 6 12345678</p>
+                  <p className="text-gray-700">+31 6 31035258</p> {/* Telefoonnummer aangepast */}
                 </div>
               </Card>
             </div>

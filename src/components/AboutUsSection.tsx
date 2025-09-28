@@ -2,9 +2,9 @@
 
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import FounderAvatar from "@/components/FounderAvatar"; // Importeer de nieuwe component
 
 interface Owner {
   name: string;
@@ -41,11 +41,12 @@ const AboutUsSection: React.FC<AboutUsSectionProps> = ({
               transition={{ duration: 0.8, delay: index * 0.2 }}
             >
               <Card className="bg-white shadow-lg border-b-4 border-zutly-medium-blue hover:scale-[1.02] hover:shadow-xl transition-all duration-300 h-full flex flex-col items-center p-6 text-center">
-                <FounderAvatar
-                  image={owner.image}
-                  fallback={owner.fallback}
-                  name={owner.name}
-                />
+                <Avatar className="h-32 w-32 mb-6 border-6 border-zutly-tiffany-dark shadow-md"> {/* h-24 w-24 naar h-32 w-32 en border-4 naar border-6 */}
+                  <AvatarImage src={owner.image} alt={owner.name} />
+                  <AvatarFallback className="bg-zutly-medium-blue text-white text-4xl font-semibold"> {/* text-3xl naar text-4xl */}
+                    {owner.fallback}
+                  </AvatarFallback>
+                </Avatar>
                 <CardContent className="p-0">
                   <h3 className="text-2xl font-semibold text-zutly-dark-purple mb-2">
                     {owner.name}

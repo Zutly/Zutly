@@ -16,7 +16,7 @@ const ContactInfoSection = () => {
       </div>
 
       <div className="space-y-4">
-        <Card className="flex items-center p-6 shadow-sm border-b-2 border-zutly-tiffany-dark">
+        <Card className="flex items-center p-6 shadow-md">
           <Mail className="h-6 w-6 text-zutly-medium-blue mr-4 flex-shrink-0" />
           <div>
             <h3 className="text-lg font-semibold text-zutly-dark-purple">E-mail</h3>
@@ -24,7 +24,7 @@ const ContactInfoSection = () => {
           </div>
         </Card>
 
-        <Card className="flex items-center p-6 shadow-sm border-b-2 border-zutly-tiffany-dark">
+        <Card className="flex items-center p-6 shadow-md">
           <Phone className="h-6 w-6 text-zutly-medium-blue mr-4 flex-shrink-0" />
           <div>
             <h3 className="text-lg font-semibold text-zutly-dark-purple">Telefoon</h3>
@@ -32,7 +32,7 @@ const ContactInfoSection = () => {
           </div>
         </Card>
 
-        <Card className="flex items-center p-6 shadow-sm border-b-2 border-zutly-tiffany-dark">
+        <Card className="flex items-center p-6 shadow-md">
           <MapPin className="h-6 w-6 text-zutly-medium-blue mr-4 flex-shrink-0" />
           <div>
             <h3 className="text-lg font-semibold text-zutly-dark-purple">Locatie</h3>

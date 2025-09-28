@@ -61,7 +61,8 @@ const AboutUsPage = () => {
             sectionTitle="Ons Team"
             owners={aboutPageOwners}
             className="pt-0"
-            enablePulseEffect={false} {/* Pulse effect uitgeschakeld voor de Over Ons pagina */}
+            {/* Pulse effect uitgeschakeld voor de Over Ons pagina */}
+            enablePulseEffect={false} 
           />
         </section>
       </main>

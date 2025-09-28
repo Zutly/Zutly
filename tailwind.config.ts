@@ -92,9 +92,9 @@ export default {
           },
         },
         "pulse-ring": {
-          "0%": { transform: "scale(0.8)", opacity: "0.7" },
-          "50%": { transform: "scale(1.2)", opacity: "0" },
-          "100%": { transform: "scale(0.8)", opacity: "0.7" },
+          "0%": { transform: "scale(0.1)", opacity: "0.8" }, /* Start small and visible */
+          "70%": { transform: "scale(1)", opacity: "0.2" },  /* Expand to fill container, fade slightly */
+          "100%": { transform: "scale(1.2)", opacity: "0" }, /* Expand slightly beyond container and fade out completely */
         },
       },
       animation: {

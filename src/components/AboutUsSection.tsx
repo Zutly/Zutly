@@ -43,10 +43,10 @@ const AboutUsSection: React.FC<AboutUsSectionProps> = ({
               transition={{ duration: 0.8, delay: index * 0.2 }}
             >
               <Card className="bg-white shadow-lg border-b-4 border-zutly-medium-blue hover:scale-[1.02] hover:shadow-xl transition-all duration-300 h-full flex flex-col items-center p-6 text-center">
-                <div className="mb-6 relative"> {/* Wrapper voor Avatar en pulse */}
+                <div className="mb-6 relative flex items-center justify-center h-40 w-40"> {/* Wrapper voor Avatar en pulse, met vaste afmetingen */}
                   {enablePulseEffect && (
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="h-32 w-32 rounded-full bg-zutly-medium-blue/30 animate-pulse-ring"></div>
+                      <div className="h-full w-full rounded-full bg-zutly-medium-blue/50 animate-pulse-ring"></div> {/* Pulse div vult de parent div */}
                     </div>
                   )}
                   <Avatar className="h-32 w-32 border-6 border-zutly-tiffany-dark shadow-md relative z-10"> {/* Avatar heeft nu z-10 */}

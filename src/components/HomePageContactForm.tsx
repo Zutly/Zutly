@@ -92,20 +92,6 @@ const HomePageContactForm = () => {
                   <p className="text-gray-700">+31 6 12345678</p>
                 </div>
               </Card>
-
-              <Card className="flex items-center p-6 shadow-md">
-                <MapPin className="h-6 w-6 text-zutly-medium-blue mr-4 flex-shrink-0" />
-                <div>
-                  <h3 className="text-lg font-semibold text-zutly-dark-purple">
-                    Adres
-                  </h3>
-                  <p className="text-gray-700">
-                    Straatnaam 123
-                    <br />
-                    7201 AA Zutphen
-                  </p>
-                </div>
-              </Card>
             </div>
           </FadeIn>
         </div>

@@ -26,7 +26,7 @@ const AboutUsSection: React.FC<AboutUsSectionProps> = ({
   className,
 }) => {
   return (
-    <section id="team" className={cn("bg-background", className)}> {/* pb-20 verwijderd */}
+    <section id="team" className={cn("bg-background", className)}>
       <div className="container mx-auto px-4 text-center">
         {sectionTitle && (
           <h2 className="text-4xl font-bold text-zutly-dark-purple mb-16">{sectionTitle}</h2>
@@ -41,9 +41,9 @@ const AboutUsSection: React.FC<AboutUsSectionProps> = ({
               transition={{ duration: 0.8, delay: index * 0.2 }}
             >
               <Card className="bg-white shadow-lg border-b-4 border-zutly-medium-blue hover:scale-[1.02] hover:shadow-xl transition-all duration-300 h-full flex flex-col items-center p-6 text-center">
-                <Avatar className="h-24 w-24 mb-6 border-4 border-zutly-tiffany-dark shadow-md">
+                <Avatar className="h-32 w-32 mb-6 border-6 border-zutly-tiffany-dark shadow-md"> {/* h-24 w-24 naar h-32 w-32 en border-4 naar border-6 */}
                   <AvatarImage src={owner.image} alt={owner.name} />
-                  <AvatarFallback className="bg-zutly-medium-blue text-white text-3xl font-semibold">
+                  <AvatarFallback className="bg-zutly-medium-blue text-white text-4xl font-semibold"> {/* text-3xl naar text-4xl */}
                     {owner.fallback}
                   </AvatarFallback>
                 </Avatar>

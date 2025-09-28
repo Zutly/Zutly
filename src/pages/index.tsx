@@ -61,8 +61,8 @@ const Index = () => {
             </p>
           </div>
           <AboutUsSection
-            // sectionTitle="Ons Team" // Deze prop is nu verwijderd
             owners={homePageOwners}
+            enablePulseEffect={true} {/* Pulse effect ingeschakeld voor de homepagina */}
           />
         </section>
         <WaveSeparator topBgColorVar="--background" bottomBgClass="bg-zutly-tiffany-dark/10" />

@@ -59,10 +59,10 @@ const AboutUsPage = () => {
           </div>
           <AboutUsSection
             sectionTitle="Ons Team"
-            // sectionDescription is niet langer nodig als prop
             owners={aboutPageOwners}
-            // Apply pt-0 here
             className="pt-0"
+            // Pulse effect ingeschakeld voor de Over Ons pagina
+            enablePulseEffect={true} 
           />
         </section>
       </main>

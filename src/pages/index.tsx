@@ -62,7 +62,7 @@ const Index = () => {
           </div>
           <AboutUsSection
             owners={homePageOwners}
-            {/* Pulse effect ingeschakeld voor de homepagina */}
+            // Pulse effect ingeschakeld voor de homepagina
             enablePulseEffect={true} 
           />
         </section>

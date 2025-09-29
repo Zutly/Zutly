@@ -69,8 +69,8 @@ const Index = () => {
                       text={[welcomeText]}
                       speed={typeSpeed}
                       loop={false}
-                      delay={0}
-                      deleteSpeed={0}
+                      delay={1500}
+                      deleteSpeed={50}
                     />
                   </h1>
                 ) : (

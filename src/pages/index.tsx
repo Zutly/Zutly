@@ -53,7 +53,9 @@ const Index = () => {
                 <Typewriter
                   text={[
                     "Welkom bij Zutly",
-                    "Uw partner voor innovatieve weboplossingen en digitale transformatie.",
+                    "Uw partner voor Webontwikkeling",
+                    "Uw partner voor Branding & huisstijl",
+                    "Uw partner voor Gratis advies op maat",
                   ]}
                   speed={90}
                   loop={true}

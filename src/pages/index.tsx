@@ -51,7 +51,7 @@ const Index = () => {
               <div className="mb-2">
                 <h1 className="text-5xl md:text-6xl text-white drop-shadow-md font-extrabold leading-tight">
                   Welkom bij{" "}
-                  <span className="text-zutly-medium-blue">Zutly</span>
+                  <span className="text-zutly-tiffany-light">Zutly</span>
                 </h1>
               </div>
               <div>
@@ -67,7 +67,7 @@ const Index = () => {
                     loop={true}
                     delay={1500}
                     deleteSpeed={50}
-                    className="text-zutly-tiffany-light"
+                    className="text-zutly-medium-blue"
                   />
                 </h2>
               </div>

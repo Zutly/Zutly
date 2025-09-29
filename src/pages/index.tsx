@@ -49,12 +49,13 @@ const Index = () => {
           <AuroraBackground className="absolute inset-0 z-20">
             <div className="relative z-20 text-center px-4">
               <div className="mb-2">
-                <h1 className="text-4xl md:text-5xl text-white drop-shadow-md font-extrabold leading-tight">
-                  Welkom bij Zutly
+                <h1 className="text-5xl md:text-6xl text-white drop-shadow-md font-extrabold leading-tight">
+                  Welkom bij{" "}
+                  <span className="text-zutly-medium-blue">Zutly</span>
                 </h1>
               </div>
               <div>
-                <h2 className="text-5xl md:text-6xl text-white drop-shadow-md font-extrabold leading-tight">
+                <h2 className="text-4xl md:text-5xl text-white drop-shadow-md font-extrabold leading-tight">
                   Uw partner voor{" "}
                   <Typewriter
                     text={[
@@ -66,6 +67,7 @@ const Index = () => {
                     loop={true}
                     delay={1500}
                     deleteSpeed={50}
+                    className="text-zutly-tiffany-light"
                   />
                 </h2>
               </div>

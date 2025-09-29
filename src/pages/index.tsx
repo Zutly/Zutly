@@ -51,14 +51,17 @@ const Index = () => {
             <div className="relative z-20 text-center px-4">
               <div className="mb-4">
                 <Typewriter
-                  text="Welkom bij Zutly"
+                  text={[
+                    "Welkom bij Zutly",
+                    "Uw partner voor innovatieve weboplossingen en digitale transformatie.",
+                  ]}
                   speed={90}
+                  loop={true}
+                  delay={1500}
+                  deleteSpeed={50}
                   className="text-5xl md:text-6xl text-white drop-shadow-md font-extrabold leading-tight"
                 />
               </div>
-              <p className="text-xl md:text-2xl max-w-2xl mx-auto mb-8 drop-shadow-sm text-white">
-                Uw partner voor innovatieve weboplossingen en digitale transformatie.
-              </p>
             </div>
           </AuroraBackground>
         </section>

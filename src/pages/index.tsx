@@ -7,6 +7,7 @@ import WaveSeparator from '@/components/WaveSeparator';
 import HomePageContactForm from '@/components/HomePageContactForm';
 import Footer from '@/components/Footer';
 import { AuroraBackground } from "@/components/ui/aurora-background"; // Import AuroraBackground
+import { GooeyText } from "@/components/ui/gooey-text-morphing";
 
 const Index = () => {
   const homePageOwners = [
@@ -48,10 +49,16 @@ const Index = () => {
           {/* Aurora Background */}
           <AuroraBackground className="absolute inset-0 z-20">
             <div className="relative z-20 text-center px-4">
-              <h1 className="text-5xl md:text-6xl font-extrabold mb-4 leading-tight drop-shadow-md text-white"> {/* Changed to text-white */}
-                Welkom bij <span className="text-zutly-tiffany-light">Zutly</span>
-              </h1>
-              <p className="text-xl md:text-2xl max-w-2xl mx-auto mb-8 drop-shadow-sm text-white"> {/* Changed to text-white */}
+              <div className="mb-4">
+                <GooeyText
+                  texts={["Welkom", "bij", "Zutly"]}
+                  morphTime={1}
+                  cooldownTime={0.25}
+                  className="font-extrabold leading-tight"
+                  textClassName="text-5xl md:text-6xl text-white drop-shadow-md"
+                />
+              </div>
+              <p className="text-xl md:text-2xl max-w-2xl mx-auto mb-8 drop-shadow-sm text-white">
                 Uw partner voor innovatieve weboplossingen en digitale transformatie.
               </p>
             </div>

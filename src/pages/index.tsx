@@ -1,14 +1,3 @@
-while ensuring all necessary imports remain intact. This includes AuroraBackground and Typewriter. The routes will stay the same, and I’ll add a concise summary, a refresh command, and the chat summary as requested.
-**Modifying file for user**
-
-I need to include a title for the chat as specified, and since the user is communicating in Dutch, I should continue in that language. For the modifications in the user's file, I’ll start with the second line's h2 classes. I’ll remove "font-extrabold," maintaining "text-3xl md:text-4xl text-white drop-shadow-md leading-tight." While I could specify "font-normal," the default is acceptable. Furthermore, I'll set the Typewriter class to "text-white" as per the user's latest request for better readability.
-**Preparing final modifications**
-
-I’ll set the Typewriter class to "text-white" to ensure clarity, even though it's inheriting from the h2, which is already text-white. I’ll also keep the "Zutly" span as "text-zutly-tiffany-light," and I won't make other content changes.
-
-Next, I'll prepare the dyad-write block to include the full file, maintaining the "src/pages/index.tsx" path. After that, I’ll add a refresh command and provide a summary: "De ondertitel is niet meer vet en de wisselende tekst is wit; 'Zutly' blijft tiffany-light." I'll complete it with the chat summary.</think>Ik maak de ondertitel niet-vet en zet de wisselende suffix-kleur op wit; “Zutly” blijft tiffany-light.
-
-<dyad-write path="src/pages/index.tsx" description="Verwijder bold op tweede regel en zet suffix-kleur naar wit.">
 "use client";
 
 import Header from '@/components/Header';
@@ -66,7 +55,7 @@ const Index = () => {
                 </h1>
               </div>
               <div>
-                <h2 className="text-3xl md:text-4xl text-white drop-shadow-md leading-tight">
+                <h2 className="text-3xl md:text-4xl text-white drop-shadow-md font-extrabold leading-tight">
                   Uw partner voor{" "}
                   <Typewriter
                     text={[
@@ -78,7 +67,7 @@ const Index = () => {
                     loop={true}
                     delay={1500}
                     deleteSpeed={50}
-                    className="text-white"
+                    className="text-zutly-tiffany-dark"
                   />
                 </h2>
               </div>

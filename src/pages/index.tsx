@@ -55,7 +55,7 @@ const Index = () => {
                 </h1>
               </div>
               <div>
-                <h2 className="text-4xl md:text-5xl text-white drop-shadow-md font-extrabold leading-tight">
+                <h2 className="text-3xl md:text-4xl text-white drop-shadow-md font-extrabold leading-tight">
                   Uw partner voor{" "}
                   <Typewriter
                     text={[
@@ -67,7 +67,7 @@ const Index = () => {
                     loop={true}
                     delay={1500}
                     deleteSpeed={50}
-                    className="text-zutly-medium-blue"
+                    className="text-zutly-tiffany-dark"
                   />
                 </h2>
               </div>

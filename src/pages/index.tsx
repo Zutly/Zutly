@@ -6,8 +6,8 @@ import AboutUsSection from '@/components/AboutUsSection';
 import WaveSeparator from '@/components/WaveSeparator';
 import HomePageContactForm from '@/components/HomePageContactForm';
 import Footer from '@/components/Footer';
-import { AuroraBackground } from "@/components/ui/aurora-background"; // Import AuroraBackground
-import { GooeyText } from "@/components/ui/gooey-text-morphing";
+import { AuroraBackground } from "@/components/ui/aurora-background";
+import { Typewriter } from "@/components/ui/typewriter-text";
 
 const Index = () => {
   const homePageOwners = [
@@ -50,12 +50,10 @@ const Index = () => {
           <AuroraBackground className="absolute inset-0 z-20">
             <div className="relative z-20 text-center px-4">
               <div className="mb-4">
-                <GooeyText
-                  texts={["Welkom", "bij", "Zutly"]}
-                  morphTime={1}
-                  cooldownTime={0.25}
-                  className="font-extrabold leading-tight"
-                  textClassName="text-5xl md:text-6xl text-white drop-shadow-md"
+                <Typewriter
+                  text="Welkom bij Zutly"
+                  speed={90}
+                  className="text-5xl md:text-6xl text-white drop-shadow-md font-extrabold leading-tight"
                 />
               </div>
               <p className="text-xl md:text-2xl max-w-2xl mx-auto mb-8 drop-shadow-sm text-white">

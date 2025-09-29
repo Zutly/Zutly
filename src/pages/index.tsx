@@ -31,7 +31,6 @@ const Index = () => {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow">
-        {/* min-h-[70vh] veranderd naar min-h-[85vh] */}
         <section 
           className="relative min-h-[85vh] flex items-center justify-center text-white overflow-hidden py-16"
           style={{ 
@@ -50,20 +49,19 @@ const Index = () => {
           <AuroraBackground className="absolute inset-0 z-20">
             <div className="relative z-20 text-center px-4">
               <div className="mb-4">
-                <h1 className="text-5xl md:text-6xl text-white drop-shadow-md font-extrabold leading-tight">
-                  Uw partner voor{" "}
-                  <Typewriter
-                    text={[
-                      "Webontwikkeling",
-                      "Branding & huisstijl",
-                      "Gratis advies op maat",
-                    ]}
-                    speed={90}
-                    loop={true}
-                    delay={1500}
-                    deleteSpeed={50}
-                  />
-                </h1>
+                <Typewriter
+                  text={[
+                    "Welkom bij Zutly",
+                    "Uw partner voor webontwikkeling",
+                    "Uw partner voor branding & huisstijl",
+                    "Uw partner voor gratis advies",
+                  ]}
+                  speed={90}
+                  loop={true}
+                  delay={1500}
+                  deleteSpeed={50}
+                  className="text-5xl md:text-6xl text-white drop-shadow-md font-extrabold leading-tight"
+                />
               </div>
             </div>
           </AuroraBackground>
@@ -78,7 +76,6 @@ const Index = () => {
           </div>
           <AboutUsSection
             owners={homePageOwners}
-            // Pulse effect ingeschakeld voor de homepagina
             enablePulseEffect={true} 
           />
         </section>

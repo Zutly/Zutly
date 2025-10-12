@@ -31,8 +31,8 @@ const defaultConfig: GlobeConfig = {
   height: 800,
   onRender: () => {},
   devicePixelRatio: 2,
-  phi: 0,
-  theta: 0, // Aangepast om de bovenkant van de aarde te tonen
+  phi: 0.108, // Longitude van Zutphen in radialen (ongeveer 6.19 graden)
+  theta: 0.91, // Latitude van Zutphen in radialen (ongeveer 52.14 graden)
   dark: 0.9, // Verhoogd om de hele globe volledig zichtbaar te maken
   diffuse: 3,
   mapSamples: 16000,
@@ -48,7 +48,7 @@ export function Globe({ className, config: customConfig }: GlobeProps) {
   const config = { ...defaultConfig, ...customConfig };
 
   useEffect(() => {
-    let phi = 0;
+    let phi = config.phi; // Start met de ingestelde phi
     let globe: any;
 
     if (canvasRef.current) {
@@ -57,7 +57,7 @@ export function Globe({ className, config: customConfig }: GlobeProps) {
         width: config.width * config.devicePixelRatio,
         height: config.height * config.devicePixelRatio,
         onRender: (state) => {
-          // This prevents the globe from spinning too fast on high refresh rates
+          // Dit zorgt voor een langzame, continue rotatie
           state.phi = phi + 0.005;
           phi = state.phi;
           config.onRender(state);

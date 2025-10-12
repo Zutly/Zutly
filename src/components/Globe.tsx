@@ -33,7 +33,7 @@ const defaultConfig: GlobeConfig = {
   devicePixelRatio: 2,
   phi: 0,
   theta: 0, // Aangepast om de bovenkant van de aarde te tonen
-  dark: 0.1, // Maakt de globe helderder en volledig zichtbaar
+  dark: 0.9, // Verhoogd om de hele globe volledig zichtbaar te maken
   diffuse: 3,
   mapSamples: 16000,
   mapBrightness: 1.2,

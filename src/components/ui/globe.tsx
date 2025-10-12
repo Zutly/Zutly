@@ -16,7 +16,8 @@ const GLOBE_CONFIG: COBEOptions = {
   mapSamples: 16000,
   mapBrightness: 1.2,
   baseColor: [1, 1, 1],
-  markerColor: [251 / 255, 100 / 255, 21 / 255],
+  // Zutly hoofdkleur (donkerpaars: rgb(61,52,139))
+  markerColor: [61 / 255, 52 / 255, 139 / 255],
   glowColor: [1, 1, 1],
   // Alleen Nederland (ongeveer midden NL: 52.1326, 5.2913)
   markers: [{ location: [52.1326, 5.2913], size: 0.1 }],

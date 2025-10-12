@@ -27,13 +27,13 @@ interface GlobeProps {
 }
 
 const defaultConfig: GlobeConfig = {
-  width: 800,
-  height: 800,
+  width: 600, // Interne renderbreedte verkleind
+  height: 600, // Interne renderhoogte verkleind
   onRender: () => {},
   devicePixelRatio: 2,
   phi: 0.108, // Longitude van Zutphen in radialen (ongeveer 6.19 graden)
   theta: 0.8, // Aangepast naar een positieve waarde om het noordelijk halfrond te tonen
-  dark: 0, // Aangepast naar 0 om de globe volledig verlicht (wit) te maken
+  dark: 0, // Zorgt ervoor dat de globe volledig verlicht (wit) is
   diffuse: 3,
   mapSamples: 16000,
   mapBrightness: 1.2,
@@ -76,7 +76,7 @@ export function Globe({ className, config: customConfig }: GlobeProps) {
     <canvas
       ref={canvasRef}
       className={cn(
-        "h-[600px] w-[600px] md:h-[800px] md:w-[800px] transition-all duration-300 ease-in-out mx-auto", // Canvas afmetingen verder vergroot
+        "h-[400px] w-[400px] md:h-[600px] md:w-[600px] transition-all duration-300 ease-in-out mx-auto", // Canvas afmetingen aangepast om de kleinere globe te tonen
         className,
       )}
       style={{

@@ -27,8 +27,8 @@ interface GlobeProps {
 }
 
 const defaultConfig: GlobeConfig = {
-  width: 600, // Interne renderbreedte verkleind
-  height: 600, // Interne renderhoogte verkleind
+  width: 400, // Interne renderbreedte verder verkleind
+  height: 400, // Interne renderhoogte verder verkleind
   onRender: () => {},
   devicePixelRatio: 2,
   phi: 0.108, // Longitude van Zutphen in radialen (ongeveer 6.19 graden)
@@ -76,7 +76,7 @@ export function Globe({ className, config: customConfig }: GlobeProps) {
     <canvas
       ref={canvasRef}
       className={cn(
-        "h-[400px] w-[400px] md:h-[600px] md:w-[600px] transition-all duration-300 ease-in-out mx-auto", // Canvas afmetingen aangepast om de kleinere globe te tonen
+        "h-[300px] w-[300px] md:h-[400px] md:w-[400px] transition-all duration-300 ease-in-out mx-auto", // Canvas afmetingen verder verkleind
         className,
       )}
       style={{

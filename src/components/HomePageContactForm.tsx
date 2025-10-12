@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import { Mail, Phone } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import FadeIn from "@/components/FadeIn";
-import { Globe } from "@/components/Globe"; // Import the new Globe component
 
 const HomePageContactForm = () => {
   // Placeholder state and handlers for the form, as it's not using SharedContactFormContent
@@ -109,7 +108,7 @@ const HomePageContactForm = () => {
             </Card>
           </FadeIn>
 
-          {/* Contact Info and Globe */}
+          {/* Contact Info (zonder Globe) */}
           <FadeIn delay={0.3}>
             <div className="space-y-8">
               <Card className="flex items-center p-6 shadow-md">
@@ -131,14 +130,6 @@ const HomePageContactForm = () => {
                   <p className="text-gray-700">+31 6 31035258</p>
                 </div>
               </Card>
-              {/* Globe component moved here, directly under the phone card */}
-              <FadeIn delay={0.5}> {/* Adjusted delay for staggered animation */}
-                <Globe
-                  config={{
-                    markers: [{ location: [52.1435, 6.1937], size: 0.08 }], // Zutphen coordinates
-                  }}
-                />
-              </FadeIn>
             </div>
           </FadeIn>
         </div>

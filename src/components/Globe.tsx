@@ -32,7 +32,7 @@ const defaultConfig: GlobeConfig = {
   onRender: () => {},
   devicePixelRatio: 2,
   phi: 0.108, // Longitude van Zutphen in radialen (ongeveer 6.19 graden)
-  theta: -0.8, // Verder aangepast om de noordelijke hemisfeer duidelijker te tonen
+  theta: 0.8, // Aangepast naar een positieve waarde om het noordelijk halfrond te tonen
   dark: 1.0, // Zorgt ervoor dat de hele globe verlicht is
   diffuse: 3,
   mapSamples: 16000,

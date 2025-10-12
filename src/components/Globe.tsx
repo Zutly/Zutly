@@ -32,14 +32,14 @@ const defaultConfig: GlobeConfig = {
   onRender: () => {},
   devicePixelRatio: 2,
   phi: 0,
-  theta: 0.3,
+  theta: 0, // Aangepast om de bovenkant van de aarde te tonen
   dark: 0.1, // Maakt de globe helderder en volledig zichtbaar
   diffuse: 3,
   mapSamples: 16000,
   mapBrightness: 1.2,
   baseColor: [1, 1, 1], // Witte achtergrond
   markerColor: [61 / 255, 52 / 255, 139 / 255], // Zutly Dark Purple voor de marker
-  glowColor: [0, 0, 0], // Gloed verwijderd door kleur op zwart te zetten
+  glowColor: [0.9, 0.9, 0.9], // Heel licht wit voor de gloed
   markers: [],
 };
 

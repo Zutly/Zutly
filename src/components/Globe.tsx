@@ -33,13 +33,13 @@ const defaultConfig: GlobeConfig = {
   devicePixelRatio: 2,
   phi: 0,
   theta: 0.3,
-  dark: 1,
+  dark: 0.1, // Maakt de globe helderder en volledig zichtbaar
   diffuse: 3,
   mapSamples: 16000,
   mapBrightness: 1.2,
-  baseColor: [1, 1, 1], // White background
-  markerColor: [120 / 255, 123 / 255, 240 / 255], // Zutly Medium Blue
-  glowColor: [184 / 255, 212 / 255, 210 / 255], // Zutly Tiffany Light
+  baseColor: [1, 1, 1], // Witte achtergrond
+  markerColor: [61 / 255, 52 / 255, 139 / 255], // Zutly Dark Purple voor de marker
+  glowColor: [61 / 255, 52 / 255, 139 / 255], // Zutly Dark Purple voor de glow
   markers: [],
 };
 

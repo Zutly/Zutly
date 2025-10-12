@@ -62,11 +62,16 @@ export function Globe({ className, config: customConfig }: GlobeProps) {
         ? (firstMarker.location[1] * Math.PI) / 180
         : config.phi;
 
-    // Ruimere detectie + duidelijkere zoom
-    const maxZoom = 0.22; // extra schaal (1.22x)
-    const rotationSpeed = 0.003;
+    const rotationSpeed = 0.01; // sneller zodat het moment vaker/langs komt
+    const maxScale = 1.35; // duidelijke zoom
+    const minScale = 1.0;
+    const maxRange = 0.45; // ~26°: binnen dit bereik zoom toepassen
 
     if (canvasRef.current) {
+      // Zorg voor vloeiende transitie
+      canvasRef.current.style.transition = "transform 600ms ease, filter 600ms ease";
+      canvasRef.current.style.transformOrigin = "50% 50%";
+
       globe = createGlobe(canvasRef.current, {
         ...config,
         width: config.width * config.devicePixelRatio,
@@ -75,20 +80,21 @@ export function Globe({ className, config: customConfig }: GlobeProps) {
           state.phi = phi + rotationSpeed;
           phi = state.phi;
 
-          // Angular distance (0 bij exact target, tot PI tegenovergesteld)
+          // Bepaal hoekverschil (alleen longitude is voldoende voor duidelijke trigger)
           const current = normalizeAngle(state.phi);
           const target = normalizeAngle(targetPhi);
-          const rawDiff = Math.abs(current - target);
-          const shortest = Math.min(rawDiff, Math.PI * 2 - rawDiff);
+          const diff = Math.abs(current - target);
+          const shortest = Math.min(diff, Math.PI * 2 - diff);
 
-          // Normaliseer naar 0..1 (1 dichtbij, 0 ver weg) en maak piek scherper
-          const proximity = Math.pow(Math.max(0, 1 - shortest / Math.PI), 3);
-
-          // Interpoleer schaal van 1.0 -> 1.22
-          const scale = 1 + maxZoom * proximity;
+          // Lineaire nabijheid binnen drempel, daarna clampen
+          const proximity = Math.max(0, 1 - shortest / maxRange);
+          const scale = minScale + (maxScale - minScale) * proximity;
 
           if (canvasRef.current) {
             canvasRef.current.style.transform = `scale(${scale})`;
+            // Extra visuele hint wanneer dichtbij
+            const glow = Math.round(6 * proximity);
+            canvasRef.current.style.filter = glow ? `drop-shadow(0 0 ${glow}px rgba(255,255,255,0.7))` : "none";
           }
 
           config.onRender(state);
@@ -106,12 +112,12 @@ export function Globe({ className, config: customConfig }: GlobeProps) {
       ref={canvasRef}
       className={cn(
         "h-[300px] w-[300px] md:h-[400px] md:w-[400px] transition-transform duration-500 ease-out mx-auto",
-        "transform-gpu", // GPU-acceleratie
+        "transform-gpu",
         className
       )}
       style={{
         aspectRatio: config.width / config.height,
-        willChange: "transform",
+        willChange: "transform, filter",
       }}
     />
   );

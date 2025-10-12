@@ -39,7 +39,7 @@ const defaultConfig: GlobeConfig = {
   mapBrightness: 1.2,
   baseColor: [1, 1, 1], // Witte achtergrond
   markerColor: [61 / 255, 52 / 255, 139 / 255], // Zutly Dark Purple voor de marker
-  glowColor: [61 / 255, 52 / 255, 139 / 255], // Zutly Dark Purple voor de glow
+  glowColor: [0, 0, 0], // Gloed verwijderd door kleur op zwart te zetten
   markers: [],
 };
 

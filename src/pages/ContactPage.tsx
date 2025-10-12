@@ -5,7 +5,6 @@ import Footer from "@/components/Footer";
 import SharedContactFormContent from "@/components/SharedContactFormContent";
 import ContactInfoSection from "@/components/ContactInfoSection";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import FadeIn from "@/components/FadeIn";
 import { GlobeDemo } from "@/components/ui/globe-demo";
 
 const ContactPage = () => {
@@ -50,12 +49,13 @@ const ContactPage = () => {
               </Card>
               <div className="space-y-8">
                 <ContactInfoSection />
-                <FadeIn delay={0.2}>
-                  <GlobeDemo />
-                </FadeIn>
               </div>
             </div>
           </div>
+        </section>
+        {/* Full-width globe band under all content */}
+        <section className="w-full">
+          <GlobeDemo />
         </section>
       </main>
       <Footer />

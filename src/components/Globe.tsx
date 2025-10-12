@@ -76,7 +76,7 @@ export function Globe({ className, config: customConfig }: GlobeProps) {
     <canvas
       ref={canvasRef}
       className={cn(
-        "h-[300px] w-[300px] md:h-[400px] md:w-[400px] transition-all duration-300 ease-in-out mx-auto", // Canvas afmetingen verkleind
+        "h-[600px] w-[600px] md:h-[800px] md:w-[800px] transition-all duration-300 ease-in-out mx-auto", // Canvas afmetingen verder vergroot
         className,
       )}
       style={{

@@ -23,33 +23,49 @@ interface GlobeConfig {
 
 interface GlobeProps {
   className?: string;
-  config?: Partial<GlobeConfig>; // Partial to allow overriding specific config properties
+  config?: Partial<GlobeConfig>;
 }
 
 const defaultConfig: GlobeConfig = {
-  width: 400, // Interne renderbreedte verder verkleind
-  height: 400, // Interne renderhoogte verder verkleind
+  width: 400,
+  height: 400,
   onRender: () => {},
   devicePixelRatio: 2,
-  phi: 0.108, // Longitude van Zutphen in radialen (ongeveer 6.19 graden)
-  theta: 0.8, // Aangepast naar een positieve waarde om het noordelijk halfrond te tonen
-  dark: 0, // Zorgt ervoor dat de globe volledig verlicht (wit) is
+  phi: 0.108, // ~6.19° (Zutphen)
+  theta: 0.8,
+  dark: 0,
   diffuse: 3,
   mapSamples: 16000,
   mapBrightness: 1.2,
-  baseColor: [1, 1, 1], // Witte achtergrond
-  markerColor: [61 / 255, 52 / 255, 139 / 255], // Zutly Dark Purple voor de marker
-  glowColor: [0.9, 0.9, 0.9], // Heel licht wit voor de gloed
+  baseColor: [1, 1, 1],
+  markerColor: [61 / 255, 52 / 255, 139 / 255],
+  glowColor: [0.9, 0.9, 0.9],
   markers: [],
 };
+
+function normalizeAngle(a: number) {
+  const twoPi = Math.PI * 2;
+  return ((a % twoPi) + twoPi) % twoPi;
+}
 
 export function Globe({ className, config: customConfig }: GlobeProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const config = { ...defaultConfig, ...customConfig };
 
   useEffect(() => {
-    let phi = config.phi; // Start met de ingestelde phi
+    let phi = config.phi;
     let globe: any;
+
+    // Bepaal doel-longitude (radians) vanuit eerste marker, val terug op config.phi
+    const firstMarker = config.markers?.[0];
+    const targetPhi =
+      firstMarker && typeof firstMarker.location?.[1] === "number"
+        ? (firstMarker.location[1] * Math.PI) / 180 // longitude in graden -> rad
+        : config.phi;
+
+    const threshold = 0.25; // hoe dicht bij de marker (in radians) voor zoom
+    const minScale = 1;
+    const maxScale = 1.15; // zoom factor
 
     if (canvasRef.current) {
       globe = createGlobe(canvasRef.current, {
@@ -57,9 +73,24 @@ export function Globe({ className, config: customConfig }: GlobeProps) {
         width: config.width * config.devicePixelRatio,
         height: config.height * config.devicePixelRatio,
         onRender: (state) => {
-          // Dit zorgt voor een langzame, continue rotatie
-          state.phi = phi + 0.003; // Rotatiesnelheid iets verhoogd
+          // Continue rotatie
+          state.phi = phi + 0.003;
           phi = state.phi;
+
+          // Zoom op basis van nabijheid van marker longitude
+          const current = normalizeAngle(state.phi);
+          const target = normalizeAngle(targetPhi);
+          const diff = Math.abs(current - target);
+          const shortest = Math.min(diff, Math.PI * 2 - diff);
+
+          // Bereken proximity (0..1) en schaal daartussen
+          const proximity = Math.max(0, 1 - shortest / threshold);
+          const scale = minScale + (maxScale - minScale) * proximity;
+
+          if (canvasRef.current) {
+            canvasRef.current.style.transform = `scale(${scale})`;
+          }
+
           config.onRender(state);
         },
       });
@@ -76,8 +107,8 @@ export function Globe({ className, config: customConfig }: GlobeProps) {
     <canvas
       ref={canvasRef}
       className={cn(
-        "h-[300px] w-[300px] md:h-[400px] md:w-[400px] transition-all duration-300 ease-in-out mx-auto", // Canvas afmetingen verder verkleind
-        className,
+        "h-[300px] w-[300px] md:h-[400px] md:w-[400px] transition-transform duration-300 ease-in-out mx-auto",
+        className
       )}
       style={{
         aspectRatio: config.width / config.height,

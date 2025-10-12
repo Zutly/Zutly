@@ -5,11 +5,40 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Mail, Phone } from "lucide-react"; // MapPin is niet meer nodig
+import { Mail, Phone } from "lucide-react";
 import { Label } from "@/components/ui/label";
-import FadeIn from "@/components/FadeIn"; // Import the new FadeIn component
+import FadeIn from "@/components/FadeIn";
+import NetherlandsMap from "@/components/NetherlandsMap"; // Import the new component
 
 const HomePageContactForm = () => {
+  // Placeholder state and handlers for the form, as it's not using SharedContactFormContent
+  const [formData, setFormData] = React.useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [id]: value,
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    // Simulate API call
+    setTimeout(() => {
+      console.log("Form submitted:", formData);
+      alert("Bericht verzonden! (Dit is een simulatie)");
+      setFormData({ name: "", email: "", message: "" });
+      setIsSubmitting(false);
+    }, 1500);
+  };
+
   return (
     <section id="contact" className="py-20 bg-zutly-tiffany-dark/10">
       <div className="container mx-auto px-4 max-w-6xl">
@@ -26,7 +55,7 @@ const HomePageContactForm = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-0">
-                <form className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <Label htmlFor="name" className="sr-only">
                       Naam
@@ -35,6 +64,9 @@ const HomePageContactForm = () => {
                       id="name"
                       placeholder="Jouw naam"
                       className="h-12 text-base"
+                      value={formData.name}
+                      onChange={handleChange}
+                      disabled={isSubmitting}
                     />
                   </div>
                   <div>
@@ -46,6 +78,9 @@ const HomePageContactForm = () => {
                       type="email"
                       placeholder="Jouw e-mailadres"
                       className="h-12 text-base"
+                      value={formData.email}
+                      onChange={handleChange}
+                      disabled={isSubmitting}
                     />
                   </div>
                   <div>
@@ -57,15 +92,21 @@ const HomePageContactForm = () => {
                       placeholder="Jouw bericht"
                       rows={6}
                       className="text-base"
+                      value={formData.message}
+                      onChange={handleChange}
+                      disabled={isSubmitting}
                     />
                   </div>
                   <Button
                     type="submit"
                     className="w-full bg-zutly-medium-blue hover:bg-zutly-dark-purple text-white py-3 text-lg font-semibold transition-colors duration-300"
+                    disabled={isSubmitting}
                   >
-                    Verstuur Bericht
+                    {isSubmitting ? "Verzenden..." : "Verstuur Bericht"}
                   </Button>
                 </form>
+                {/* Add the NetherlandsMap component here, under the form */}
+                <NetherlandsMap className="mt-8" />
               </CardContent>
             </Card>
           </FadeIn>
@@ -89,7 +130,7 @@ const HomePageContactForm = () => {
                   <h3 className="text-lg font-semibold text-zutly-dark-purple">
                     Telefoon
                   </h3>
-                  <p className="text-gray-700">+31 6 31035258</p> {/* Telefoonnummer aangepast */}
+                  <p className="text-gray-700">+31 6 31035258</p>
                 </div>
               </Card>
             </div>

@@ -40,7 +40,7 @@ const HomePageContactForm = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-zutly-tiffany-dark/10">
+    <section id="contact" className="py-20 bg-background"> {/* Achtergrond gewijzigd naar bg-background */}
       <div className="container mx-auto px-4 max-w-6xl">
         {/* Globe component moved here, above the title */}
         <FadeIn delay={0.1} className="mb-12"> {/* Added margin-bottom for spacing */}

@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Mail, Phone } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import FadeIn from "@/components/FadeIn";
-import NetherlandsMap from "@/components/NetherlandsMap"; // Import the new component
+import { Globe } from "@/components/Globe"; // Import the new Globe component
 
 const HomePageContactForm = () => {
   // Placeholder state and handlers for the form, as it's not using SharedContactFormContent
@@ -105,8 +105,14 @@ const HomePageContactForm = () => {
                     {isSubmitting ? "Verzenden..." : "Verstuur Bericht"}
                   </Button>
                 </form>
-                {/* Add the NetherlandsMap component here, under the form */}
-                <NetherlandsMap className="mt-8" />
+                {/* Add the Globe component here, under the form */}
+                <div className="mt-8 flex justify-center">
+                  <Globe
+                    config={{
+                      markers: [{ location: [52.1435, 6.1937], size: 0.08 }], // Zutphen coordinates
+                    }}
+                  />
+                </div>
               </CardContent>
             </Card>
           </FadeIn>

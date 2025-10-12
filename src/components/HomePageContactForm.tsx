@@ -42,15 +42,6 @@ const HomePageContactForm = () => {
   return (
     <section id="contact" className="py-20 bg-zutly-tiffany-dark/10">
       <div className="container mx-auto px-4 max-w-6xl">
-        {/* Globe component moved here, above the title */}
-        <FadeIn delay={0.1} className="mb-12"> {/* Added margin-bottom for spacing */}
-          <Globe
-            config={{
-              markers: [{ location: [52.1435, 6.1937], size: 0.08 }], // Zutphen coordinates
-            }}
-          />
-        </FadeIn>
-
         <h2 className="text-4xl font-bold text-center text-zutly-dark-purple mb-12">
           Neem Contact Op
         </h2>
@@ -143,6 +134,14 @@ const HomePageContactForm = () => {
             </div>
           </FadeIn>
         </div>
+        {/* Globe component moved here, below the grid layout */}
+        <FadeIn delay={0.5} className="mt-12"> {/* Added margin-top for spacing */}
+          <Globe
+            config={{
+              markers: [{ location: [52.1435, 6.1937], size: 0.08 }], // Zutphen coordinates
+            }}
+          />
+        </FadeIn>
       </div>
     </section>
   );

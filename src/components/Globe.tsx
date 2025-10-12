@@ -31,7 +31,7 @@ const defaultConfig: GlobeConfig = {
   height: 400,
   onRender: () => {},
   devicePixelRatio: 2,
-  phi: 0.108, // ~6.19° (Zutphen)
+  phi: 0.108,
   theta: 0.8,
   dark: 0,
   diffuse: 3,
@@ -56,16 +56,15 @@ export function Globe({ className, config: customConfig }: GlobeProps) {
     let phi = config.phi;
     let globe: any;
 
-    // Bepaal doel-longitude (radians) vanuit eerste marker, val terug op config.phi
     const firstMarker = config.markers?.[0];
     const targetPhi =
       firstMarker && typeof firstMarker.location?.[1] === "number"
-        ? (firstMarker.location[1] * Math.PI) / 180 // longitude in graden -> rad
+        ? (firstMarker.location[1] * Math.PI) / 180
         : config.phi;
 
-    const threshold = 0.25; // hoe dicht bij de marker (in radians) voor zoom
-    const minScale = 1;
-    const maxScale = 1.15; // zoom factor
+    // Ruimere detectie + duidelijkere zoom
+    const maxZoom = 0.22; // extra schaal (1.22x)
+    const rotationSpeed = 0.003;
 
     if (canvasRef.current) {
       globe = createGlobe(canvasRef.current, {
@@ -73,19 +72,20 @@ export function Globe({ className, config: customConfig }: GlobeProps) {
         width: config.width * config.devicePixelRatio,
         height: config.height * config.devicePixelRatio,
         onRender: (state) => {
-          // Continue rotatie
-          state.phi = phi + 0.003;
+          state.phi = phi + rotationSpeed;
           phi = state.phi;
 
-          // Zoom op basis van nabijheid van marker longitude
+          // Angular distance (0 bij exact target, tot PI tegenovergesteld)
           const current = normalizeAngle(state.phi);
           const target = normalizeAngle(targetPhi);
-          const diff = Math.abs(current - target);
-          const shortest = Math.min(diff, Math.PI * 2 - diff);
+          const rawDiff = Math.abs(current - target);
+          const shortest = Math.min(rawDiff, Math.PI * 2 - rawDiff);
 
-          // Bereken proximity (0..1) en schaal daartussen
-          const proximity = Math.max(0, 1 - shortest / threshold);
-          const scale = minScale + (maxScale - minScale) * proximity;
+          // Normaliseer naar 0..1 (1 dichtbij, 0 ver weg) en maak piek scherper
+          const proximity = Math.pow(Math.max(0, 1 - shortest / Math.PI), 3);
+
+          // Interpoleer schaal van 1.0 -> 1.22
+          const scale = 1 + maxZoom * proximity;
 
           if (canvasRef.current) {
             canvasRef.current.style.transform = `scale(${scale})`;
@@ -97,9 +97,7 @@ export function Globe({ className, config: customConfig }: GlobeProps) {
     }
 
     return () => {
-      if (globe) {
-        globe.destroy();
-      }
+      if (globe) globe.destroy();
     };
   }, [config]);
 
@@ -107,11 +105,13 @@ export function Globe({ className, config: customConfig }: GlobeProps) {
     <canvas
       ref={canvasRef}
       className={cn(
-        "h-[300px] w-[300px] md:h-[400px] md:w-[400px] transition-transform duration-300 ease-in-out mx-auto",
+        "h-[300px] w-[300px] md:h-[400px] md:w-[400px] transition-transform duration-500 ease-out mx-auto",
+        "transform-gpu", // GPU-acceleratie
         className
       )}
       style={{
         aspectRatio: config.width / config.height,
+        willChange: "transform",
       }}
     />
   );

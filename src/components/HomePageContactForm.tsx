@@ -42,6 +42,15 @@ const HomePageContactForm = () => {
   return (
     <section id="contact" className="py-20 bg-zutly-tiffany-dark/10">
       <div className="container mx-auto px-4 max-w-6xl">
+        {/* Globe component moved here, above the title */}
+        <FadeIn delay={0.1} className="mb-12"> {/* Added margin-bottom for spacing */}
+          <Globe
+            config={{
+              markers: [{ location: [52.1435, 6.1937], size: 0.08 }], // Zutphen coordinates
+            }}
+          />
+        </FadeIn>
+
         <h2 className="text-4xl font-bold text-center text-zutly-dark-purple mb-12">
           Neem Contact Op
         </h2>
@@ -109,7 +118,7 @@ const HomePageContactForm = () => {
             </Card>
           </FadeIn>
 
-          {/* Contact Info and Globe */}
+          {/* Contact Info */}
           <FadeIn delay={0.3}>
             <div className="space-y-8">
               <Card className="flex items-center p-6 shadow-md">
@@ -131,14 +140,6 @@ const HomePageContactForm = () => {
                   <p className="text-gray-700">+31 6 31035258</p>
                 </div>
               </Card>
-              {/* Add the Globe component here, under the contact info cards */}
-              <div className="mt-8 flex justify-center">
-                <Globe
-                  config={{
-                    markers: [{ location: [52.1435, 6.1937], size: 0.08 }], // Zutphen coordinates
-                  }}
-                />
-              </div>
             </div>
           </FadeIn>
         </div>

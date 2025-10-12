@@ -31,8 +31,8 @@ const defaultConfig: GlobeConfig = {
   height: 800,
   onRender: () => {},
   devicePixelRatio: 2,
-  phi: 0, // Start met een neutrale horizontale rotatie
-  theta: 0, // Start met een neutrale verticale rotatie (equator in het midden)
+  phi: 0.108, // Longitude van Zutphen in radialen (ongeveer 6.19 graden)
+  theta: -0.5, // Aangepast om de noordelijke hemisfeer te tonen
   dark: 1.0, // Zorgt ervoor dat de hele globe verlicht is
   diffuse: 3,
   mapSamples: 16000,

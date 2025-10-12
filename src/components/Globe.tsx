@@ -39,7 +39,7 @@ const defaultConfig: GlobeConfig = {
   mapBrightness: 1.2,
   baseColor: [1, 1, 1], // Witte achtergrond
   markerColor: [61 / 255, 52 / 255, 139 / 255], // Zutly Dark Purple voor de marker
-  glowColor: [0.9, 0.9, 0.9], // Heel licht wit voor de gloed
+  glowColor: [120 / 255, 202 / 255, 210 / 255], // Aangepast naar Zutly Tiffany Dark (#78CAD2)
   markers: [],
 };
 

@@ -5,8 +5,6 @@ import Footer from "@/components/Footer";
 import SharedContactFormContent from "@/components/SharedContactFormContent";
 import ContactInfoSection from "@/components/ContactInfoSection";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import FadeIn from "@/components/FadeIn";
-import { Globe } from "@/components/Globe";
 
 const ContactPage = () => {
   return (
@@ -50,13 +48,6 @@ const ContactPage = () => {
               </Card>
               <div className="space-y-8">
                 <ContactInfoSection />
-                <FadeIn delay={0.2}>
-                  <Globe
-                    config={{
-                      markers: [{ location: [52.1435, 6.1937], size: 0.08 }],
-                    }}
-                  />
-                </FadeIn>
               </div>
             </div>
           </div>

@@ -31,9 +31,9 @@ const defaultConfig: GlobeConfig = {
   height: 800,
   onRender: () => {},
   devicePixelRatio: 2,
-  phi: 0.108, // Longitude van Zutphen in radialen (ongeveer 6.19 graden)
-  theta: 0.8, // Aangepast om de bovenkant van de aarde beter te tonen
-  dark: 1.0, // Verhoogd om de hele globe volledig zichtbaar te maken
+  phi: 0, // Start met een neutrale horizontale rotatie
+  theta: 0, // Start met een neutrale verticale rotatie (equator in het midden)
+  dark: 1.0, // Zorgt ervoor dat de hele globe verlicht is
   diffuse: 3,
   mapSamples: 16000,
   mapBrightness: 1.2,
@@ -58,7 +58,7 @@ export function Globe({ className, config: customConfig }: GlobeProps) {
         height: config.height * config.devicePixelRatio,
         onRender: (state) => {
           // Dit zorgt voor een langzame, continue rotatie
-          state.phi = phi + 0.001; // Rotatiesnelheid verlaagd
+          state.phi = phi + 0.003; // Rotatiesnelheid iets verhoogd
           phi = state.phi;
           config.onRender(state);
         },

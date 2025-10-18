@@ -41,10 +41,45 @@ try {
   ");
   $stmt->execute([':email' => $email]);
 
-  json_response(200, [
-    'ok' => true,
-    'message' => 'Bedankt! Je bent ingeschreven voor de nieuwsbrief.'
-  ]);
+  // Stuur bevestigingsmail via SMTP (From: info@zutly.nl)
+  $emailSent = null;
+  try {
+    require_once __DIR__ . '/mailer.php';
+
+    $subject = 'Bevestiging nieuwsbrief-inschrijving';
+    $body = "Bedankt voor je inschrijving op de Zutly nieuwsbrief.\r\n\r\n".
+            "Je ontvangt vanaf nu zo nu en dan updates en nieuws.\r\n\r\n".
+            "Groet,\r\nZutly";
+
+    send_smtp_mail($email, $subject, $body);
+    $emailSent = true;
+  } catch (Throwable $e) {
+    // E-mail verzenden is optioneel voor de inschrijving zelf
+    $emailSent = false;
+    if (defined('API_DEBUG') && API_DEBUG) {
+      json_response(200, [
+        'ok' => true,
+        'message' => 'Bedankt! Je bent ingeschreven voor de nieuwsbrief. (Waarschuwing: bevestigingsmail kon niet worden verzonden.)',
+        'email_sent' => false,
+        'error' => $e->getMessage(),
+      ]);
+    }
+  }
+
+  if ($emailSent === true) {
+    json_response(200, [
+      'ok' => true,
+      'message' => 'Bedankt! Je bent ingeschreven voor de nieuwsbrief. We hebben je zojuist een bevestiging gemaild.',
+      'email_sent' => true,
+    ]);
+  } else {
+    // Als mail poging mislukte maar API_DEBUG uit staat, toch success teruggeven
+    json_response(200, [
+      'ok' => true,
+      'message' => 'Bedankt! Je bent ingeschreven voor de nieuwsbrief.',
+      'email_sent' => false,
+    ]);
+  }
 } catch (Throwable $e) {
   api_error(500, 'Kon niet inschrijven.', ['error' => $e->getMessage()]);
 }

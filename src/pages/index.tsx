@@ -8,7 +8,6 @@ import HomePageContactForm from '@/components/HomePageContactForm';
 import Footer from '@/components/Footer';
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { Typewriter } from "@/components/ui/typewriter-text";
-import ApiStatus from "@/components/ApiStatus";
 import NewsletterSignup from "@/components/NewsletterSignup";
 
 const Index = () => {
@@ -77,17 +76,7 @@ const Index = () => {
           </AuroraBackground>
         </section>
 
-        {/* API-status sectie */}
-        <section className="py-8 bg-background">
-          <div className="container mx-auto px-4">
-            <ApiStatus />
-          </div>
-        </section>
-
         <USPsSection />
-
-        {/* Nieuwsbrief inschrijving */}
-        <NewsletterSignup />
 
         <section id="about" className="py-20 bg-background">
           <div className="container mx-auto px-4 text-center max-w-3xl">
@@ -103,6 +92,8 @@ const Index = () => {
         </section>
         <WaveSeparator topBgColorVar="--background" bottomBgClass="bg-zutly-tiffany-dark/10" />
         <HomePageContactForm />
+        {/* Nieuwsbrief onderaan, direct boven de footer */}
+        <NewsletterSignup />
       </main>
       <Footer />
     </div>

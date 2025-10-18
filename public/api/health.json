@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "api": {
+    "ok": true,
+    "timestamp": "2025-01-01T00:00:00Z",
+    "php": "dev-mock"
+  },
+  "db": {
+    "configured": false,
+    "ok": null
+  }
+}

@@ -33,19 +33,29 @@ const ApiStatus: React.FC = () => {
 
   React.useEffect(() => {
     let mounted = true;
-    fetch("/api/health.php", { headers: { "Cache-Control": "no-cache" } })
+    const endpoint = import.meta.env.PROD ? "/api/health.php" : "/api/health.json";
+
+    fetch(endpoint, { headers: { "Cache-Control": "no-cache" } })
       .then(async (res) => {
-        if (!res.ok) {
-          throw new Error(`HTTP ${res.status}`);
+        const text = await res.text();
+
+        try {
+          const json = JSON.parse(text) as HealthResponse;
+          if (mounted) setData(json);
+        } catch (e) {
+          throw new Error(
+            `Ongeldige JSON van ${endpoint}.${
+              import.meta.env.DEV
+                ? " In development wordt health.json verwacht."
+                : " Controleer of PHP draait en JSON retourneert."
+            }`
+          );
         }
-        return res.json();
-      })
-      .then((json: HealthResponse) => {
-        if (mounted) setData(json);
       })
       .catch((err) => {
         if (mounted) setError(err.message || "Fout bij laden");
       });
+
     return () => {
       mounted = false;
     };

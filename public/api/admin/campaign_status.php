@@ -42,12 +42,24 @@ try {
       'start' => 'sending',
       'resume' => 'sending',
       'pause' => 'paused',
-      'stop' => 'stopped',
+      'stop'  => 'stopped',
     ];
     $new = $map[$action];
 
-    $stmt = $pdo->prepare("UPDATE newsletter_campaigns SET status = :status, started_at = IF(:status='sending', IFNULL(started_at, NOW()), started_at), finished_at = IF(:status IN ('done','stopped'), NOW(), finished_at) WHERE id = :id");
-    $stmt->execute([':status' => $new, ':id' => $id]);
+    // Gebruik unieke placeholders voor compatibiliteit met native prepared statements
+    $stmt = $pdo->prepare("
+      UPDATE newsletter_campaigns
+      SET status = :status_set,
+          started_at = IF(:status_check_send = 'sending', IFNULL(started_at, NOW()), started_at),
+          finished_at = IF(:status_check_done IN ('done','stopped'), NOW(), finished_at)
+      WHERE id = :id
+    ");
+    $stmt->execute([
+      ':status_set'        => $new,
+      ':status_check_send' => $new,
+      ':status_check_done' => $new,
+      ':id'                => $id,
+    ]);
 
     json_response(200, ['ok' => true, 'status' => $new]);
   }

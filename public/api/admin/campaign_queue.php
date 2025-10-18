@@ -52,16 +52,25 @@ try {
     $token = bin2hex(random_bytes(16));
     $ins->execute([
       ':campaign_id' => $campaignId,
-      ':email' => $email,
-      ':token' => $token,
+      ':email'       => $email,
+      ':token'       => $token,
     ]);
     $count++;
   }
 
-  // Status bijwerken
+  // Status bijwerken met unieke placeholders
   $newStatus = $start ? 'sending' : 'queued';
-  $pdo->prepare("UPDATE newsletter_campaigns SET status = :status, started_at = IF(:status='sending', NOW(), started_at) WHERE id = :id")
-      ->execute([':status' => $newStatus, ':id' => $campaignId]);
+  $upd = $pdo->prepare("
+    UPDATE newsletter_campaigns
+    SET status = :status_set,
+        started_at = IF(:status_check = 'sending', NOW(), started_at)
+    WHERE id = :id
+  ");
+  $upd->execute([
+    ':status_set'   => $newStatus,
+    ':status_check' => $newStatus,
+    ':id'           => $campaignId,
+  ]);
 
   json_response(200, ['ok' => true, 'queued' => $count, 'status' => $newStatus]);
 } catch (Throwable $e) {

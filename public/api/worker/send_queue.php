@@ -57,8 +57,8 @@ try {
     if ($text === null) $text = '';
 
     $u = $base . "/api/unsubscribe.php?t=" . urlencode($token);
+    // Laat mailer.php de From zetten; voeg alleen Unsubscribe headers toe
     $extraHeaders = [
-      "From: {$fromName} <{$fromEmail}>",
       "List-Unsubscribe: <{$u}>",
       "List-Unsubscribe-Post: List-Unsubscribe=One-Click",
     ];

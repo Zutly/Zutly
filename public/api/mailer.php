@@ -97,10 +97,24 @@ function send_smtp_mail(string $to, string $subject, string $bodyText, ?string $
   $headers[] = "Date: {$date}";
   $headers[] = "Message-ID: {$messageId}";
 
-  if (!empty($extraHeaders)) {
-    foreach ($extraHeaders as $h) {
-      if (is_string($h) && trim($h) !== '') $headers[] = $h;
+  // Filter gevaarlijke of dubbele headers uit extraHeaders
+  $blocked = [
+    'from','to','subject','mime-version','content-type','content-transfer-encoding','date','message-id','reply-to'
+  ];
+
+  foreach ($extraHeaders as $h) {
+    if (!is_string($h)) continue;
+    // Verwijder CR/LF om header injection te voorkomen
+    $clean = str_replace(["\r", "\n"], '', trim($h));
+    if ($clean === '') continue;
+    $pos = strpos($clean, ':');
+    if ($pos === false) continue;
+    $name = strtolower(trim(substr($clean, 0, $pos)));
+    if (in_array($name, $blocked, true)) {
+      // Sla verboden/gedupliceerde headers over
+      continue;
     }
+    $headers[] = $clean;
   }
 
   // Zorg voor CRLF en dot-stuffing

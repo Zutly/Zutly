@@ -20,12 +20,20 @@ type HealthResponse = {
 
 const StatusDot = ({ ok }: { ok: boolean }) => (
   <span
-    className={`inline-block h-2.5 w-2.5 rounded-full mr-2 ${
-      ok ? "bg-green-500" : "bg-red-500"
-    }`}
+    className={`inline-block h-2.5 w-2.5 rounded-full mr-2 ${ok ? "bg-green-500" : "bg-red-500"}`}
     aria-hidden
   />
 );
+
+async function fetchJson(url: string): Promise<HealthResponse> {
+  const res = await fetch(url, { headers: { "Cache-Control": "no-cache" } });
+  const text = await res.text();
+  try {
+    return JSON.parse(text) as HealthResponse;
+  } catch {
+    throw new Error(`Ongeldige JSON van ${url}`);
+  }
+}
 
 const ApiStatus: React.FC = () => {
   const [data, setData] = React.useState<HealthResponse | null>(null);
@@ -33,29 +41,40 @@ const ApiStatus: React.FC = () => {
 
   React.useEffect(() => {
     let mounted = true;
-    const endpoint = import.meta.env.PROD ? "/api/health.php" : "/api/health.json";
 
-    fetch(endpoint, { headers: { "Cache-Control": "no-cache" } })
-      .then(async (res) => {
-        const text = await res.text();
-
-        try {
-          const json = JSON.parse(text) as HealthResponse;
-          if (mounted) setData(json);
-        } catch (e) {
-          throw new Error(
-            `Ongeldige JSON van ${endpoint}.${
-              import.meta.env.DEV
-                ? " In development wordt health.json verwacht."
-                : " Controleer of PHP draait en JSON retourneert."
-            }`
-          );
+    const load = async () => {
+      try {
+        if (import.meta.env.DEV) {
+          // Probeer echte productie health eerst (CORS moet toegestaan zijn).
+          try {
+            const prod = await fetchJson("https://www.zutly.nl/api/health.php");
+            if (mounted) {
+              setData(prod);
+              return;
+            }
+          } catch (e: any) {
+            // Val terug op lokale mock
+          }
+          const local = await fetchJson("/api/health.json");
+          if (mounted) setData(local);
+          return;
         }
-      })
-      .catch((err) => {
-        if (mounted) setError(err.message || "Fout bij laden");
-      });
 
+        // Productie: lokale PHP
+        const php = await fetchJson("/api/health.php");
+        if (mounted) setData(php);
+      } catch (e: any) {
+        if (mounted)
+          setError(
+            e?.message ||
+              (import.meta.env.DEV
+                ? "Kon geen health laden. Controleer CORS op https://www.zutly.nl."
+                : "Fout bij laden.")
+          );
+      }
+    };
+
+    load();
     return () => {
       mounted = false;
     };
@@ -85,16 +104,10 @@ const ApiStatus: React.FC = () => {
               <StatusDot ok={data.db.configured ? !!data.db.ok : true} />
               <span>
                 Database{" "}
-                {data.db.configured
-                  ? data.db.ok
-                    ? "verbonden"
-                    : "fout (zie serverlogs)"
-                  : "nog niet geconfigureerd"}
+                {data.db.configured ? (data.db.ok ? "verbonden" : "fout (zie serverlogs)") : "nog niet geconfigureerd"}
               </span>
             </div>
-            <div className="text-xs text-gray-500">
-              Laatst gecheckt: {new Date(data.api.timestamp).toLocaleString()}
-            </div>
+            <div className="text-xs text-gray-500">Laatst gecheckt: {new Date(data.api.timestamp).toLocaleString()}</div>
           </>
         ) : (
           <div>Bezig met laden...</div>

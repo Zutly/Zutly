@@ -22,21 +22,16 @@ const NewsletterSignup: React.FC = () => {
 
     setIsSubmitting(true);
 
-    // In development is er geen PHP, dus simuleren we succes.
-    if (import.meta.env.DEV) {
-      setTimeout(() => {
-        showSuccess("Bedankt! (dev-simulatie) Je staat op de lijst.");
-        setEmail("");
-        setIsSubmitting(false);
-      }, 500);
-      return;
-    }
+    // In development: richt naar productie-PHP zodat DB echt getest wordt.
+    const apiBase = import.meta.env.PROD ? "" : "https://www.zutly.nl";
+    const endpoint = `${apiBase}/api/newsletter.php`;
 
     try {
-      const res = await fetch("/api/newsletter.php", {
+      const res = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: trimmed }),
+        // Cookies niet nodig, dus credentials niet meesturen.
       });
 
       const text = await res.text();
@@ -45,8 +40,11 @@ const NewsletterSignup: React.FC = () => {
       try {
         json = JSON.parse(text);
       } catch {
-        // Val terug op generieke fout als er geen JSON terugkomt
-        showError("Onverwachte serverrespons. Probeer later opnieuw.");
+        showError(
+          import.meta.env.DEV
+            ? "Server stuurde geen geldige JSON. Controleer CORS en PHP op https://www.zutly.nl/api/newsletter.php."
+            : "Onverwachte serverrespons. Probeer later opnieuw."
+        );
         setIsSubmitting(false);
         return;
       }
@@ -57,8 +55,12 @@ const NewsletterSignup: React.FC = () => {
       } else {
         showError(json?.message || "Inschrijven mislukt. Probeer later opnieuw.");
       }
-    } catch (err) {
-      showError("Netwerkfout. Controleer je verbinding en probeer opnieuw.");
+    } catch (err: any) {
+      showError(
+        import.meta.env.DEV
+          ? "Kon geen verbinding maken met https://www.zutly.nl. Controleer CORS (ALLOWED_ORIGINS) en netwerk."
+          : "Netwerkfout. Controleer je verbinding en probeer opnieuw."
+      );
     } finally {
       setIsSubmitting(false);
     }

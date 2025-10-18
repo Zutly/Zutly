@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { showError, showSuccess } from "@/utils/toast";
 import ApiStatus from "@/components/ApiStatus";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 type Campaign = {
   id: number;
@@ -27,6 +28,16 @@ type Subscriber = {
   created_at: string;
 };
 
+type RecipientRow = {
+  id: number;
+  email: string;
+  status: string;
+  attempts: number;
+  last_error: string | null;
+  sent_at: string | null;
+  created_at: string;
+};
+
 const Admin: React.FC = () => {
   const [token, setToken] = React.useState<string>(() => localStorage.getItem("adminToken") || "");
   const [campaigns, setCampaigns] = React.useState<Campaign[]>([]);
@@ -37,6 +48,12 @@ const Admin: React.FC = () => {
 
   const [subs, setSubs] = React.useState<Subscriber[]>([]);
   const [subsLoading, setSubsLoading] = React.useState(false);
+
+  // Failures dialog state
+  const [failOpen, setFailOpen] = React.useState(false);
+  const [failCampaign, setFailCampaign] = React.useState<number | null>(null);
+  const [failItems, setFailItems] = React.useState<RecipientRow[]>([]);
+  const [failLoading, setFailLoading] = React.useState(false);
 
   // In DEV richt naar productie PHP, omdat Vite geen PHP uitvoert.
   const apiBase = React.useMemo(() => (import.meta.env.DEV ? "https://www.zutly.nl" : ""), []);
@@ -211,6 +228,25 @@ const Admin: React.FC = () => {
     }
   };
 
+  const loadFailures = async (id: number) => {
+    if (!token) {
+      showError("Voer eerst je admin token in.");
+      return;
+    }
+    try {
+      setFailCampaign(id);
+      setFailLoading(true);
+      setFailOpen(true);
+      const { res, json } = await fetchJson(`/api/admin/campaign_recipients.php?campaign_id=${id}&status=failed&limit=100`);
+      if (!res.ok || !json?.ok) throw new Error(json?.error || "Kon mislukkingen niet laden");
+      setFailItems((json.items || []) as RecipientRow[]);
+    } catch (e: any) {
+      showError(e.message || "Fout bij laden mislukkingen");
+    } finally {
+      setFailLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-zutly-tiffany-light/10 py-10">
       <div className="container mx-auto px-4 max-w-6xl space-y-8">
@@ -282,6 +318,7 @@ const Admin: React.FC = () => {
                       <Button size="sm" variant="outline" onClick={() => control(c.id, "pause")}>Pauzeer</Button>
                       <Button size="sm" variant="outline" onClick={() => control(c.id, "resume")}>Hervat</Button>
                       <Button size="sm" variant="destructive" onClick={() => control(c.id, "stop")}>Stop</Button>
+                      <Button size="sm" variant="outline" onClick={() => loadFailures(c.id)}>Mislukkingen</Button>
                       <Button size="sm" variant="destructive" onClick={() => deleteCampaign(c.id)}>Verwijder</Button>
                     </div>
                   </div>
@@ -317,6 +354,47 @@ const Admin: React.FC = () => {
           </CardContent>
         </Card>
       </div>
+
+      {/* Failures dialog */}
+      <Dialog open={failOpen} onOpenChange={setFailOpen}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle>Mislukte ontvangers</DialogTitle>
+            <DialogDescription>
+              {failCampaign ? `Campagne #${failCampaign}` : ""} {failLoading ? " • laden…" : ""}
+            </DialogDescription>
+          </DialogHeader>
+          {failLoading ? (
+            <div className="text-sm text-gray-600">Gegevens ophalen…</div>
+          ) : failItems.length === 0 ? (
+            <div className="text-sm text-gray-600">Geen mislukte ontvangers gevonden.</div>
+          ) : (
+            <ScrollArea className="h-80 rounded-md border p-3 bg-white">
+              <div className="space-y-3">
+                {failItems.map((r) => (
+                  <div key={r.id} className="border rounded p-2">
+                    <div className="text-sm font-medium">{r.email}</div>
+                    <div className="text-xs text-gray-600">
+                      Pogingen: {r.attempts} • {r.sent_at ? `Laatst: ${new Date(r.sent_at).toLocaleString()}` : `Toegevoegd: ${new Date(r.created_at).toLocaleString()}`}
+                    </div>
+                    {r.last_error && (
+                      <div className="text-xs text-red-600 mt-1 break-words">
+                        Fout: {r.last_error}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </ScrollArea>
+          )}
+          <div className="flex justify-end gap-2 pt-2">
+            {failCampaign && (
+              <Button variant="secondary" onClick={() => loadFailures(failCampaign)}>Vernieuwen</Button>
+            )}
+            <Button onClick={() => setFailOpen(false)}>Sluiten</Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

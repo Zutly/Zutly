@@ -56,6 +56,10 @@ const Admin: React.FC = () => {
 
   const loadCampaigns = async () => {
     try {
+      if (!token) {
+        showError("Voer eerst je admin token in.");
+        return;
+      }
       setLoading(true);
       const { res, json } = await fetchJson("/api/admin/campaigns.php");
       if (!res.ok || !json?.ok) throw new Error(json?.error || "Kon campagnes niet laden");
@@ -67,12 +71,9 @@ const Admin: React.FC = () => {
     }
   };
 
+  // Sla het token alleen lokaal op zonder netwerk-calls te doen
   React.useEffect(() => {
-    if (token) {
-      localStorage.setItem("adminToken", token);
-      loadCampaigns();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    localStorage.setItem("adminToken", token || "");
   }, [token]);
 
   const saveCampaign = async () => {
@@ -93,13 +94,17 @@ const Admin: React.FC = () => {
       showSuccess("Campagne aangemaakt");
       setSubject("");
       setText("");
-      loadCampaigns();
+      // Handmatig herladen op verzoek van gebruiker; geen auto-call hier
     } catch (e: any) {
       showError(e.message || "Fout bij opslaan");
     }
   };
 
   const queueAndStart = async (id: number) => {
+    if (!token) {
+      showError("Voer eerst je admin token in.");
+      return;
+    }
     try {
       const { res, json } = await fetchJson("/api/admin/campaign_queue.php", {
         method: "POST",
@@ -107,13 +112,16 @@ const Admin: React.FC = () => {
       });
       if (!res.ok || !json?.ok) throw new Error(json?.error || "Queue mislukt");
       showSuccess(`Gequeued: ${json.queued}. Status: ${json.status}`);
-      loadCampaigns();
     } catch (e: any) {
       showError(e.message || "Fout bij queue");
     }
   };
 
   const control = async (id: number, action: "start" | "pause" | "resume" | "stop") => {
+    if (!token) {
+      showError("Voer eerst je admin token in.");
+      return;
+    }
     try {
       const { res, json } = await fetchJson("/api/admin/campaign_status.php", {
         method: "POST",
@@ -121,24 +129,30 @@ const Admin: React.FC = () => {
       });
       if (!res.ok || !json?.ok) throw new Error(json?.error || "Actie mislukt");
       showSuccess(`Status: ${json.status}`);
-      loadCampaigns();
     } catch (e: any) {
       showError(e.message || "Fout bij statuswijziging");
     }
   };
 
   const workerRun = async (max = 20) => {
+    if (!token) {
+      showError("Voer eerst je admin token in.");
+      return;
+    }
     try {
       const { res, json } = await fetchJson(`/api/worker/send_queue.php?max=${max}`);
       if (!res.ok || !json?.ok) throw new Error(json?.error || "Worker fout");
       showSuccess(`Verwerkt: ${json.processed}, verzonden: ${json.sent}, gefaald: ${json.failed}`);
-      loadCampaigns();
     } catch (e: any) {
       showError(e.message || "Fout bij worker");
     }
   };
 
   const openStatus = async (id: number) => {
+    if (!token) {
+      showError("Voer eerst je admin token in.");
+      return;
+    }
     try {
       const { res, json } = await fetchJson(`/api/admin/campaign_status.php?campaign_id=${id}`);
       if (!res.ok || !json?.ok) throw new Error(json?.error || "Status laden mislukt");
@@ -169,7 +183,7 @@ const Admin: React.FC = () => {
               onChange={(e) => setToken(e.target.value)}
             />
             <div className="text-xs text-gray-600">
-              Token wordt lokaal opgeslagen en meegestuurd bij admin-aanvragen.
+              Het token wordt alleen lokaal opgeslagen. Er worden geen calls gedaan totdat je op een knop klikt (bijv. “Vernieuwen”).
             </div>
           </CardContent>
         </Card>
@@ -204,7 +218,7 @@ const Admin: React.FC = () => {
               <Button variant="outline" onClick={() => workerRun(20)}>Worker nu draaien (20)</Button>
             </div>
             {campaigns.length === 0 ? (
-              <div className="text-sm text-gray-600">Nog geen campagnes.</div>
+              <div className="text-sm text-gray-600">Nog geen campagnes. Klik “Vernieuwen” om te laden.</div>
             ) : (
               <div className="space-y-3">
                 {campaigns.map((c) => (

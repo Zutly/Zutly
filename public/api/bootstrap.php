@@ -32,7 +32,7 @@ if ($allowed) {
 
 // Basis CORS/headers
 header('Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type, Authorization');
+header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With, X-Admin-Token');
 header('Access-Control-Max-Age: 86400');
 
 // Preflight

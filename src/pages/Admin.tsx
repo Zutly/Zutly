@@ -27,16 +27,37 @@ const Admin: React.FC = () => {
   const [subject, setSubject] = React.useState("");
   const [text, setText] = React.useState("");
 
+  // In DEV richt naar productie PHP, omdat Vite geen PHP uitvoert.
+  const apiBase = React.useMemo(() => (import.meta.env.DEV ? "https://www.zutly.nl" : ""), []);
+
   const headers = React.useMemo(
-    () => (token ? { "Content-Type": "application/json", "X-Admin-Token": token } : { "Content-Type": "application/json" }),
+    () =>
+      token
+        ? { "Content-Type": "application/json", Accept: "application/json", "X-Admin-Token": token }
+        : { "Content-Type": "application/json", Accept: "application/json" },
     [token]
   );
+
+  async function fetchJson(path: string, init?: RequestInit) {
+    const url = `${apiBase}${path}`;
+    const res = await fetch(url, { ...init, headers: { ...(init?.headers || {}), ...headers } });
+    const text = await res.text();
+    try {
+      const json = JSON.parse(text);
+      return { res, json };
+    } catch {
+      // Vriendelijke uitleg in DEV als PHP niet wordt uitgevoerd of CORS faalt.
+      const hint = import.meta.env.DEV
+        ? "Ontving geen geldige JSON (waarschijnlijk wordt PHP niet uitgevoerd in development of CORS blokkeert de request)."
+        : "Onverwachte serverrespons.";
+      throw new Error(`${hint} Response start: ${text.slice(0, 80)}`);
+    }
+  }
 
   const loadCampaigns = async () => {
     try {
       setLoading(true);
-      const res = await fetch("/api/admin/campaigns.php", { headers });
-      const json = await res.json();
+      const { res, json } = await fetchJson("/api/admin/campaigns.php");
       if (!res.ok || !json?.ok) throw new Error(json?.error || "Kon campagnes niet laden");
       setCampaigns(json.items || []);
     } catch (e: any) {
@@ -51,6 +72,7 @@ const Admin: React.FC = () => {
       localStorage.setItem("adminToken", token);
       loadCampaigns();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
   const saveCampaign = async () => {
@@ -63,12 +85,10 @@ const Admin: React.FC = () => {
       return;
     }
     try {
-      const res = await fetch("/api/admin/campaigns.php", {
+      const { res, json } = await fetchJson("/api/admin/campaigns.php", {
         method: "POST",
-        headers,
         body: JSON.stringify({ subject: subject.trim(), text: text.trim(), batch_size: 20 }),
       });
-      const json = await res.json();
       if (!res.ok || !json?.ok) throw new Error(json?.error || "Opslaan mislukt");
       showSuccess("Campagne aangemaakt");
       setSubject("");
@@ -81,12 +101,10 @@ const Admin: React.FC = () => {
 
   const queueAndStart = async (id: number) => {
     try {
-      const res = await fetch("/api/admin/campaign_queue.php", {
+      const { res, json } = await fetchJson("/api/admin/campaign_queue.php", {
         method: "POST",
-        headers,
         body: JSON.stringify({ campaign_id: id, start: true }),
       });
-      const json = await res.json();
       if (!res.ok || !json?.ok) throw new Error(json?.error || "Queue mislukt");
       showSuccess(`Gequeued: ${json.queued}. Status: ${json.status}`);
       loadCampaigns();
@@ -97,12 +115,10 @@ const Admin: React.FC = () => {
 
   const control = async (id: number, action: "start" | "pause" | "resume" | "stop") => {
     try {
-      const res = await fetch("/api/admin/campaign_status.php", {
+      const { res, json } = await fetchJson("/api/admin/campaign_status.php", {
         method: "POST",
-        headers,
         body: JSON.stringify({ campaign_id: id, action }),
       });
-      const json = await res.json();
       if (!res.ok || !json?.ok) throw new Error(json?.error || "Actie mislukt");
       showSuccess(`Status: ${json.status}`);
       loadCampaigns();
@@ -113,8 +129,7 @@ const Admin: React.FC = () => {
 
   const workerRun = async (max = 20) => {
     try {
-      const res = await fetch(`/api/worker/send_queue.php?max=${max}`, { headers });
-      const json = await res.json();
+      const { res, json } = await fetchJson(`/api/worker/send_queue.php?max=${max}`);
       if (!res.ok || !json?.ok) throw new Error(json?.error || "Worker fout");
       showSuccess(`Verwerkt: ${json.processed}, verzonden: ${json.sent}, gefaald: ${json.failed}`);
       loadCampaigns();
@@ -125,8 +140,7 @@ const Admin: React.FC = () => {
 
   const openStatus = async (id: number) => {
     try {
-      const res = await fetch(`/api/admin/campaign_status.php?campaign_id=${id}`, { headers });
-      const json = await res.json();
+      const { res, json } = await fetchJson(`/api/admin/campaign_status.php?campaign_id=${id}`);
       if (!res.ok || !json?.ok) throw new Error(json?.error || "Status laden mislukt");
       const r = json.recipients || {};
       const msg = `Status: ${json.campaign.status}\nqueued: ${r.queued || 0}\nsent: ${r.sent || 0}\nfailed: ${r.failed || 0}\nskipped: ${r.skipped || 0}`;

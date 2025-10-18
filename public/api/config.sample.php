@@ -3,7 +3,7 @@
 // Bewaar dit bestand buiten versiebeheer (staat op .gitignore).
 
 // Database instellingen (Strato)
-const DB_HOST = 'localhost';
+const DB_HOST = 'database-5018832368.webspace-host.com';
 const DB_NAME = 'jouw_database_naam';
 const DB_USER = 'jouw_db_gebruiker';
 const DB_PASS = 'jouw_db_wachtwoord';

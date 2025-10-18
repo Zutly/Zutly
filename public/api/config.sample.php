@@ -4,7 +4,7 @@
 
 // Database instellingen (Strato)
 const DB_HOST = 'database-5018832368.webspace-host.com';
-const DB_NAME = 'jouw_database_naam';
+const DB_NAME = 'dbs14870288';
 const DB_USER = 'jouw_db_gebruiker';
 const DB_PASS = 'jouw_db_wachtwoord';
 const DB_PORT = 3306;

@@ -14,7 +14,7 @@ const DB_CHARSET = 'utf8mb4';
 // Voor lokale ontwikkeling kun je 'http://localhost:8080' toevoegen.
 const ALLOWED_ORIGINS = [
   // 'https://www.jouwdomein.nl',
-  // 'http://localhost:8080',
+   'http://localhost:8080',
 ];
 
 // Optioneel: zet naar true voor meer foutdetails in responses (niet in productie).

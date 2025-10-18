@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { showError, showSuccess } from "@/utils/toast";
+import ApiStatus from "@/components/ApiStatus";
 
 type Campaign = {
   id: number;
@@ -46,7 +47,6 @@ const Admin: React.FC = () => {
       const json = JSON.parse(text);
       return { res, json };
     } catch {
-      // Vriendelijke uitleg in DEV als PHP niet wordt uitgevoerd of CORS faalt.
       const hint = import.meta.env.DEV
         ? "Ontving geen geldige JSON (waarschijnlijk wordt PHP niet uitgevoerd in development of CORS blokkeert de request)."
         : "Onverwachte serverrespons.";
@@ -153,6 +153,8 @@ const Admin: React.FC = () => {
   return (
     <div className="min-h-screen bg-zutly-tiffany-light/10 py-10">
       <div className="container mx-auto px-4 max-w-5xl space-y-8">
+        <ApiStatus />
+
         <Card className="shadow-md">
           <CardHeader>
             <CardTitle>Admin toegang</CardTitle>

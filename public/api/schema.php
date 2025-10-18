@@ -2,7 +2,16 @@
 require_once __DIR__ . '/db.php';
 
 function ensure_newsletter_schema(PDO $pdo): void {
-  // subscribers bestaat al; we voegen suppressions, campaigns en campaign_recipients toe
+  // Subscribers (voor inschrijvingen)
+  $pdo->exec("
+    CREATE TABLE IF NOT EXISTS newsletter_subscribers (
+      id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+      email VARCHAR(255) NOT NULL UNIQUE,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  ");
+
+  // Suppressions (uitschrijvingen/bounces)
   $pdo->exec("
     CREATE TABLE IF NOT EXISTS newsletter_suppressions (
       id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -12,6 +21,7 @@ function ensure_newsletter_schema(PDO $pdo): void {
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
   ");
 
+  // Campagnes
   $pdo->exec("
     CREATE TABLE IF NOT EXISTS newsletter_campaigns (
       id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -29,6 +39,7 @@ function ensure_newsletter_schema(PDO $pdo): void {
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
   ");
 
+  // Campagne-ontvangers (queue + status)
   $pdo->exec("
     CREATE TABLE IF NOT EXISTS newsletter_campaign_recipients (
       id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,

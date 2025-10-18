@@ -4,10 +4,16 @@ require_once __DIR__ . '/bootstrap.php';
 /**
  * Verstuurt een e-mail via eenvoudige SMTP (SSL op poort 465).
  * Minimale implementatie: EHLO, AUTH LOGIN, MAIL FROM, RCPT TO, DATA.
- * 
+ *
+ * @param string      $to
+ * @param string      $subject
+ * @param string      $bodyText          Plain text inhoud
+ * @param string|null $replyTo
+ * @param array       $extraHeaders      Extra ruwe headerregels, bijv. ['List-Unsubscribe: <...>']
+ *
  * @throws RuntimeException bij SMTP- of verbindingsfouten.
  */
-function send_smtp_mail(string $to, string $subject, string $bodyText, ?string $replyTo = null): void
+function send_smtp_mail(string $to, string $subject, string $bodyText, ?string $replyTo = null, array $extraHeaders = []): void
 {
   if (!defined('SMTP_HOST') || !defined('SMTP_PORT') || !defined('SMTP_USERNAME') || !defined('SMTP_PASSWORD') || !defined('SMTP_FROM')) {
     throw new RuntimeException('SMTP is niet geconfigureerd.');
@@ -40,7 +46,6 @@ function send_smtp_mail(string $to, string $subject, string $bodyText, ?string $
       $chunk = fgets($fp, 512);
       if ($chunk === false) break;
       $line .= $chunk;
-      // Responseregels eindigen wanneer het statuscode-nummer gevolgd wordt door een spatie
       if (preg_match('/^\d{3}\s/', $chunk)) break;
     }
     if (substr($line, 0, 3) !== $prefix) {
@@ -49,7 +54,7 @@ function send_smtp_mail(string $to, string $subject, string $bodyText, ?string $
     return $line;
   };
 
-  $write = function (string $cmd) use ($fp, $expect) {
+  $write = function (string $cmd) use ($fp) {
     fwrite($fp, $cmd . "\r\n");
   };
 
@@ -84,15 +89,19 @@ function send_smtp_mail(string $to, string $subject, string $bodyText, ?string $
   $headers = [];
   $headers[] = "From: {$fromName} <{$from}>";
   $headers[] = "To: <{$to}>";
-  if ($replyTo) {
-    $headers[] = "Reply-To: <{$replyTo}>";
-  }
+  if ($replyTo) $headers[] = "Reply-To: <{$replyTo}>";
   $headers[] = "Subject: {$encodedSubject}";
   $headers[] = "MIME-Version: 1.0";
   $headers[] = "Content-Type: text/plain; charset=UTF-8";
   $headers[] = "Content-Transfer-Encoding: 8bit";
   $headers[] = "Date: {$date}";
   $headers[] = "Message-ID: {$messageId}";
+
+  if (!empty($extraHeaders)) {
+    foreach ($extraHeaders as $h) {
+      if (is_string($h) && trim($h) !== '') $headers[] = $h;
+    }
+  }
 
   // Zorg voor CRLF en dot-stuffing
   $body = preg_replace("/\r\n|\r|\n/", "\r\n", $bodyText);

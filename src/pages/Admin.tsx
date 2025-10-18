@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { showError, showSuccess } from "@/utils/toast";
 import ApiStatus from "@/components/ApiStatus";
 
@@ -20,6 +21,12 @@ type Campaign = {
   finished_at: string | null;
 };
 
+type Subscriber = {
+  id: number;
+  email: string;
+  created_at: string;
+};
+
 const Admin: React.FC = () => {
   const [token, setToken] = React.useState<string>(() => localStorage.getItem("adminToken") || "");
   const [campaigns, setCampaigns] = React.useState<Campaign[]>([]);
@@ -27,6 +34,9 @@ const Admin: React.FC = () => {
 
   const [subject, setSubject] = React.useState("");
   const [text, setText] = React.useState("");
+
+  const [subs, setSubs] = React.useState<Subscriber[]>([]);
+  const [subsLoading, setSubsLoading] = React.useState(false);
 
   // In DEV richt naar productie PHP, omdat Vite geen PHP uitvoert.
   const apiBase = React.useMemo(() => (import.meta.env.DEV ? "https://www.zutly.nl" : ""), []);
@@ -50,7 +60,7 @@ const Admin: React.FC = () => {
       const hint = import.meta.env.DEV
         ? "Ontving geen geldige JSON (waarschijnlijk wordt PHP niet uitgevoerd in development of CORS blokkeert de request)."
         : "Onverwachte serverrespons.";
-      throw new Error(`${hint} Response start: ${text.slice(0, 80)}`);
+      throw new Error(`${hint} Response start: ${text.slice(0, 120)}`);
     }
   }
 
@@ -71,7 +81,7 @@ const Admin: React.FC = () => {
     }
   };
 
-  // Sla het token alleen lokaal op zonder netwerk-calls te doen
+  // Token alleen lokaal opslaan; geen auto-calls
   React.useEffect(() => {
     localStorage.setItem("adminToken", token || "");
   }, [token]);
@@ -94,7 +104,6 @@ const Admin: React.FC = () => {
       showSuccess("Campagne aangemaakt");
       setSubject("");
       setText("");
-      // Handmatig herladen op verzoek van gebruiker; geen auto-call hier
     } catch (e: any) {
       showError(e.message || "Fout bij opslaan");
     }
@@ -134,6 +143,44 @@ const Admin: React.FC = () => {
     }
   };
 
+  const deleteCampaign = async (id: number) => {
+    if (!token) {
+      showError("Voer eerst je admin token in.");
+      return;
+    }
+    const ok = window.confirm("Weet je zeker dat je deze campagne wilt verwijderen?");
+    if (!ok) return;
+    try {
+      const { res, json } = await fetchJson("/api/admin/campaign_delete.php", {
+        method: "POST",
+        body: JSON.stringify({ campaign_id: id }),
+      });
+      if (!res.ok || !json?.ok) throw new Error(json?.error || "Verwijderen mislukt");
+      showSuccess("Campagne verwijderd");
+      await loadCampaigns();
+    } catch (e: any) {
+      showError(e.message || "Fout bij verwijderen");
+    }
+  };
+
+  const loadSubscribers = async () => {
+    if (!token) {
+      showError("Voer eerst je admin token in.");
+      return;
+    }
+    try {
+      setSubsLoading(true);
+      const { res, json } = await fetchJson("/api/admin/subscribers.php");
+      if (!res.ok || !json?.ok) throw new Error(json?.error || "Kon abonnees niet laden");
+      setSubs((json.items || []) as Subscriber[]);
+      showSuccess(`Abonnees geladen: ${(json.items || []).length}`);
+    } catch (e: any) {
+      showError(e.message || "Fout bij laden abonnees");
+    } finally {
+      setSubsLoading(false);
+    }
+  };
+
   const workerRun = async (max = 20) => {
     if (!token) {
       showError("Voer eerst je admin token in.");
@@ -166,7 +213,7 @@ const Admin: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-zutly-tiffany-light/10 py-10">
-      <div className="container mx-auto px-4 max-w-5xl space-y-8">
+      <div className="container mx-auto px-4 max-w-6xl space-y-8">
         <ApiStatus />
 
         <Card className="shadow-md">
@@ -183,7 +230,7 @@ const Admin: React.FC = () => {
               onChange={(e) => setToken(e.target.value)}
             />
             <div className="text-xs text-gray-600">
-              Het token wordt alleen lokaal opgeslagen. Er worden geen calls gedaan totdat je op een knop klikt (bijv. “Vernieuwen”).
+              Het token wordt alleen lokaal opgeslagen. Er worden geen calls gedaan totdat je op een knop klikt.
             </div>
           </CardContent>
         </Card>
@@ -213,7 +260,7 @@ const Admin: React.FC = () => {
             <CardTitle>Campagnes {loading && <Badge className="ml-2">laden…</Badge>}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="flex gap-3">
+            <div className="flex flex-wrap gap-3">
               <Button variant="secondary" onClick={loadCampaigns}>Vernieuwen</Button>
               <Button variant="outline" onClick={() => workerRun(20)}>Worker nu draaien (20)</Button>
             </div>
@@ -225,7 +272,9 @@ const Admin: React.FC = () => {
                   <div key={c.id} className="border rounded-md p-3 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
                     <div className="space-y-1">
                       <div className="font-medium">{c.subject}</div>
-                      <div className="text-xs text-gray-600">#{c.id} • status: <Badge variant="secondary">{c.status}</Badge> • batch: {c.batch_size}</div>
+                      <div className="text-xs text-gray-600">
+                        #{c.id} • status: <Badge variant="secondary">{c.status}</Badge> • batch: {c.batch_size}
+                      </div>
                     </div>
                     <div className="flex flex-wrap gap-2">
                       <Button size="sm" onClick={() => openStatus(c.id)}>Status</Button>
@@ -233,10 +282,37 @@ const Admin: React.FC = () => {
                       <Button size="sm" variant="outline" onClick={() => control(c.id, "pause")}>Pauzeer</Button>
                       <Button size="sm" variant="outline" onClick={() => control(c.id, "resume")}>Hervat</Button>
                       <Button size="sm" variant="destructive" onClick={() => control(c.id, "stop")}>Stop</Button>
+                      <Button size="sm" variant="destructive" onClick={() => deleteCampaign(c.id)}>Verwijder</Button>
                     </div>
                   </div>
                 ))}
               </div>
+            )}
+          </CardContent>
+        </Card>
+
+        <Card className="shadow-md">
+          <CardHeader>
+            <CardTitle>Nieuwsbrief abonnees {subsLoading && <Badge className="ml-2">laden…</Badge>}</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="flex gap-3">
+              <Button variant="secondary" onClick={loadSubscribers}>Laad abonnees</Button>
+              {subs.length > 0 && <Badge variant="outline">{subs.length} actief</Badge>}
+            </div>
+            {subs.length === 0 ? (
+              <div className="text-sm text-gray-600">Nog geen abonnees geladen.</div>
+            ) : (
+              <ScrollArea className="h-72 rounded-md border p-3 bg-white">
+                <div className="space-y-2">
+                  {subs.map((s) => (
+                    <div key={s.id} className="flex items-center justify-between border-b last:border-0 pb-2">
+                      <div className="text-sm">{s.email}</div>
+                      <div className="text-xs text-gray-500">{new Date(s.created_at).toLocaleString()}</div>
+                    </div>
+                  ))}
+                </div>
+              </ScrollArea>
             )}
           </CardContent>
         </Card>

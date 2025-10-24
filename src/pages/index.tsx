@@ -8,6 +8,7 @@ import HomePageContactForm from '@/components/HomePageContactForm';
 import Footer from '@/components/Footer';
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { Typewriter } from "@/components/ui/typewriter-text";
+import SEO from "@/components/SEO";
 
 const Index = () => {
   const homePageOwners = [
@@ -27,8 +28,36 @@ const Index = () => {
     },
   ];
 
+  const title = "Zutly - Uw Partner voor Innovatieve Weboplossingen en Digitale Transformatie";
+  const description = "Zutly ontwikkelt moderne webapplicaties van concept tot implementatie, met focus op gebruiksvriendelijkheid en schaalbaarheid. Ontdek onze oplossingen.";
+
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Zutly",
+      "url": "https://www.zutly.nl/",
+      "logo": "https://www.zutly.nl/zutly-logo.png"
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Zutly",
+      "url": "https://www.zutly.nl/",
+      "inLanguage": "nl-NL"
+    }
+  ];
+
   return (
     <div className="flex flex-col min-h-screen">
+      <SEO
+        title={title}
+        description={description}
+        canonical="/"
+        image="/zutly-logo.png"
+        type="website"
+        jsonLd={jsonLd}
+      />
       <Header />
       <main className="flex-grow">
         <section 
